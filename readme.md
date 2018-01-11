@@ -4,7 +4,7 @@ The middleware to help WIPPO to access data easily.
 
 [![Powered by WIP Camp](public/images/badges/badge-wipcamp.png)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/wipcamp/wip-wippo)
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/wipcamp/wip-api)
 
 ## Introduction
 
