@@ -1,58 +1,61 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# wip-api
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+The middleware to help WIPPO to access data easily.
 
-## About Laravel
+[![Powered by WIP Camp](public/images/badges/badge-wipcamp.png)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/wipcamp/wip-wippo)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Introduction
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+WIP Camp API is a middleware between [WIP Camp Management System](https://github.com/wipcamp/wip-wippo "Go to wip-wippo's GitHub repository.") &mdash; as known as WIPPO and Database Management System to help WIPPO easy to access data, easy to sharing data to another service within WIP Camp and reduce data processing on front-end resources to improve performance.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+# Getting Started
 
-## Learning Laravel
+### Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+- [Git](https://git-scm.com/) 2.14.3 *or newer.*
+- [PHP](https://www.php.net/) 7.0.0 *or newer.*
+- [PHP Extensions](https://php.net/manual/en/install.pecl.php) *such as*
+  - OpenSSL
+  - PDO
+  - Mbstring
+  - Tokenizer
+  - XML
+- [Composer](https://getcomposer.org/) 1.4.2 *or newer.*
+- [MariaDB](https://mariadb.org/) 10.1.23 *or newer.*
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+### Installation
 
-## Laravel Sponsors
+> Comming Soon
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+## Implementation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+### Configuration
 
-## Contributing
+> Comming Soon
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Deployment
 
-## Security Vulnerabilities
+> Comming Soon
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Release Changes
+
+> Comming Soon
+
+## Authors
+
+- **Chanapa Choowisetwanich** - *Developer* &mdash; [guidellka](https://github.com/guidellka "Go to Chanapa Choowisetwanich's GitHub profile.")
+- **Keerati Jearjindarat** - *Developer* &mdash; [imgrbs](https://github.com/imgrbs "Go to Keerati Jearjindarat's GitHub profile.")
+- **Pacharapol Apitanapat** - *Developer* &mdash; [SandzoNight](https://github.com/SandzoNight "Go to Pacharapol Apitanapat's GitHub profile.")
+- **Patric Emmel** - *Developer* &mdash; [ewqdsacxz](https://github.com/ewqdsacxz "Go to Patric Emmel's GitHub profile.")
+- **Phachara Kamthong** - *Developer* &mdash; [mixkungz](https://github.com/mixkungz "Go to Phachara Kamthong's GitHub profile.")
+- **Phongphan Bunlom** - *Developer* &mdash; [athagoras](https://github.com/athagoras "Go to Phongphan Bunlom's GitHub profile.")
+- **Supawit Ruenruthaikul** - *Developer* &mdash; [basinw](https://github.com/basinw "Go to Supawit Ruenruthaikul's GitHub profile.")
+
+
+See also the list of [contributors](https://github.com/wipcamp/wip-api/contributors "Go to the contributors page of this repository.") who participated in this project.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+WIP Camp Bucket is under the [MIT License](LICENSE.md "License Agreement for MIT License") .
