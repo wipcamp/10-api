@@ -1,0 +1,13 @@
+{
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.rulers": [
+    80
+  ],
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "boundary",
+  "window.title": "WIP Camp API: ${dirty}${activeEditorShort}",
+  "[html]": {
+    "editor.tabSize": 2
+  }
+}
