@@ -58,4 +58,4 @@ See also the list of [contributors](https://github.com/wipcamp/wip-api/contribut
 
 ## License
 
-WIP Camp Bucket is under the [MIT License](LICENSE.md "License Agreement for MIT License") .
+WIP Camp API is under the [MIT License](LICENSE.md "License Agreement for MIT License") .
