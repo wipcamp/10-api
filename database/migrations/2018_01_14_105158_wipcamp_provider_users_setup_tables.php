@@ -16,7 +16,7 @@ class WipcampProviderUsersSetupTables extends Migration
         DB::beginTransaction();
 
         Schema::create('providers', function (Blueprint $table) {
-            $table->tinyIncrements('id')->unsigned();
+            $table->increments('id')->unsigned();
             $table->string('name', 32);
             $table->string('display_name', 64)->nullable();
             $table->text('description')->nullable();
@@ -30,7 +30,7 @@ class WipcampProviderUsersSetupTables extends Migration
         Schema::create('provider_users', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('user_id');
-            $table->unsignedTinyInteger('provider_id');
+            $table->unsignedInteger('provider_id');
             $table->string('provider_acc', 20);
             $table->string('access_token');
             $table->string('refresh_token')->nullable();
