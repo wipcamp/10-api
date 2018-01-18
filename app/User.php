@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\UserRole');
     }
+
+    public function provider_users()
+    {
+        return $this->hasMany('App\ProviderUser');
+    }
 }
