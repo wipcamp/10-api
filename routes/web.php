@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 Route::prefix('approve')->group(function (){
     Route::get('','ApproveController@Index');
+    Route::get('{name}/{surname?}','ApproveController@WithParams');
 });
