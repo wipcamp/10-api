@@ -37,7 +37,7 @@ class WipcampProfileQualificationSetupTables extends Migration
         });
 
         Schema::create('eval_question_criterias', function (Blueprint $table) {
-            $table->increment('id')->unasigned();
+            $table->increments('id')->unasigned();
             $table->unsignedInteger('question_id');
             $table->unsignedInteger('criteria_id');
             $table->float('percentage', 5, 2);
