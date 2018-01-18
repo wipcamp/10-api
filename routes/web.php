@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\ApproveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::prefix('approve')->group(function (){
+    Route::get('','ApproveController@Index');
 });
