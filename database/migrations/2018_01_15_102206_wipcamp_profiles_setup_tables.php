@@ -54,7 +54,6 @@ class WipcampProfilesSetupTables extends Migration
             $table->string('blood_group', 16);
             $table->string('congenital_diseases')->nullable();
             $table->string('allergic_foods')->nullable();
-            $table->string('computer_skill')->nullable();
             $table->string('past_camp')->nullable();
             $table->string('know_from_where')->nullable();
             $table->string('congenital_drugs')->nullable();
