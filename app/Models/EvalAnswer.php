@@ -13,4 +13,8 @@ class EvalAnswer extends Model
     public function profile() {
         return $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
     }
+
+    public function eval_question() {
+        return $this->belongsTo('App\Models\EvalQuestion', 'id', 'question_id');
+    }
 }
