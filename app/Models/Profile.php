@@ -45,7 +45,13 @@ class Profile extends Model
         return $this->hasOne('App\Models\ProfileStaff', 'user_id', 'user_id');
     }
 
-    public function documents() {
+    public function documents()
+    {
         return $this->hasMany('App\Models\Document', 'user_id', 'user_id');
+    }
+
+    public function eval_answers()
+    {
+        return $this->hasMany('App\Models\EvalAnswer', 'user_id', 'user_id');
     }
 }
