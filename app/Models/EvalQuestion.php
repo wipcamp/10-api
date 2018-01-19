@@ -14,4 +14,9 @@ class EvalQuestion extends Model
     {
         return $this->hasMany('App\Models\EvalQuestionCriteria', 'question_id');
     }
+
+    public function eval_answers()
+    {
+        return $this->hasMany('App\Models\EvalAnswer', 'question_id');
+    }
 }
