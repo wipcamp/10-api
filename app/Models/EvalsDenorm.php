@@ -11,4 +11,9 @@ class EvalsDenorm extends Model
     protected $guarded = [
         'created_at', 'updated_at'
     ];
+
+    public function profile_registrant()
+    {
+        return $this->belongsTo('App/Models/ProfileRegistrant', 'user_id', 'user_id');
+    }
 }
