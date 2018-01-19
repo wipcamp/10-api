@@ -9,4 +9,9 @@ class EvalQuestion extends Model
     protected $fillable = [
         'data'
     ];
+
+    public function eval_question_criterias()
+    {
+        return $this->hasMany('App\Models\EvalQuestionCriteria', 'question_id');
+    }
 }
