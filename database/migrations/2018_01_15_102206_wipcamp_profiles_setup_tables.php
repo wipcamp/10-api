@@ -83,8 +83,8 @@ class WipcampProfilesSetupTables extends Migration
             $table->string('edu_lv', 64);
             $table->string('edu_major', 64);
             $table->float('edu_gpax', 3, 2);
-            $table->text('skill_computer')->nullable();
             $table->text('activities')->nullable();
+            $table->text('skill_computer')->nullable();
             $table->string('parent_first_name', 64);
             $table->string('parent_last_name', 64);
             $table->string('parent_relation', 64);
