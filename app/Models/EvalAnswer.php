@@ -17,4 +17,9 @@ class EvalAnswer extends Model
     public function eval_question() {
         return $this->belongsTo('App\Models\EvalQuestion', 'id', 'question_id');
     }
+
+    public function evals()
+    {
+        return $this->hasMany('App\Models\Evals', 'answer_id');
+    }
 }
