@@ -14,4 +14,9 @@ class EvalQuestionCriteria extends Model
     {
         return $this->belongsTo('App\Models\EvalQuestion', 'id', 'question_id');
     }
+
+    public function criteria()
+    {
+        return $this->belongsTo('App\Models\EvalCriteria', 'id', 'criteria_id');
+    }
 }
