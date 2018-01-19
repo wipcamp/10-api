@@ -21,4 +21,9 @@ class Evals extends Model
     {
         return $this->belongsTo('App\Models\EvalCriteria', 'id', 'criteria_id');
     }
+
+    public function eval_checker()
+    {
+        return $this->belongsTo('App\User', 'id', 'checker_id');
+    }
 }
