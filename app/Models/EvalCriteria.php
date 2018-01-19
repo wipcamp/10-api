@@ -13,4 +13,9 @@ class EvalCriteria extends Model
     public function eval_criterias() {
         return $this->hasMany('App\Models\EvalQuestionCriteria', 'criteria_id');
     }
+
+    public function evals()
+    {
+        return $this->hasMany('App/Model/Evals', 'criteria_id');
+    }
 }
