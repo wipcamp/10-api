@@ -76,6 +76,7 @@ class WipcampProfileQualificationSetupTables extends Migration
         });
 
         Schema::create('evals', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
             $table->unsignedInteger('answer_id');
             $table->unsignedInteger('criteria_id');
             $table->unsignedInteger('checker_id');
