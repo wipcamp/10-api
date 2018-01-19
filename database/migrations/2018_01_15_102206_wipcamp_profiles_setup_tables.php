@@ -40,7 +40,7 @@ class WipcampProfilesSetupTables extends Migration
         });
 
         Schema::create('profiles', function (Blueprint $table) {
-            $table->unsignedInteger('user_id')->primary();
+            $table->unsignedInteger('user_id')->primary()->default(10000);
             $table->string('first_name', 64);
             $table->string('last_name', 64);
             $table->string('first_name_en', 64);
