@@ -11,4 +11,9 @@ class Evals extends Model
     protected $guarded = [
         'id', 'created_at', 'updated_at'
     ];
+
+    public function eval_answer()
+    {
+        return $this->belongsTo('App\Models\EvalAnswer', 'id', 'answer_id');
+    }
 }
