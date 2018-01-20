@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $guarded = [
+        'addr', 'addr_prov', 'addr_dist', 'telno_personal', 
+        'edu_name', 'edu_lv', 'edu_major', 'edu_gpax',
+        'known_via', 'activities', 'skill_computer', 'past_camp',
+        'parent_first_name', 'parent_last_name', 'parent_relation', 'telno_parent',
         'created_at', 'updated_at'
     ];
 
