@@ -15,7 +15,7 @@ class ProfilesTableSeeder extends Seeder
     {
         $blood_group = ['A', 'B', 'O', 'AB', 'อื่นๆ'];
         $faker = Faker::create();
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 10; $i++) { 
              DB::table('profiles')->insert([
                  'first_name' => $faker->firstName($gender = null|'male'|'female'),
                  'last_name' => $faker->lastName,
