@@ -46,7 +46,6 @@ class WipcampProfilesSetupTables extends Migration
             $table->string('first_name_en', 64);
             $table->string('last_name_en', 64);
             $table->string('nickname', 32);
-            $table->string('nickname_en', 32);
             $table->unsignedTinyInteger('gender_id');
             $table->string('citizen_id', 13)->nullable();
             $table->unsignedTinyInteger('religion_id');
@@ -74,8 +73,6 @@ class WipcampProfilesSetupTables extends Migration
             $table->string('addr');
             $table->string('addr_prov', 64);
             $table->string('addr_dist', 64);
-            $table->string('addr_subdist', 64);
-            $table->string('addr_postal', 5);
             $table->string('telno_personal', 15);
             $table->string('edu_name', 128);
             $table->string('edu_lv', 64);
