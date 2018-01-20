@@ -11,7 +11,7 @@ class ProfileController extends Controller
 
     function create(Request $request) {
         $this->profiles = new ProfileRepository;
-        $profile = $request->toArray();
-        return $this->profiles->create($profile);
+        $data = $request->toArray();
+        return $this->profiles->create($data);
     }
 }
