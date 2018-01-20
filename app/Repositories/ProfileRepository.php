@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 use App\Models\Profile;
+use App\Models\ProfileRegistrant;
 
 class ProfileRepository implements ProfileRepositoryInterface {
   protected $profiles;
@@ -11,6 +12,11 @@ class ProfileRepository implements ProfileRepositoryInterface {
 
   public function create($data) {
     $this->profiles = new Profile($data);
-    return json_encode(['result' => $this->profiles->save()]);
+    $result = $this->profiles->save();
+    if ($result) {
+      $profilesRegistrant = new ProfileRegistrant($data);
+      $result = $this->profiles->profile_registrant()->save($profilesRegistrant);
+    }
+    return json_encode(['result' => $result]);
   }
 }
