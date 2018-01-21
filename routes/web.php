@@ -14,7 +14,3 @@ use App\Http\ApproveController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('approve')->group(function (){
-    Route::get('','ApproveController@Index');
-    Route::get('{name}/{surname?}','ApproveController@WithParams');
-});
