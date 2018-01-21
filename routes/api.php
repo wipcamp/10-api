@@ -23,4 +23,8 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/profiles')->group(function () {
         Route::post('/', 'ProfileController@create');
     });
+    // API Question
+    Route::prefix('/questions')->group(function () {
+        Route::get('/', 'QuestionController@get');
+    });
 });
