@@ -9,4 +9,8 @@ class QuestionController extends Controller
 {
     protected $questions;
 
+    function get(Request $request) {
+        $this->questions = new QuestionRepository;
+        return $this->questions->get();
+    }
 }
