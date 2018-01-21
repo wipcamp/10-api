@@ -23,6 +23,8 @@ class ApproveController extends Controller
     function GetCheckTranscriptAmount(){
 
     }
-    
+    function GetCheckParentPermissionAmount(){
+        
+    }
 }
 
