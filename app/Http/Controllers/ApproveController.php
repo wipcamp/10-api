@@ -20,4 +20,9 @@ class ApproveController extends Controller
     function WithParams(Request $req){
         return 'hello ' . $req->name . ' : ' . $req->surname;
     }
+    function GetCheckTranscriptAmount(){
+
+    }
+    
 }
+
