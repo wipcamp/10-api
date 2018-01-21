@@ -21,10 +21,10 @@ class ApproveController extends Controller
         return 'hello ' . $req->name . ' : ' . $req->surname;
     }
     function GetCheckTranscriptAmount(){
-
+        return 31;
     }
     function GetCheckParentPermissionAmount(){
-        
+        return 44;
     }
 }
 
