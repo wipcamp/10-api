@@ -10,6 +10,6 @@ class QuestionRepository implements QuestionRepositoryInterface {
     }
 
     public function get() {
-        return 'get question';
+        return $this->questions->get();
     }
 }
