@@ -12,8 +12,18 @@ class ApproveController extends Controller
             'status' => 200,
             'message' => 'Hi! Approve',
             'array' => [
-                '0' => ['id'=>0,'name'=>'farang','surname'=>'emmel'],
-                '1' => ['id'=>1,'name'=>'bas','surname'=>'tualek']
+                '0' => ['id'=>0,'name'=>'farang','surname'=>'emmel',
+                    'document'=>[
+                        '0'=>['name'=>'Transcript','isApprove'=>0],
+                        '1'=>['name'=>'ParentPermission','isApprove'=>1]
+                    ]
+                ],
+                '1' => ['id'=>1,'name'=>'bas','surname'=>'tualek',
+                    'document'=>[
+                        '0'=>['name'=>'Transcript','isApprove'=>1],
+                        '1'=>['name'=>'ParentPermission','isApprove'=>0]
+                    ]
+                ]
             ]
         ]); 
     }
