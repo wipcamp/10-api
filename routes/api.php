@@ -27,4 +27,8 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/questions')->group(function () {
         Route::get('/', 'QuestionController@get');
     });
+    // API Answer
+    Route::prefix('/answers')->group(function () {
+        Route::post('/', 'AnswerController@create');
+    });
 });
