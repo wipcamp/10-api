@@ -14,4 +14,9 @@ class AnswerRepository implements AnswerRepositoryInterface {
     $result = $this->answers->save();
     return json_encode(['result' => $result]);
   }
+
+  public function get() {
+    $result = $this->answers->get();
+    return $result;
+  }
 }
