@@ -31,4 +31,7 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/answers')->group(function () {
         Route::post('/', 'AnswerController@create');
     });
+    Route::prefix('/answers')->group(function () {
+        Route::get('/', 'AnswerController@get');
+    });
 });
