@@ -13,5 +13,9 @@ class AnswerController extends Controller
         $this->questions = new AnswerRepository;
         $data = $request->toArray();
         return $this->questions->create($data);
+    function get() {
+        $this->answers = new AnswerRepository;
+        $data = $this->answers->get();
+        return $data;
     }
 }
