@@ -25,6 +25,9 @@ class AnswerController extends Controller
         $this->answers = new AnswerRepository;
         $data = $request->toArray();
         $result = $this->answers->update($data);
-        return $result;
+        if ($result = 1) {
+            return json_encode(['result' => true]);
+        }
+        return json_encode(['result' => false]);
     }
 }
