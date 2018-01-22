@@ -20,4 +20,11 @@ class AnswerController extends Controller
         $data = $this->answers->get();
         return $data;
     }
+
+    function update(Request $request) {
+        $this->answers = new AnswerRepository;
+        $data = $request->toArray();
+        $result = $this->answers->update($data);
+        return $result;
+    }
 }
