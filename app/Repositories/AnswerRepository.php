@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 use App\Models\EvalAnswer;
+use Carbon\Carbon;
 
 class AnswerRepository implements AnswerRepositoryInterface {
   protected $answers;
@@ -17,6 +18,20 @@ class AnswerRepository implements AnswerRepositoryInterface {
 
   public function get() {
     $result = $this->answers->get();
+    return $result;
+  }
+
+  public function update($data) {
+    $time = new Carbon;
+    $result = $this->answers
+      ->where([
+        'user_id' => $data['user_id'],
+        'question_id' => $data['question_id']
+        ])
+      ->update([
+        'data' => $data['data'],
+        'updated_at' => $time->now()->toDateTimeString(),
+      ]);
     return $result;
   }
 }
