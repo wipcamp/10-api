@@ -10,9 +10,11 @@ class AnswerController extends Controller
     protected $answers;
 
     function create(Request $request) {
-        $this->questions = new AnswerRepository;
+        $this->answers = new AnswerRepository;
         $data = $request->toArray();
-        return $this->questions->create($data);
+        return $this->answers->create($data);
+    }
+
     function get() {
         $this->answers = new AnswerRepository;
         $data = $this->answers->get();
