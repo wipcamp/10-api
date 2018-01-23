@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App/Model/Evals', 'checker_id');
     }
+
+    public function problem()
+    {
+        return $this->hasMany('App\Models\Problem');
+    }
 }
