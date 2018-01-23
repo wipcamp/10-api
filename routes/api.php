@@ -20,6 +20,6 @@ Route::prefix('/v1')->group(function () {
     // API Register
     Route::prefix('/approve')->group(function () {
         Route::get('','ApproveController@Index');
-        Route::get('{name}/{surname?}','ApproveController@WithParams');
+        Route::get('{param1}/{param2?}','ApproveController@WithParams');
     });
 });
