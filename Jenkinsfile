@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'echo no test now'
+        sh 'echo no test now test trigger'
       }
     }
     stage('build') {
