@@ -11,11 +11,11 @@ class ProfileCamper extends Model
     ];
 
     public function profile() {
-        $this->belongsTo('App/Profile', 'user_id', 'user_id');
+        $this->belongsTo('App/Models/Profile', 'user_id', 'user_id');
     }
 
     public function camp_section() {
-        $this->belongsTo('App/CampSection', 'id', 'section_id');
+        $this->belongsTo('App/Models/CampSection', 'id', 'section_id');
     }
 
     public function exams() {
