@@ -54,7 +54,6 @@ class WipcampProfileDocumentsSetupTables extends Migration
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
-            $table->softDeletes();
 
             $table->unique(['user_id', 'type_id']);
             $table->foreign('user_id')->references('user_id')->on('profiles')
