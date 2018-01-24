@@ -25,25 +25,6 @@ pipeline {
         sh 'sudo docker image rm registry.wip.camp/wip-api'
       }
     }
-    stage('deploy-development') {
-      steps {
-        sh 'sudo kubectl rolling-update wip-api-development --image registry.wip.camp/wip-api:$BUILD_NUMBER --container wip-api-app'
-      }
-    }
-    stage('deploy-staging') {
-      steps {
-        timeout(time: 7, unit: 'DAYS') {
-          input 'Deploy to Staging ?'
-        }
-      }
-    }
-    stage('deploy-production') {
-      steps {
-        timeout(time: 7, unit: 'DAYS') {
-          input 'Deploy to Production ?'
-        }
-      }
-    }
   }
   post {
     success {
