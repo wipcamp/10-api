@@ -14,4 +14,9 @@ class Exam extends Model
     {
         return $this->belongsTo('App\ProfileCamper', 'user_id', 'user_id');
     }
+
+    public function exam_question()
+    {
+        return $this->belongsTo('App\ExamQuestion', 'id', 'question_id');
+    }
 }
