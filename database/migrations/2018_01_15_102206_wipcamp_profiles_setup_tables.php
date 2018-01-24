@@ -71,7 +71,6 @@ class WipcampProfilesSetupTables extends Migration
 
         Schema::create('profile_registrants', function (Blueprint $table) {
             $table->unsignedInteger('user_id')->primary();
-            $table->text('addr');
             $table->string('addr_prov', 64);
             $table->string('addr_dist', 64);
             $table->string('addr_subdist', 64);
