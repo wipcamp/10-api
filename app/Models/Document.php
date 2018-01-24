@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
+    protected $guarded = [
+        'id', 'created_at', 'updated_at'
+    ];
+
     public function profile()
     {
       return $this->belongsTo('App/Models/Profile', 'user_id', 'user_id');
