@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = [
-        'user_id', 'type_id', 'format_id', 'path'
-    ];
-
     public function profile()
     {
       return $this->belongsTo('App/Models/Profile', 'user_id', 'user_id');
