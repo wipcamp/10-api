@@ -12,4 +12,11 @@ class QuestionRepository implements QuestionRepositoryInterface {
     public function get() {
         return $this->questions->get();
     }
+
+    public function getById($question_id) {
+        $result = $this->questions
+            ->where('question_id', $question_id)
+            ->get();
+        return $result;
+    }
 }
