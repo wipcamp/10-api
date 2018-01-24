@@ -24,4 +24,9 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', 'ProblemTypeController@getAll');
         Route::get('/{id}', 'ProblemTypeController@get');
     });
+
+    Route::prefix('/problem')->group(function () {
+        Route::get('/', 'ProblemController@getAll');
+        Route::get('/{id}', 'ProblemController@get');
+    });
 });
