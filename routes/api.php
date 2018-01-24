@@ -32,6 +32,7 @@ Route::prefix('/v1')->group(function () {
     });
     // API Question
     Route::prefix('/questions')->group(function () {
+        Route::get('/{question_id}', 'QuestionController@getById');
         Route::get('/', 'QuestionController@get');
     });
     // API Answer
