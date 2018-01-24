@@ -22,4 +22,7 @@ Route::prefix('/v1')->group(function () {
         Route::get('','ApproveController@Index');
         Route::get('{param1}/{param2?}','ApproveController@WithParams');
     });
+    Route::prefix('/dashboard')->group(function (){
+        Route::get('');
+    });
 });
