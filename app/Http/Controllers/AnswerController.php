@@ -25,7 +25,7 @@ class AnswerController extends Controller
 
     function getById($user_id, $question_id) {
         $data = $this->answers->getById($user_id, $question_id);
-        return $data;
+        return json_encode(['data' => $data]);
     }
 
     function update(Request $request) {
