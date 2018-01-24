@@ -16,4 +16,8 @@ class QuestionController extends Controller
     function get(Request $request) {
         return $this->questions->get();
     }
+
+    function getById($question_id) {
+        return $this->questions->getById($question_id);
+    }
 }
