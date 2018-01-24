@@ -23,6 +23,11 @@ class AnswerController extends Controller
         return $data;
     }
 
+    function getById($user_id, $question_id) {
+        $data = $this->answers->getById($user_id, $question_id);
+        return $data;
+    }
+
     function update(Request $request) {
         $data = $request->toArray();
         $result = $this->answers->update($data);
