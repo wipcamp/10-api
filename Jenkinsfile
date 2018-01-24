@@ -27,7 +27,7 @@ pipeline {
     }
     stage('deploy-development') {
       steps {
-        sh 'sudo kubectl rolling-update wip-api-development --image registry.wip.camp/wip-api:$BUILD_NUMBER'
+        sh 'sudo kubectl rolling-update wip-api-development --image registry.wip.camp/wip-api:$BUILD_NUMBER --container wip-api-app'
       }
     }
     stage('deploy-staging') {
