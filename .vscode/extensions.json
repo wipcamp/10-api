@@ -1,5 +1,6 @@
 {
   "recommendations": [
-      "HvyIndustries.crane"
+    "eamodio.gitlens",
+    "HvyIndustries.crane"
   ]
 }
