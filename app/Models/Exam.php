@@ -19,4 +19,9 @@ class Exam extends Model
     {
         return $this->belongsTo('App\ExamQuestion', 'id', 'question_id');
     }
+
+    public function exam_choices()
+    {
+        return $this->belongsTo('App\ExamChoice', 'id', 'choice_id');
+    }
 }
