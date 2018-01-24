@@ -19,6 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // v1
 Route::prefix('/v1')->group(function () {
+    // API User
+    Route::prefix('/users')->group(function () {
+        // API User with user_id
+        Route::prefix('/{user_id}')->group(function () {
+            Route::get('/answers/{question_id}', 'AnswerController@getById');
+        });
+    });
     // API Register
     Route::prefix('/profiles')->group(function () {
         Route::post('/', 'ProfileController@create');
