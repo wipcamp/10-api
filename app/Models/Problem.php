@@ -14,10 +14,6 @@ class Problem extends Model
         'id', 'created_at', 'updated_at',
     ];
 
-    protected $hidden = [
-        'id',
-    ];
-
     public function problem_type()
     {
         return $this->belongsTo('App\Model\ProblemType', 'id', 'problem_type_id');
