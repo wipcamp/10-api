@@ -17,4 +17,8 @@ class ProfileCamper extends Model
     public function camp_section() {
         $this->belongsTo('App/CampSection', 'id', 'section_id');
     }
+
+    public function exams() {
+        $this->hasMany('App/Models/Exam', 'user_id', 'user_id');
+    }
 }
