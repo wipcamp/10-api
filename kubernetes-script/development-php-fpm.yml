@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: wip-api-php-fpm-development
+  labels:
+    app: wip-api-php-fpm-development
+    organize: wipcamp10
+    tier: backend
+    env: development
+spec:
+  replicas: 2
+  selector:
+    app: wip-api-php-fpm-development
+    organize: wipcamp10
+    tier: backend
+    env: development
+  template:
+    metadata:
+      labels:
+        app: wip-api-php-fpm-development
+        organize: wipcamp10
+        tier: backend
+        env: development
+    spec:
+      containers:
+      - name: wip-api-php-fpm-development
+        image: php:7.2.1-fpm
+        ports:
+        - containerPort: 9000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: wip-api-php-fpm-development
+  labels:
+    app: wip-api-php-fpm
+    organize: wipcamp10
+    tier: backend
+    env: development
+spec:
+  type: LoadBalancer
+  selector:
+    app: wip-api-php-fpm
+    organize: wipcamp10
+    tier: backend
+    env: development
+  ports:
+  - port: 9000
+    targetPort: 9000

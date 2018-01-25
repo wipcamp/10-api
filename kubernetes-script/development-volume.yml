@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: development-wip-api-volume
+  labels:
+    app: wip-api
+    organize: wipcamp10
+    tier: backend
+    env: development
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: ctl.nfs.wip.camp
+    path: "/var/nfs-volume/wip-api-development"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: development-wip-api-volume-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+  selector:
+    matchLabels:
+      app: wip-api
+      organize: wipcamp10
+      tier: backend
+      env: development
