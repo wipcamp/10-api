@@ -22,9 +22,24 @@ class ProblemRepository implements ProblemRepositoryInterface {
         $newProblem->description = $description;
         $newProblem->report_id = $report_id;
         $newProblem->is_solve = false;
-        $newProblem->not_solve = false;                
+        $newProblem->not_solve = false;
         
         $newProblem->save();
+
+        return 'true';
+    }
+
+    public function updateProblem($id, $is_solve) {
+        $problem = Problem::find($id);
+
+        if($is_solve) {
+            $problem->is_solve = true;
+        }
+        else {
+            $problem->not_solve = true;
+        }
+
+        $problem->save();
 
         return 'true';
     }

@@ -15,15 +15,15 @@ class ProblemController extends Controller
 
     public function getAll() {
         $data = $this->problemRepo->get();
-        return $data;
+        return json_uncode($data);
     }
 
-    public function get($id) {
+    public function getProblem($id) {
         $data = $this->problemRepo->get($id);
-        return $data;
+        return json_encode($data);
     }
 
-    public function post(Request $request) {
+    public function createProblem(Request $request) {
         $data = $request->all();
 
         $topic = array_get($data, 'topic');
@@ -35,6 +35,21 @@ class ProblemController extends Controller
 
         if(!is_null($topic) && !is_null($problem_type_id) && !is_null($description) && !is_null($report_id)) {
             $result = $this->problemRepo->createProblem($topic, $problem_type_id, $description, $report_id);
+        }
+
+        return json_encode($result);
+    }
+
+    public function updateProblem($id, Request $request) {
+        $data = $request->all();
+
+        $is_solve = array_get($data, 'is_solve');
+        $not_solve = array_get($data, 'not_solve');
+        
+        $result = 'false';
+
+        if($is_solve xor $not_solve) {
+            $result = $this->problemRepo->updateProblem($id, $is_solve);
         }
 
         return json_encode($result);
