@@ -1,5 +1,7 @@
 <?php
 namespace App\Repositories;
+
 interface ProblemTypeRepositoryInterface {
-    public function get($id = null);
+    public function getAll();
+    public function getProblemType($id);
 }
