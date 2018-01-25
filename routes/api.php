@@ -39,6 +39,6 @@ Route::prefix('/v1')->group(function () {
     });
     //API Dashboard
     Route::prefix('/dashboard')->group(function (){
-        Route::get('');
+        Route::get('','DashboardController@Index');
     });
 });
