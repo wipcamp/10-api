@@ -22,4 +22,9 @@ class ProblemController extends Controller
         $data = $this->problemRepo->get($id);
         return $data;
     }
+
+    public function post(Request $request) {
+        $data = $this->problemRepo->post($request);
+        return $data;
+    }
 }
