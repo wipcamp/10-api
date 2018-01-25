@@ -82,8 +82,6 @@ class WipcampProfilesSetupTables extends Migration
             $table->text('skill_computer')->nullable();
             $table->text('past_camp')->nullable();
             $table->text('tell_wipper')->nullable();
-            $table->string('parent_first_name', 64);
-            $table->string('parent_last_name', 64);
             $table->string('parent_relation', 64);
             $table->string('telno_parent', 15);
             $table->timestamp('created_at')->useCurrent();
