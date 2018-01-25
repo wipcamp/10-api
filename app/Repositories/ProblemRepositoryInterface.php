@@ -4,5 +4,5 @@ namespace App\Repositories;
 interface ProblemRepositoryInterface {
     public function getAll();
     public function getProblem($id);
-    public function post(Request $request);
+    public function createProblem($topic, $problem_type_id, $description, $report_id);
 }

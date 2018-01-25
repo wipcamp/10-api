@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Problem extends Model
 {
     protected $fillable = [
-        'topic', 'problem_type_id', 'description', 'report_id', 'is_solve', 'not_solve',
-    ];
-
-    protected $guarded = [
-        'id', 'created_at', 'updated_at',
+        'is_solve', 'not_solve',
     ];
 
     public function problem_type()

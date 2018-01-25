@@ -24,7 +24,19 @@ class ProblemController extends Controller
     }
 
     public function post(Request $request) {
-        $data = $this->problemRepo->post($request);
-        return $data;
+        $data = $request->all();
+
+        $topic = array_get($data, 'topic');
+        $problem_type_id = array_get($data, 'problem_type_id');
+        $description = array_get($data, 'description');
+        $report_id = array_get($data, 'report_id');
+        
+        $result = 'false';
+
+        if(!is_null($topic) && !is_null($problem_type_id) && !is_null($description) && !is_null($report_id)) {
+            $result = $this->problemRepo->createProblem($topic, $problem_type_id, $description, $report_id);
+        }
+
+        return json_encode($result);
     }
 }
