@@ -14,12 +14,12 @@ class ProblemTypeController extends Controller
     }
 
     public function getAll() {
-        $data = $this->problemTypeRepo->get();
+        $data = $this->problemTypeRepo->getAll();
         return $data;
     }
 
-    public function get($id) {
-        $data = $this->problemTypeRepo->get($id);
+    public function getProblem($id) {
+        $data = $this->problemTypeRepo->getProblem($id);
         return $data;
     }
 }
