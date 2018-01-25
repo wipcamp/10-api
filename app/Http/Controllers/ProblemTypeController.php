@@ -18,7 +18,7 @@ class ProblemTypeController extends Controller
         return $data;
     }
 
-    public function getProblem($id) {
+    public function getProblemType($id) {
         $data = $this->problemTypeRepo->getProblem($id);
         return $data;
     }
