@@ -18,7 +18,7 @@ class ProfileReligionsTableSeeder extends Seeder
         for ($i=0; $i < count($religions); $i++) { 
             DB::table('profile_religions')->insert([
                 'name' => $religions[$i],
-                'display_name' => $faker->word,
+                'display_name' => $religions[$i],
                 'description' => $faker->text,
             ]);
         }
