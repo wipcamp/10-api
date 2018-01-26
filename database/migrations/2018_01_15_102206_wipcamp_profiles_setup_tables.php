@@ -40,13 +40,12 @@ class WipcampProfilesSetupTables extends Migration
         });
 
         Schema::create('profiles', function (Blueprint $table) {
-            $table->unsignedInteger('user_id')->primary();
+            $table->unsignedInteger('user_id')->primary()->default(10000);
             $table->string('first_name', 64);
             $table->string('last_name', 64);
             $table->string('first_name_en', 64);
             $table->string('last_name_en', 64);
             $table->string('nickname', 32);
-            $table->string('nickname_en', 32);
             $table->unsignedTinyInteger('gender_id');
             $table->string('citizen_id', 13)->nullable();
             $table->unsignedTinyInteger('religion_id');
@@ -73,8 +72,6 @@ class WipcampProfilesSetupTables extends Migration
             $table->unsignedInteger('user_id')->primary();
             $table->string('addr_prov', 64);
             $table->string('addr_dist', 64);
-            $table->string('addr_subdist', 64);
-            $table->string('addr_postal', 5);
             $table->string('telno_personal', 15);
             $table->string('edu_name', 128);
             $table->string('edu_lv', 64);
@@ -84,8 +81,7 @@ class WipcampProfilesSetupTables extends Migration
             $table->text('activities')->nullable();
             $table->text('skill_computer')->nullable();
             $table->text('past_camp')->nullable();
-            $table->string('parent_first_name', 64);
-            $table->string('parent_last_name', 64);
+            $table->text('tell_wipper')->nullable();
             $table->string('parent_relation', 64);
             $table->string('telno_parent', 15);
             $table->timestamp('created_at')->useCurrent();
