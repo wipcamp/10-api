@@ -12,4 +12,7 @@ class DashboardRepository implements DashboardRepositoryInterface {
         $result = $this->profile->where('created_at','like','%'.$todayDate->toDateString().'%')->get()->count();
         return $result;
     }
+    public function getCountdownCloseRegisterSystem(){
+        
+    }
 }
