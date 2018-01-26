@@ -6,6 +6,7 @@ pipeline {
   stages {
     stage('initial') {
       steps {
+        sh 'composer dump-autoload'
         sh 'composer install'
       }
     }
