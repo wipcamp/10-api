@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             ProfileGendersTableSeeder::class,
             ProfileReligionsTableSeeder::class,
             ProfilesTableSeeder::class,
-            EvalQuestionsTableSeeder::class
+            EvalQuestionsTableSeeder::class,
+            CampsTableSeeder::class
         ]);
     }
 }
