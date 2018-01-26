@@ -16,7 +16,7 @@ class DashboardRepository implements DashboardRepositoryInterface {
     }
     public function getCampDetail(){
         $this->camp = new Camp();
-        $result = $this->camp->where('season','=',10)->get();
+        $result = $this->camp->where('season',10)->get();
         return $result[0];
     }
 }
