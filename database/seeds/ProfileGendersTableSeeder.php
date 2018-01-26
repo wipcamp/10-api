@@ -18,7 +18,7 @@ class ProfileGendersTableSeeder extends Seeder
         for ($i=0; $i < 2; $i++) {
             DB::table('profile_genders')->insert([
                 'name' => $sex[$i],
-                'display_name' => $faker->word,
+                'display_name' => $sex[$i],
                 'description' => $faker->text,
             ]);
         }
