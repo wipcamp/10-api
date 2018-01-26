@@ -3,7 +3,8 @@ FROM php:7.2.1-fpm-alpine3.7
 WORKDIR /app
 COPY . /app
 
-RUN chmod 777 ./start.sh && \
+RUN docker-php-ext-install pdo pdo_mysql && \
+    chmod 777 ./start.sh && \
     chmod 777 ./writeENV.sh && \
     chmod 777 -R /app/storage && \
     chmod 777 -R /app/bootstrap/cache

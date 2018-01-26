@@ -1,3 +1,4 @@
 .vscode/
 .env.example
 deployment-development.yml
+.env

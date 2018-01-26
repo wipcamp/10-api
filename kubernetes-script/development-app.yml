@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: wip-api-config-development
 data:
-  .env: |
+  GENERAL_ENV: |
     APP_NAME=WIP-API
     APP_URL=api.freezer.wip.camp
     APP_ENV=local
@@ -37,9 +37,9 @@ data:
         }
 
         location ~ \.php$ {
-          fastcgi_pass   php-fpm-upstream;
-          try_files $uri =404;
+          try_files $uri /index.php =404;
           fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_pass php-fpm-upstream;
           fastcgi_index index.php;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
           include fastcgi_params;
@@ -88,18 +88,23 @@ spec:
       - name: wip-api-app
         image: registry.wip.camp/wip-api
         command: ["/bin/sh"]
-        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && /app/start.sh"]
+        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && chown -R 0:0 /app/storage && chmod -R 777 /app/storage && /app/start.sh"]
         env:
-        - name: DB_PASSWORD
+        - name: GENERAL_ENV
           valueFrom:
-            secretKeyRef:
-              name: development-api-secret
-              key: db-password
+            configMapKeyRef:
+              name: wip-api-config-development
+              key: GENERAL_ENV
         - name: APP_KEY
           valueFrom:
             secretKeyRef:
               name: development-api-secret
               key: app-key
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: development-api-secret
+              key: db-password
         volumeMounts:
         - name: api-development-volume
           mountPath: "/app/storage"
