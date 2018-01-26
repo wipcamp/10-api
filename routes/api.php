@@ -43,4 +43,6 @@ Route::prefix('/v1')->group(function () {
     });
     // API Religions
     Route::get('/religions', 'ReligionController@get');
+    // API Genders
+    Route::get('/genders', 'GenderController@get');
 });
