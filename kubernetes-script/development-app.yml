@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: wip-api-config-development
 data:
-  .env: |
+  GENERAL_ENV: |
     APP_NAME=WIP-API
     APP_URL=api.freezer.wip.camp
     APP_ENV=local
@@ -90,11 +90,11 @@ spec:
         command: ["/bin/sh"]
         args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && chown -R 0:0 /app/storage && chmod -R 777 /app/storage && /app/start.sh"]
         env:
-        - name: DB_PASSWORD
+        - name: SPECIAL_LEVEL_KEY
           valueFrom:
-            secretKeyRef:
-              name: development-api-secret
-              key: db-password
+            configMapKeyRef:
+              name: wip-api-config-development
+              key: GENERAL_ENV
         - name: APP_KEY
           valueFrom:
             secretKeyRef:
