@@ -11,6 +11,12 @@ class DashboardController extends Controller
     function Index ()
     {
         $dashboard = new DashboardRepository();
-        return $dashboard->getProfileRegistrantAmountInToday();
+        return response()->json([
+            'status'=>200,
+            'data'=>[
+                'registerTodayAmount'=>$dashboard->getProfileRegistrantAmountInToday(),
+                'campDetail'=>$dashboard->getCampDetail()
+            ]
+        ]);
     }
 }
