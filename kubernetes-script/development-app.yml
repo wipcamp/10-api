@@ -37,9 +37,9 @@ data:
         }
 
         location ~ \.php$ {
-          fastcgi_pass   php-fpm-upstream;
-          try_files $uri =404;
+          try_files $uri /index.php =404;
           fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_pass php-fpm-upstream;
           fastcgi_index index.php;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
           include fastcgi_params;
@@ -88,7 +88,7 @@ spec:
       - name: wip-api-app
         image: registry.wip.camp/wip-api
         command: ["/bin/sh"]
-        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && /app/start.sh"]
+        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && chown -R 0:0 /app/storage && chmod -R 777 /app/storage && /app/start.sh"]
         env:
         - name: DB_PASSWORD
           valueFrom:
@@ -100,6 +100,11 @@ spec:
             secretKeyRef:
               name: development-api-secret
               key: app-key
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: development-api-secret
+              key: db-password
         volumeMounts:
         - name: api-development-volume
           mountPath: "/app/storage"
