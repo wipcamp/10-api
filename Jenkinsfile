@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    GIT_BRANCH = "${BRANCH_NAME}"
   }
   stages {
     stage('initial') {
@@ -13,12 +13,13 @@ pipeline {
     stage('test') {
       steps {
         sh 'echo no test now test trigger'
+        sh 'echo $GIT_BRANCH'
       }
     }
     stage('build') {
       when {
         expression {
-          branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH')
+          branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH').trim()
           return branch == 'develop' || branch == 'master'
         }
       }
@@ -31,7 +32,7 @@ pipeline {
     stage('push') {
       when {
         expression {
-          branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH')
+          branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH').trim()
           return branch == 'develop' || branch == 'master'
         }
       }
@@ -43,7 +44,7 @@ pipeline {
     stage('clean') {
       when {
         expression {
-          branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH')
+          branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH').trim()
           return branch == 'develop' || branch == 'master'
         }
       }
