@@ -41,4 +41,6 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', 'AnswerController@get');
         Route::put('/', 'AnswerController@update');
     });
+    // API Religions
+    Route::get('/religions', 'ReligionController@get');
 });
