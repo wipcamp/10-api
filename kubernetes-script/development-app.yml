@@ -90,7 +90,7 @@ spec:
         command: ["/bin/sh"]
         args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && chown -R 0:0 /app/storage && chmod -R 777 /app/storage && /app/start.sh"]
         env:
-        - name: SPECIAL_LEVEL_KEY
+        - name: GENERAL_ENV
           valueFrom:
             configMapKeyRef:
               name: wip-api-config-development
