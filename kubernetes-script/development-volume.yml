@@ -13,8 +13,8 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    server: ctl.nfs.wip.camp
-    path: "/var/nfs-volume/wip-api-development"
+    server: nfs.wip.camp
+    path: "/mnt/wip-camp/development-api-storage"
 
 ---
 
