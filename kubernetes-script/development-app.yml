@@ -1,0 +1,163 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wip-api-config-development
+data:
+  .env: |
+    APP_NAME=WIP-API
+    APP_URL=api.freezer.wip.camp
+    APP_ENV=local
+    BROADCAST_DRIVER=log
+    CACHE_DRIVER=file
+    SESSION_DRIVER=file
+    SESSION_LIFETIME=120
+    QUEUE_DRIVER=sync
+    DB_CONNECTION=mysql
+    DB_HOST=development-db-service
+    DB_PORT=3306
+    DB_DATABASE=dev_laravel_api
+    DB_USERNAME=dev_laravel_api
+    APP_DEBUG=true
+    APP_LOG_LEVEL=debug
+  server.conf: |
+    upstream php-fpm-upstream {
+      server 127.0.0.1:9000;
+    }
+    server {
+        listen 80 default_server;
+        server_name  _;
+        root   /app/public;
+        index  index.php;
+
+        access_log  /var/log/nginx/api.nginx.access.log;
+        error_log /var/log/nginx/api.nginx.error.log;
+
+        location / {
+          try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+          fastcgi_pass   php-fpm-upstream;
+          try_files $uri =404;
+          fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_index index.php;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          include fastcgi_params;
+        }
+    }
+    
+
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: wip-api-development
+  labels:
+    app: wip-api
+    organize: wipcamp10
+    tier: backend
+    env: development
+spec:
+  replicas: 2
+  selector:
+    app: wip-api
+    organize: wipcamp10
+    tier: backend
+    env: development
+  template:
+    metadata:
+      labels:
+        app: wip-api
+        organize: wipcamp10
+        tier: backend
+        env: development
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.13.8
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: app-share
+          mountPath: "/app"
+        - name: nginx-config
+          mountPath: "/etc/nginx/conf.d"
+        - name: app-log
+          mountPath: "/var/log/nginx/"
+      - name: wip-api-app
+        image: registry.wip.camp/wip-api
+        command: ["/bin/sh"]
+        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && /app/start.sh"]
+        env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: development-api-secret
+              key: db-password
+        - name: APP_KEY
+          valueFrom:
+            secretKeyRef:
+              name: development-api-secret
+              key: app-key
+        volumeMounts:
+        - name: api-development-volume
+          mountPath: "/app/storage"
+        - name: app-share
+          mountPath: "/app-share"
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: wip-api-config-development
+          items:
+          - key: server.conf
+            path: server.conf
+      - name: api-development-volume
+        persistentVolumeClaim:
+          claimName: development-wip-api-volume-claim
+      - name: app-share
+        emptyDir: {}
+      - name: app-log
+        emptyDir: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: wip-api-development
+  labels:
+    app: wip-api
+    organize: wipcamp10
+    tier: backend
+    env: development
+spec:
+  type: LoadBalancer
+  selector:
+    app: wip-api
+    organize: wipcamp10
+    tier: backend
+    env: development
+  ports:
+  - port: 80
+    targetPort: 80
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wip-api-development
+  labels:
+    app: wip-api
+    organize: wipcamp10
+    tier: backend
+    env: development
+spec:
+  rules:
+  - host: api.freezer.wip.camp
+    http:
+      paths:
+      - backend:
+          serviceName: wip-api-development
+          servicePort: 80

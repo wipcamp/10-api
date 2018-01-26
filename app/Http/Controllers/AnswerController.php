@@ -9,20 +9,26 @@ class AnswerController extends Controller
 {
     protected $answers;
 
-    function create(Request $request) {
+    public function __construct(){
         $this->answers = new AnswerRepository;
+    }
+
+    function create(Request $request) {
         $data = $request->toArray();
         return $this->answers->create($data);
     }
 
     function get() {
-        $this->answers = new AnswerRepository;
         $data = $this->answers->get();
         return $data;
     }
 
+    function getById($user_id, $question_id) {
+        $data = $this->answers->getById($user_id, $question_id);
+        return json_encode(['data' => $data]);
+    }
+
     function update(Request $request) {
-        $this->answers = new AnswerRepository;
         $data = $request->toArray();
         $result = $this->answers->update($data);
         if ($result = 1) {

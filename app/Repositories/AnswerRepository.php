@@ -21,6 +21,16 @@ class AnswerRepository implements AnswerRepositoryInterface {
     return $result;
   }
 
+  public function getById($user_id, $question_id) {
+    $result = $this->answers
+      ->where([
+        'user_id' => (int) $user_id,
+        'question_id' => (int) $question_id
+        ])
+      ->get();
+    return $result;
+  }
+
   public function update($data) {
     $time = new Carbon;
     $result = $this->answers
