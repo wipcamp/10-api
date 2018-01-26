@@ -19,12 +19,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // v1
 Route::prefix('/v1')->group(function () {
+    // API User
+    Route::prefix('/users')->group(function () {
+        // API User with user_id
+        Route::prefix('/{user_id}')->group(function () {
+            Route::get('/answers/{question_id}', 'AnswerController@getById');
+        });
+    });
     // API Register
     Route::prefix('/profiles')->group(function () {
         Route::post('/', 'ProfileController@create');
     });
     // API Question
     Route::prefix('/questions')->group(function () {
+        Route::get('/{question_id}', 'QuestionController@getById');
         Route::get('/', 'QuestionController@get');
     });
     // API Answer
@@ -33,6 +41,10 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', 'AnswerController@get');
         Route::put('/', 'AnswerController@update');
     });
+    // API Religions
+    Route::get('/religions', 'ReligionController@get');
+    // API Genders
+    Route::get('/genders', 'GenderController@get');
     // API Approve
     Route::prefix('/approve')->group(function () {
         Route::get('','ApproveController@Index');
@@ -40,7 +52,7 @@ Route::prefix('/v1')->group(function () {
     });
     //API Dashboard
     Route::prefix('/dashboard')->group(function (){
-        Route::get('','DashboardController@Index')
+        Route::get('','DashboardController@Index');
     });
     // API Report Problem
     Route::prefix('/problemtype')->group(function () {

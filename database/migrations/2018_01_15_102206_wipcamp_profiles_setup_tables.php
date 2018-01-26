@@ -70,7 +70,6 @@ class WipcampProfilesSetupTables extends Migration
 
         Schema::create('profile_registrants', function (Blueprint $table) {
             $table->unsignedInteger('user_id')->primary();
-            $table->text('addr');
             $table->string('addr_prov', 64);
             $table->string('addr_dist', 64);
             $table->string('telno_personal', 15);
@@ -82,8 +81,7 @@ class WipcampProfilesSetupTables extends Migration
             $table->text('activities')->nullable();
             $table->text('skill_computer')->nullable();
             $table->text('past_camp')->nullable();
-            $table->string('parent_first_name', 64);
-            $table->string('parent_last_name', 64);
+            $table->text('tell_wipper')->nullable();
             $table->string('parent_relation', 64);
             $table->string('telno_parent', 15);
             $table->timestamp('created_at')->useCurrent();

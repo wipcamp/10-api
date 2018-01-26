@@ -15,10 +15,10 @@ class ProfileGendersTableSeeder extends Seeder
     {
         $faker = Faker::create();
         $sex = ['ชาย', 'หญิง'];
-        for ($i=0; $i < count($sex); $i++) {
+        for ($i=0; $i < 2; $i++) {
             DB::table('profile_genders')->insert([
                 'name' => $sex[$i],
-                'display_name' => $faker->word,
+                'display_name' => $sex[$i],
                 'description' => $faker->text,
             ]);
         }
