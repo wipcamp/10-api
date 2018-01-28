@@ -56,7 +56,6 @@ class WipcampProfileDocumentsSetupTables extends Migration
                 );
             $table->softDeletes();
 
-            $table->unique(['user_id', 'type_id']);
             $table->foreign('user_id')->references('user_id')->on('profiles')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('type_id')->references('id')->on('document_types')
