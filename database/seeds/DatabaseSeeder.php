@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ProfileGendersTableSeeder::class,
             ProfileReligionsTableSeeder::class,
             ProfilesTableSeeder::class,
+            ProfileRegistrantsTableSeeder::class,
             CampsTableSeeder::class,
             EvalQuestionsTableSeeder::class,
             EvalAnswersTableSeeder::class

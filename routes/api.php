@@ -47,8 +47,8 @@ Route::prefix('/v1')->group(function () {
     Route::get('/genders', 'GenderController@get');
     // API Approve
     Route::prefix('/approve')->group(function () {
-        Route::get('','ApproveController@Index');
-        Route::get('{param1}/{param2?}','ApproveController@WithParams');
+        Route::get('/{doctype}','ApproveController@Doctype');
+        Route::get('/','ApproveController@Index');
     });
     //API Dashboard
     Route::prefix('/dashboard')->group(function (){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\ApproveRepository;
 
 class ApproveController extends Controller
 {
@@ -27,23 +28,19 @@ class ApproveController extends Controller
             ]
         ]); 
     }
-    function WithParams(Request $req){
-        if($req->name == 'ParentPermission'){
+
+    function Doctype($doctype){
+        $document = new ApproveRepository();
+        if(strtolower($doctype) == 'parentpermission'){
             return response()->json([
-                status => 200,
-                data =>[
-                    '0' => ['user_id'=>10001,'camp_id'=>10,'type_id'=>1,'format_id'=>1,'path'=>'https://wip.camp/img/parent/12378912312.png','is_approve'=>0],
-                    '1' => ['user_id'=>10031,'camp_id'=>10,'type_id'=>1,'format_id'=>1,'path'=>'https://wip.camp/img/parent/87778732312.png','is_approve'=>1]
-                ]
+                'status' => 200,
+                'data' => $document->getParentPermissionDocument()
             ]);
         }
-        else if($req->name == 'Transcript'){
+        else if(strtolower($doctype) == 'transcript'){
             return response()->json([
-                status => 200,
-                data =>[
-                    '0' => ['user_id'=>10001,'camp_id'=>10,'type_id'=>2,'format_id'=>1,'path'=>'https://wip.camp/img/transcript/12378912312.png','is_approve'=>0],
-                    '1' => ['user_id'=>10031,'camp_id'=>10,'type_id'=>2,'format_id'=>1,'path'=>'https://wip.camp/img/transcript/87778732312.png','is_approve'=>1]
-                ]
+                'status' => 200,
+                'data' =>$document->getTransactionDocument()
             ]);
         }
         else{
