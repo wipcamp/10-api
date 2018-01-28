@@ -87,7 +87,7 @@ spec:
       - name: wip-api-app
         image: registry.wip.camp/wip-api
         command: ["/bin/sh"]
-        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && chown -R 0:0 /app/storage && chmod -R 777 /app/storage && php artisan migrate:fresh --seed && php-fpm"]
+        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && chown -R 0:0 /app/storage && chmod -R 777 /app/storage && php-fpm"]
         env:
         - name: GENERAL_ENV
           valueFrom:
