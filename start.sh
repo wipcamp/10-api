@@ -1,2 +1,0 @@
-./writeENV.sh
-php-fpm

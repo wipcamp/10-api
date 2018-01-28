@@ -4,7 +4,6 @@ WORKDIR /app
 COPY . /app
 
 RUN docker-php-ext-install pdo pdo_mysql && \
-    chmod 777 ./start.sh && \
     chmod 777 ./writeENV.sh && \
     chmod 777 -R /app/storage && \
     chmod 777 -R /app/bootstrap/cache
@@ -16,4 +15,4 @@ EXPOSE 9000
 
 ENTRYPOINT [ "/bin/sh" ]
 
-CMD ["/app/start.sh"]
+CMD ["./writeENV.sh && php-fpm"]
