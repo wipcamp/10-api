@@ -16,4 +16,4 @@ EXPOSE 9000
 
 ENTRYPOINT [ "/bin/sh" ]
 
-CMD ["/app/start.sh"]
+CMD ["./writeENV.sh && php-fpm"]
