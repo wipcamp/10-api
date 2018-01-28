@@ -41,6 +41,17 @@ pipeline {
         sh 'sudo docker push registry.wip.camp/wip-api'
       }
     }
+    stage('deploy-development') {
+      when {
+        expression {
+          branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH').trim()
+          return branch == 'develop' || branch == 'master'
+        }
+      }
+      steps {
+        sh 'kubectl rolling-update wip-api -n development --image registry.wip.camp/wip-api:$GIT_BRANCH-$BUILD_NUMBER --container wip-api-app'
+      }
+    }
     stage('clean') {
       when {
         expression {
