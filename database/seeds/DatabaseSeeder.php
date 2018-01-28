@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
             ProfileRegistrantsTableSeeder::class,
             CampsTableSeeder::class,
             EvalQuestionsTableSeeder::class,
-            EvalAnswersTableSeeder::class
+            EvalAnswersTableSeeder::class,
+            DocumentTypesTableSeeders::class,
+            DocumentFormatsTableSeeders::class,
+            DocumentsTableSeeders::class
         ]);
     }
 }
