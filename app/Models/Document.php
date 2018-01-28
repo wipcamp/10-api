@@ -6,18 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    // use SoftDeletes;
-
-    protected $fillable = [
-        'user_id', 'type_id', 'format_id', 'path'
-    ];
-
-    protected $hidden = [
-        'path'
-    ];
-
-    protected $dates = [
-        'created_at', 'updated_at', 'deleted_at'
+    protected $guarded = [
+        'id', 'created_at', 'updated_at'
     ];
 
     public function profile()
