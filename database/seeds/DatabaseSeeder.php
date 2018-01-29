@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
             CampsTableSeeder::class,
             EvalQuestionsTableSeeder::class,
             EvalAnswersTableSeeder::class,
-            DocumentTypesTableSeeders::class,
-            DocumentFormatsTableSeeders::class,
-            DocumentsTableSeeders::class
+            DocumentTypesTableSeeder::class,
+            DocumentFormatsTableSeeder::class,
+            DocumentsTableSeeder::class
         ]);
     }
 }
