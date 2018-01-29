@@ -14,12 +14,12 @@ class ProblemController extends Controller
     }
 
     public function getAll() {
-        $data = $this->problemRepo->get();
-        return json_uncode($data);
+        $data = $this->problemRepo->getAll();
+        return json_encode($data);
     }
 
     public function getProblem($id) {
-        $data = $this->problemRepo->get($id);
+        $data = $this->problemRepo->getProblem($id);
         return json_encode($data);
     }
 
