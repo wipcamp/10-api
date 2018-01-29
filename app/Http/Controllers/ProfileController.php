@@ -9,8 +9,11 @@ class ProfileController extends Controller
 {
     protected $profiles;
 
-    function create(Request $request) {
+    function __construct() {
         $this->profiles = new ProfileRepository;
+    }
+
+    function create(Request $request) {
         $data = $request->toArray();
         return $this->profiles->create($data);
     }
