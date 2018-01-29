@@ -17,4 +17,9 @@ class ProfileController extends Controller
         $data = $request->toArray();
         return $this->profiles->create($data);
     }
+
+    function update(Request $request) {
+        $data = $request->toArray();
+        return $this->profiles->update($data);
+    }
 }
