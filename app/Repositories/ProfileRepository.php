@@ -58,4 +58,9 @@ class ProfileRepository implements ProfileRepositoryInterface {
     }
     return json_encode(['result' => $result ? true : false]);  
   }
+
+  public function get() {
+    $this->profiles = new Profile;
+    return $this->profiles->profile_registrant()->get();
+  }
 }
