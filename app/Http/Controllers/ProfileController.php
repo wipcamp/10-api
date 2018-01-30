@@ -22,4 +22,8 @@ class ProfileController extends Controller
         $data = $request->toArray();
         return $this->profiles->update($data);
     }
+
+    function get() {
+        return $this->profiles->get();
+    }
 }
