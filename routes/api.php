@@ -30,6 +30,7 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/profiles')->group(function () {
         Route::post('/', 'ProfileController@create');
         Route::put('/', 'ProfileController@update');
+        Route::get('/', 'ProfileController@get');
     });
     // API Upload
     Route::prefix('/uploads')->group(function () {
