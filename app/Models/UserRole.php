@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
 {
+    protected $guarded = [
+        'id', 'created_at'
+    ];
+
     protected $hidden = [
-        'id', 'user_role', 'role_id',
+        'id'
     ];
 
     public function user()
