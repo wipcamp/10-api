@@ -26,6 +26,7 @@ pipeline {
       steps {
         sh 'sudo docker build . -t wip-api'
         sh 'sudo docker tag wip-api registry.wip.camp/wip-api:$GIT_BRANCH-$BUILD_NUMBER'
+        sh 'sudo docker tag wip-api registry.wip.camp/wip-api:$GIT_BRANCH'
         sh 'sudo docker tag wip-api registry.wip.camp/wip-api'
       }
     }
@@ -38,6 +39,7 @@ pipeline {
       }
       steps {
         sh 'sudo docker push registry.wip.camp/wip-api:$GIT_BRANCH-$BUILD_NUMBER'
+        sh 'sudo docker push registry.wip.camp/wip-api:$GIT_BRANCH'
         sh 'sudo docker push registry.wip.camp/wip-api'
       }
     }
@@ -50,6 +52,7 @@ pipeline {
       }
       steps {
         sh 'sudo docker image rm registry.wip.camp/wip-api:$GIT_BRANCH-$BUILD_NUMBER'
+        sh 'sudo docker image rm registry.wip.camp/wip-api:$GIT_BRANCH'
         sh 'sudo docker image rm registry.wip.camp/wip-api'
       }
     }
