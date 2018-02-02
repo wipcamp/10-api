@@ -11,6 +11,7 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "nesbot/carbon": "^1.22",
+        "tymon/jwt-auth": "dev-develop",
         "zizaco/entrust": "^1.9"
     },
     "require-dev": {
