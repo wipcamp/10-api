@@ -32,9 +32,10 @@ class WipcampProviderUsersSetupTables extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('provider_id');
             $table->string('provider_acc', 20);
-            $table->string('access_token');
+            $table->string('account_name');
+            $table->string('access_token', 212);
             $table->string('refresh_token')->nullable();
-            $table->dateTime('expired_at');
+            $table->string('expired_in');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')
                 ->default(
