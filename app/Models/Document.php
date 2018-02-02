@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = [
         'user_id', 'type_id', 'format_id', 'path'
     ];
