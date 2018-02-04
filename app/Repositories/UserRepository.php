@@ -50,8 +50,4 @@ class UserRepository implements UserRepositoryInterface {
         ]
     ]);
   }
-
-  public function get() {
-    return User::get();
-  }
 }
