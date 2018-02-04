@@ -31,26 +31,36 @@ class User extends Authenticatable implements JWTSubject
 
     public function user_roles()
     {
-        return $this->hasMany('App\UserRole');
+        return $this->hasMany('App\Models\UserRole');
     }
 
     public function provider_users()
     {
-        return $this->hasMany('App\ProviderUser');
+        return $this->hasMany('App\Models\ProviderUser');
     }
 
     public function profile()
     {
-        return $this->hasOne('App\Profile');
+        return $this->hasOne('App\Models\Profile');
     }
 
     public function evals()
     {
-        return $this->hasMany('App/Model/Evals', 'checker_id');
+        return $this->hasMany('App\Models\Evals', 'checker_id');
     }
 
     public function problem()
     {
         return $this->hasMany('App\Models\Problem');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
