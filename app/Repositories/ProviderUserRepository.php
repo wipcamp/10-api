@@ -19,4 +19,13 @@ class ProviderUserRepository implements ProviderUserRepositoryInterface {
     ]);
   }
 
+  public function getUserProviderByCredentials($facebookId, $accessToken) {
+    $user = new ProviderUser;
+    return $user
+        ->where([
+            'provider_acc' => $facebookId,
+            'access_token' => $accessToken
+            ])
+        ->first();
+  }
 }
