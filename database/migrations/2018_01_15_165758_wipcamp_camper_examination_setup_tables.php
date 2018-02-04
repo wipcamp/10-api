@@ -42,6 +42,7 @@ class WipcampCamperExaminationSetupTables extends Migration
         });
 
         Schema::create('exams', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('question_id');
             $table->unsignedInteger('choice_id');

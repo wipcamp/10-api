@@ -19,10 +19,14 @@ class DatabaseSeeder extends Seeder
             ProfileReligionsTableSeeder::class,
             ProfilesTableSeeder::class,
             ProfileRegistrantsTableSeeder::class,
+            CampsTableSeeder::class,
             EvalQuestionsTableSeeder::class,
             EvalAnswersTableSeeder::class,
             ProvidersTableSeeder::class,
             RolesTableSeeder::class,
+            DocumentTypesTableSeeder::class,
+            DocumentFormatsTableSeeder::class,
+            DocumentsTableSeeder::class
         ]);
     }
 }

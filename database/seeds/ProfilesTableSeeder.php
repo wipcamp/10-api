@@ -13,7 +13,7 @@ class ProfilesTableSeeder extends Seeder
      */
     public function run()
     {
-        $blood_group = ['A', 'B', 'O', 'AB', 'อื่นๆ'];
+        $blood_group = ['A', 'B', 'O', 'AB', 'อื่น ๆ'];
         $faker = Faker::create();
         $fakerPerson = Faker::create('ar_SA');
         for ($i=1; $i < 10; $i++) { 

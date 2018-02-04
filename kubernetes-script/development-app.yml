@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: wip-api-config-development
+  name: wip-api-config
+  namespace: development
 data:
-  .env: |
+  GENERAL_ENV: |
     APP_NAME=WIP-API
     APP_URL=api.freezer.wip.camp
     APP_ENV=local
@@ -13,7 +14,7 @@ data:
     SESSION_LIFETIME=120
     QUEUE_DRIVER=sync
     DB_CONNECTION=mysql
-    DB_HOST=development-db-service
+    DB_HOST=db-service
     DB_PORT=3306
     DB_DATABASE=dev_laravel_api
     DB_USERNAME=dev_laravel_api
@@ -37,9 +38,9 @@ data:
         }
 
         location ~ \.php$ {
-          fastcgi_pass   php-fpm-upstream;
-          try_files $uri =404;
+          try_files $uri /index.php =404;
           fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_pass php-fpm-upstream;
           fastcgi_index index.php;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
           include fastcgi_params;
@@ -52,26 +53,24 @@ data:
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: wip-api-development
+  name: wip-api
+  namespace: development
   labels:
     app: wip-api
     organize: wipcamp10
     tier: backend
-    env: development
 spec:
   replicas: 2
   selector:
     app: wip-api
     organize: wipcamp10
     tier: backend
-    env: development
   template:
     metadata:
       labels:
         app: wip-api
         organize: wipcamp10
         tier: backend
-        env: development
     spec:
       containers:
       - name: nginx
@@ -88,33 +87,38 @@ spec:
       - name: wip-api-app
         image: registry.wip.camp/wip-api
         command: ["/bin/sh"]
-        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && /app/start.sh"]
+        args: ["-c", "./writeENV.sh && cd /app && cp -R . /app-share && chown -R 0:0 /app/storage && chmod -R 777 /app/storage && php-fpm"]
         env:
-        - name: DB_PASSWORD
+        - name: GENERAL_ENV
           valueFrom:
-            secretKeyRef:
-              name: development-api-secret
-              key: db-password
+            configMapKeyRef:
+              name: wip-api-config
+              key: GENERAL_ENV
         - name: APP_KEY
           valueFrom:
             secretKeyRef:
-              name: development-api-secret
+              name: api-secret
               key: app-key
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: api-secret
+              key: db-password
         volumeMounts:
-        - name: api-development-volume
+        - name: api-volume
           mountPath: "/app/storage"
         - name: app-share
           mountPath: "/app-share"
       volumes:
       - name: nginx-config
         configMap:
-          name: wip-api-config-development
+          name: wip-api-config
           items:
           - key: server.conf
             path: server.conf
-      - name: api-development-volume
+      - name: api-volume
         persistentVolumeClaim:
-          claimName: development-wip-api-volume-claim
+          claimName: wip-api-volume-claim
       - name: app-share
         emptyDir: {}
       - name: app-log
@@ -125,19 +129,18 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wip-api-development
+  name: wip-api
+  namespace: development
   labels:
     app: wip-api
     organize: wipcamp10
     tier: backend
-    env: development
 spec:
   type: LoadBalancer
   selector:
     app: wip-api
     organize: wipcamp10
     tier: backend
-    env: development
   ports:
   - port: 80
     targetPort: 80
@@ -147,17 +150,17 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: wip-api-development
+  name: wip-api
+  namespace: development
   labels:
     app: wip-api
     organize: wipcamp10
     tier: backend
-    env: development
 spec:
   rules:
   - host: api.freezer.wip.camp
     http:
       paths:
       - backend:
-          serviceName: wip-api-development
+          serviceName: wip-api
           servicePort: 80
