@@ -14,7 +14,7 @@ class UserRepository implements UserRepositoryInterface {
     // constant
     $roleName = 'reg_registrants';
     $providerName = 'facebook';
-    $fileType = 'picture';
+    $fileType = 'profile_picture';
     $imageUrl = $data['picture']['data']['url'];
     $imageType = image_type_to_mime_type(exif_imagetype($imageUrl));
     // create
