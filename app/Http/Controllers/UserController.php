@@ -55,9 +55,7 @@ class UserController extends Controller
         $user = new ProviderUserRepository;
         return response()->json([
             'status' => '200',
-            'data' => [
-                'user' => $user->getByProviderAcc($providerAcc)
-            ],
+            'data' => $user->getByProviderAcc($providerAcc),
         ]);
       }
 
