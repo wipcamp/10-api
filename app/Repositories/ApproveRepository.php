@@ -7,6 +7,7 @@ use App\Models\Profile;
 class ApproveRepository implements ApproveRepositoryInterface {
     protected $document;
     protected $profile;
+
     public function getParentPermissionDocument(){
         $this->document = new Document();
         return $this->document->where('type_id', '1')->get();
