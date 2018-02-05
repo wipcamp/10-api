@@ -36,6 +36,7 @@ Route::prefix('/v1')->group(function () {
     // API User
     Route::prefix('/users')->group(function () {
         // API User with user_id
+        Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
         Route::post('/', 'UserController@create');
         Route::prefix('/{user_id}')->group(function () {
             Route::get('/answers/{question_id}', 'AnswerController@getById');
