@@ -9,6 +9,7 @@ use JWTAuth;
 use JWTAuthException;
 
 use App\Repositories\UserRepository;
+use App\Repositories\ProviderUserRepository;
 
 class UserController extends Controller
 {
@@ -19,11 +20,6 @@ class UserController extends Controller
 
     public function create(Request $request) {
         return $this->user->create($request->all());
-    }
-
-    public function get() {
-        // $this->user->create()
-        return 'Hi';
     }
     
     public function login(Request $request) {
@@ -54,5 +50,15 @@ class UserController extends Controller
         $user = JWTAuth::toUser($request->token);        
         return response()->json(['result' => $user]);
     }
+
+    public function getByProviderAcc($providerAcc) {
+        $user = new ProviderUserRepository;
+        return response()->json([
+            'status' => '200',
+            'data' => [
+                'user' => $user->getByProviderAcc($providerAcc)
+            ],
+        ]);
+      }
 
 }
