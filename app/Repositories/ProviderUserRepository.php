@@ -28,4 +28,9 @@ class ProviderUserRepository implements ProviderUserRepositoryInterface {
             ])
         ->first();
   }
+
+  
+  public function getByProviderAcc($providerAcc) {
+    return ProviderUser::where('provider_acc', $providerAcc)->first();
+  }
 }
