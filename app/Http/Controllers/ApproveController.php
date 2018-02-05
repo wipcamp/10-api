@@ -24,22 +24,31 @@ class ApproveController extends Controller
                 'status' => 200,
                 'data' => $document->getParentPermissionDocument()
             ]);
-        }
-        else if(strtolower($doctype) == 'transcript'){
+        }else if(strtolower($doctype) == 'transcript'){
             return response()->json([
                 'status' => 200,
                 'data' =>$document->getTransactionDocument()
             ]);
-        }
-        else{
-            return 'hello ' . $req->name . ' : ' . $req->surname;
+        }else{
+            return 'Error Document type: ' . $doctype;
         }
     }
-    function GetCheckTranscriptAmount(){
-        return $this->Doctype('transcript')->count();
-    }
-    function GetCheckParentPermissionAmount(){
-        return $this->Doctype('parentpermission')->count();        
+
+    function DocutypeCount($doctype){
+        $document = new ApproveRepository();
+        if(strtolower($doctype) == 'parentpermission'){
+            return response()->json([
+                'status' => 200,
+                'data' => $document->getParentPermissionDocument()->count()
+            ]);
+        }else if(strtolower($doctype) == 'transcript'){
+            return response()->json([
+                'status' => 200,
+                'data' =>$document->getTransactionDocument()->count()
+            ]);
+        }else{
+            return 'Error Document type: ' . $doctype;
+        }
     }
 }
 
