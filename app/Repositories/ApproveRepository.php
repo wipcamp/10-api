@@ -19,6 +19,6 @@ class ApproveRepository implements ApproveRepositoryInterface {
     }
     public function getAllItimsWithDoc(){
         $this->profile = new Profile();
-        return  $this->profile->with('documents')->get();
+        return  $this->profile->with('documents.document_type')->get();
     }
 }
