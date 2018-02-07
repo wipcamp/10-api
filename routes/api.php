@@ -48,6 +48,9 @@ Route::prefix('/v1')->group(function () {
         Route::put('/', 'ProfileController@update');
         Route::get('/', 'ProfileController@get');
     });
+    // API Registrants
+    Route::get('/registrants', 'ProfileController@getRegistrants');
+    
     // API Upload
     Route::prefix('/uploads')->group(function () {
         Route::post('/', 'UploadFilesController@create');
