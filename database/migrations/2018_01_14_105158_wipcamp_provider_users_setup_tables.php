@@ -27,26 +27,9 @@ class WipcampProviderUsersSetupTables extends Migration
                 );
         });
 
-        Schema::create('provider_users', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('provider_id');
-            $table->string('provider_acc', 20);
-            $table->string('account_name');
-            $table->string('access_token', 212);
-            $table->string('refresh_token')->nullable();
-            $table->string('expired_in');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')
-                ->default(
-                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-                );
-
-            $table->unique(['user_id', 'provider_id']);
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
+        Schema::table('users', function (Blueprint $table) {
             $table->foreign('provider_id')->references('id')->on('providers')
-                ->onUpdate('cascade')->onDelete('cascade');
+                ->onUpdate('cascade')->onDelete('cascade')->change();
         });
 
         DB::commit();
