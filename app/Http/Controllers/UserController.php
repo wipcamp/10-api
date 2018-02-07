@@ -9,7 +9,6 @@ use JWTAuth;
 use JWTAuthException;
 
 use App\Repositories\UserRepository;
-use App\Repositories\ProviderUserRepository;
 
 class UserController extends Controller
 {
@@ -52,7 +51,7 @@ class UserController extends Controller
     }
 
     public function getByProviderAcc($providerAcc) {
-        $user = new ProviderUserRepository;
+        $user = new UserRepository;
         return response()->json([
             'status' => '200',
             'data' => $user->getByProviderAcc($providerAcc),
