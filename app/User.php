@@ -16,8 +16,8 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
+    protected $guarded = [
+        'created_at'
     ];
 
     /**
@@ -26,7 +26,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'remember_token'
+        'provider_id'
     ];
 
     public function user_roles()
