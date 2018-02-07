@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            ProvidersTableSeeder::class,
             UsersTableSeeder::class,
             ProblemTypesTableSeeder::class,
             ProblemsTableSeeder::class,
@@ -22,7 +23,6 @@ class DatabaseSeeder extends Seeder
             CampsTableSeeder::class,
             EvalQuestionsTableSeeder::class,
             EvalAnswersTableSeeder::class,
-            ProvidersTableSeeder::class,
             RolesTableSeeder::class,
             DocumentTypesTableSeeder::class,
             DocumentFormatsTableSeeder::class,
