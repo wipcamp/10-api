@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProviderUser extends Model
 {
     protected $guarded = [
-        'id', 'expired_at', 'created_at', 'updated_at'
-    ];
-
-    protected $hidden = [
-        'access_token', 'refresh_token', 'expired_at'
+        'id', 'created_at', 'updated_at'
     ];
 
     public function user()

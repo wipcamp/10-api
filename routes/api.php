@@ -13,15 +13,31 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/users', function (Request $request) {
+//     return $request->user();
+// });
 
 // v1
 Route::prefix('/v1')->group(function () {
+    // -----------------------------
+    // API Auth
+    // -----------------------------
+    Route::group([
+        'middleware' => 'api',
+        'prefix' => 'auth'
+    ], function ($router) {
+        Route::post('login', 'AuthController@login');
+        Route::post('logout', 'AuthController@logout');
+        Route::post('refresh', 'AuthController@refresh');
+        Route::post('me', 'AuthController@me');
+    });
+    // -----------------------------
+
     // API User
     Route::prefix('/users')->group(function () {
         // API User with user_id
+        Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
+        Route::post('/', 'UserController@create');
         Route::prefix('/{user_id}')->group(function () {
             Route::get('/answers/{question_id}', 'AnswerController@getById');
         });
