@@ -18,7 +18,10 @@ class UserController extends Controller
     }
 
     public function create(Request $request) {
-        return $this->user->create($request->all());
+        return response()->json([
+            'status' => 200,
+            'data' => $this->user->create($request->all())
+        ]);
     }
     
     public function login(Request $request) {
@@ -38,8 +41,8 @@ class UserController extends Controller
             ]);
         }
         return response()->json([
-            'response' => 'success',
-            'result' => [
+            'status' => 200,
+            'data' => [
                 'token' => $token,
             ],
         ]);
@@ -53,7 +56,7 @@ class UserController extends Controller
     public function getByProviderAcc($providerAcc) {
         $user = new UserRepository;
         return response()->json([
-            'status' => '200',
+            'status' => 200,
             'data' => $user->getByProviderAcc($providerAcc),
         ]);
       }
