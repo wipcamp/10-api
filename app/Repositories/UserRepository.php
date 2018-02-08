@@ -35,7 +35,7 @@ class UserRepository implements UserRepositoryInterface {
     $document = $document->create([
         'userId' => $user->id,
         'fileType' => $fileType,
-        'imageType' => $imageType,
+        'documentFormat' => $imageType,
         'path' => $imageUrl
     ]);
 

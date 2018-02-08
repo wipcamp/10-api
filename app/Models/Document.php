@@ -10,10 +10,6 @@ class Document extends Model
         'user_id', 'type_id', 'format_id', 'path'
     ];
 
-    protected $hidden = [
-        'path'
-    ];
-
     protected $dates = [
         'created_at', 'updated_at', 'deleted_at'
     ];
