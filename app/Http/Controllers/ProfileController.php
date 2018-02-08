@@ -26,4 +26,8 @@ class ProfileController extends Controller
     function get() {
         return $this->profiles->get();
     }
+    
+    function getRegistrants() {
+        return $this->profiles->getRegistrants();
+    }
 }
