@@ -31,6 +31,8 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', 'ProfileController@create');
         Route::put('/', 'ProfileController@update');
         Route::get('/', 'ProfileController@get');
+        Route::get('/{id}', 'ProfileController@getById');
+        
     });
     // API Upload
     Route::prefix('/uploads')->group(function () {

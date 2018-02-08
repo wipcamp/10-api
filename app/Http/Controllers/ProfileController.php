@@ -26,4 +26,8 @@ class ProfileController extends Controller
     function get() {
         return $this->profiles->get();
     }
+
+    function getById($userId) {
+        return $this->profiles->getById($userId);
+    }
 }
