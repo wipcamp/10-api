@@ -5,7 +5,7 @@ use App\Models\Document;
 use App\Repositories\DocumentTypeRepository;
 use App\Repositories\DocumentFormatRepository;
 
-class DocumentRepository implements ProviderUserRepositoryInterface {
+class DocumentRepository implements DocumentRepositoryInterface {
 
   public function create($userData) {
     $document = new DocumentTypeRepository;

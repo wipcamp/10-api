@@ -39,12 +39,7 @@ class UserRepository implements UserRepositoryInterface {
         'path' => $imageUrl
     ]);
 
-    return json_encode(['result' =>
-        [
-            'user' => $user,
-            'document' => $document
-        ]
-    ]);
+    return [ 'user' => $user, 'document' => $document ];
   }
 
   public function getUserProviderByCredentials($facebookId) {

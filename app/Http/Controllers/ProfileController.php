@@ -30,4 +30,8 @@ class ProfileController extends Controller
     function getRegistrants() {
         return $this->profiles->getRegistrants();
     }
+
+    function getRegistrantsById($userId) {
+        return $this->profiles->getRegistrantsById($userId);
+    }
 }
