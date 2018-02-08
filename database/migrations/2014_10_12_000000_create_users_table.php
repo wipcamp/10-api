@@ -26,7 +26,8 @@ class CreateUsersTable extends Migration
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );    
-        });
+            });
+        DB::update("ALTER TABLE users AUTO_INCREMENT = 10000;");
     }
 
     /**
