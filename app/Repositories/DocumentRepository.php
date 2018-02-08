@@ -13,7 +13,7 @@ class DocumentRepository implements DocumentRepositoryInterface {
     return Document::create([
         'user_id' => $userData['userId'],
         'type_id' => $document->getIdByName($userData['fileType']),
-        'format_id' => $documentFormat->getIdByName($userData['imageType']),
+        'format_id' => $documentFormat->getIdByName($userData['documentFormat']),
         'path' => $userData['path']
     ]);
   }
