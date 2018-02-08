@@ -38,8 +38,8 @@ Route::prefix('/v1')->group(function () {
         // API User with user_id
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
         Route::post('/', 'UserController@create');
-        Route::prefix('/{user_id}')->group(function () {
-            Route::get('/answers/{question_id}', 'AnswerController@getById');
+        Route::prefix('/{userId}')->group(function () {
+            Route::get('/answers/{questionId}', 'AnswerController@getById');
         });
     });
     // API Register
@@ -50,7 +50,7 @@ Route::prefix('/v1')->group(function () {
     });
     // API Registrants
     Route::prefix('/registrants')->group(function () {
-        Route::get('/{user_id}', 'ProfileController@getRegistrantsById');
+        Route::get('/{userId}', 'ProfileController@getRegistrantsById');
         Route::get('/', 'ProfileController@getRegistrants');
     });
     
@@ -60,7 +60,7 @@ Route::prefix('/v1')->group(function () {
     });
     // API Question
     Route::prefix('/questions')->group(function () {
-        Route::get('/{question_id}', 'QuestionController@getById');
+        Route::get('/{questionId}', 'QuestionController@getById');
         Route::get('/', 'QuestionController@get');
     });
     // API Answer

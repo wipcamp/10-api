@@ -23,8 +23,8 @@ class AnswerController extends Controller
         return $data;
     }
 
-    function getById($user_id, $question_id) {
-        $data = $this->answers->getById($user_id, $question_id);
+    function getById($userId, $questionId) {
+        $data = $this->answers->getById($userId, $questionId);
         return json_encode(['data' => $data]);
     }
 
