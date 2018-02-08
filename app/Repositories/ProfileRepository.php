@@ -64,6 +64,11 @@ class ProfileRepository implements ProfileRepositoryInterface {
     return $this->profiles->get();
   }
 
+  function getProfile($id) {
+    $profile = Profile::find($id);
+    return $profile;
+  }
+
   public function getRegistrants() {
     $this->profiles = new Profile;
     return $this->profiles->with([

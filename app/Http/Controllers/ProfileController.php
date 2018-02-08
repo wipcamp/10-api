@@ -26,6 +26,10 @@ class ProfileController extends Controller
     function get() {
         return $this->profiles->get();
     }
+
+    function getProfile($id) {
+        return $this->profiles->getProfile($id);
+    }
     
     function getRegistrants() {
         return $this->profiles->getRegistrants();
