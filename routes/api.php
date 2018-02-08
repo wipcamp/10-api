@@ -49,7 +49,10 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', 'ProfileController@get');
     });
     // API Registrants
-    Route::get('/registrants', 'ProfileController@getRegistrants');
+    Route::prefix('/registrants')->group(function () {
+        Route::get('/{user_id}', 'ProfileController@getRegistrantsById');
+        Route::get('/', 'ProfileController@getRegistrants');
+    });
     
     // API Upload
     Route::prefix('/uploads')->group(function () {
