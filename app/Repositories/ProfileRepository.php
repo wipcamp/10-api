@@ -66,11 +66,11 @@ class ProfileRepository implements ProfileRepositoryInterface {
 
   public function getRegistrants() {
     $this->profiles = new Profile;
-    return $this->profiles->with('profile_registrant')->get();
+    return $this->profiles->with(['profile_registrant', 'documents'])->get();
   }
   
   public function getRegistrantsById($userId) {
     $this->profiles = new Profile;
-    return $this->profiles->with('profile_registrant')->where('user_id', $userId)->get();
+    return $this->profiles->with(['profile_registrant', 'documents'])->where('user_id', $userId)->get();
   }
 }
