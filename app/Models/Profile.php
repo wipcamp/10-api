@@ -14,10 +14,6 @@ class Profile extends Model
         'blood_group', 'congenital_diseases', 'allergic_foods', 'congenital_drugs'
     ];
 
-    protected $guarded = [
-        'created_at', 'updated_at'
-    ];
-
     public function user()
     {
         return $this->belongsTo('App\User', 'id', 'user_id');
