@@ -12,10 +12,6 @@ class ProfileRegistrant extends Model
         'known_via', 'activities', 'skill_computer', 'past_camp',
         'parent_relation', 'telno_parent'
     ];
-    
-    protected $guarded = [
-        'user_id', 'created_at', 'updated_at'
-    ];
 
     public function profile() {
         return $this->belongsTo('App/Profile', 'id', 'user_id');
