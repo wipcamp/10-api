@@ -11,7 +11,7 @@ use App\Repositories\DocumentRepository;
 
 class UploadFilesController extends Controller
 {
-    public function validate($request) {
+    public function customValidate($request) {
         $schema = [
             'userId' => 'required',
             'fileType' => 'required',
@@ -31,7 +31,7 @@ class UploadFilesController extends Controller
 
     public function create(Request $request) {
         
-        if ($this->validate($request)) {
+        if ($this->customValidate($request)) {
             return response()->json([
                 'error' => 'Invalid Data.'
             ]);
@@ -58,7 +58,7 @@ class UploadFilesController extends Controller
 
     public function update(Request $request) {
 
-        if ($this->validate($request)) {
+        if ($this->customValidate($request)) {
             return response()->json([
                 'error' => 'Invalid Data.'
             ]);
