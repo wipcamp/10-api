@@ -9,13 +9,13 @@ class Profile extends Model
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'first_name', 'last_name', 'first_name_en', 'last_name_en', 'nickname',
+        'user_id', 'first_name', 'last_name', 'first_name_en', 'last_name_en', 'nickname',
         'gender_id', 'citizen_id', 'religion_id', 'birth_at',
         'blood_group', 'congenital_diseases', 'allergic_foods', 'congenital_drugs'
     ];
 
     protected $guarded = [
-        'user_id', 'created_at', 'updated_at'
+        'created_at', 'updated_at'
     ];
 
     public function user()
