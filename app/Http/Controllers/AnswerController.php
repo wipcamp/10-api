@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Repositories\AnswerRepository;
 
@@ -14,8 +15,23 @@ class AnswerController extends Controller
     }
 
     function create(Request $request) {
-        $data = $request->toArray();
-        return $this->answers->create($data);
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'user_id' => 'required',
+            'question_id' => 'required',
+            'data' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'data' => $this->answers->create($data)
+        ]);
     }
 
     function get() {
@@ -29,11 +45,22 @@ class AnswerController extends Controller
     }
 
     function update(Request $request) {
-        $data = $request->toArray();
-        $result = $this->answers->update($data);
-        if ($result = 1) {
-            return json_encode(['result' => true]);
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'user_id' => 'required',
+            'question_id' => 'required',
+            'data' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
         }
-        return json_encode(['result' => false]);
+        
+        return response()->json([
+            'status' => 200,
+            'data' => $this->answers->update($data)
+        ]);
     }
 }
