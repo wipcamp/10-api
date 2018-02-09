@@ -20,8 +20,19 @@ class AuthController extends Controller
     }
 
     public function login() {
+        $schema = [
+            'id' => 'required',
+            'accessToken' => 'required'
+        ];
         // get request data
         $credentials = request(['id', 'accessToken']);
+        // validate
+        $validator = Validator::make($credentials, $schema);
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
+        }
         $URL = "https://graph.facebook.com/me?access_token=${credentials['accessToken']}";
         $client = new \GuzzleHttp\Client;
         $res = null;
