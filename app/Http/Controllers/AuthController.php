@@ -20,8 +20,19 @@ class AuthController extends Controller
     }
 
     public function login() {
+        $schema = [
+            'id' => 'required',
+            'accessToken' => 'required'
+        ];
         // get request data
         $credentials = request(['id', 'accessToken']);
+        // validate
+        $validator = Validator::make($credentials, $schema);
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
+        }
         $URL = "https://graph.facebook.com/me?access_token=${credentials['accessToken']}";
         $client = new \GuzzleHttp\Client;
         $res = null;
@@ -56,6 +67,21 @@ class AuthController extends Controller
 
     public function refresh() {
         return $this->respondWithToken(auth()->refresh());
+    }
+
+    public function getAuthenticatedUser() {
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        }
+        return response()->json(compact('user'));
     }
 
     protected function respondWithToken($token) {

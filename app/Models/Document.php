@@ -21,7 +21,7 @@ class Document extends Model
 
     public function document_type()
     {
-      return $this->belongsTo('App\Models\DocumentType', 'id', 'type_id');
+      return $this->belongsTo('App\Models\DocumentType', 'type_id', 'id');
     }
 
     public function document_format()
