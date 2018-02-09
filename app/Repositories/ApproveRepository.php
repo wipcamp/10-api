@@ -19,14 +19,19 @@ class ApproveRepository implements ApproveRepositoryInterface {
     }
     public function getAllItimsWithDoc(){
         $this->profile = new Profile();
-        // $data = collect($this->profile->with('documents.document_type')->get());
-        //    $data = $data->map(function($value, $key){
-        //     $value = $value->documents->filter(function ($doc,$docKey){
-        //         return $doc->type_id > 1 ;
-        //     });
-        //         return $value;
-        //     });
-        // return $data;
         return $this->profile->with('documents.document_type')->get();
+    }
+    public function updateDocApproveStatus($id,$status){
+        $this->document  = new Document();
+        return $this->document->where('id',$id)->update(['is_approve' => convertStarus($status)]);
+    }
+    public function convertStarus($status){
+        if($status == 'approve' ){
+            return 1;
+        }else if($status == 'reject'){
+            return 0;
+        }else{
+            return null;
+        }
     }
 }

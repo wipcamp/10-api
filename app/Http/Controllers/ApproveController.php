@@ -50,5 +50,9 @@ class ApproveController extends Controller
             return 'Error Document type: ' . $doctype;
         }
     }
+
+    function updateDoc($id,Request $request){
+        return $request->input('is_approve');
+    } 
 }
 

@@ -56,6 +56,7 @@ Route::prefix('/v1')->group(function () {
     // API Approve
     Route::prefix('/approve')->group(function () {
         Route::get('/{doctype}','ApproveController@Doctype');
+        Route::put('/{docId}','ApproveController@UpdateDoc');
         Route::get('/count/{doctype}','ApproveController@DocutypeCount');        
         Route::get('/','ApproveController@Index');
     });
