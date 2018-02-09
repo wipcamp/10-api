@@ -8,10 +8,11 @@ class Profile extends Model
 {
     protected $primaryKey = 'user_id';
 
-    protected $fillable = [
-        'user_id', 'first_name', 'last_name', 'first_name_en', 'last_name_en', 'nickname',
-        'gender_id', 'citizen_id', 'religion_id', 'birth_at',
-        'blood_group', 'congenital_diseases', 'allergic_foods', 'congenital_drugs'
+    protected $guarded = [
+        'addr_prov', 'addr_dist', 'telno_personal', 
+        'edu_name', 'edu_lv', 'edu_major', 'edu_gpax',
+        'known_via', 'activities', 'skill_computer', 'past_camp',
+        'parent_relation', 'telno_parent'
     ];
 
     public function user()
