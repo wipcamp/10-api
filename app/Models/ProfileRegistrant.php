@@ -14,11 +14,11 @@ class ProfileRegistrant extends Model
     ];
 
     public function profile() {
-        return $this->belongsTo('App/Profile', 'id', 'user_id');
+        return $this->belongsTo('App\Models\Profile', 'id', 'user_id');
     }
 
     public function evals_denorm()
     {
-        return $this->hasOne('App/EvalsDenorm', 'user_id', 'user_id');
+        return $this->hasOne('App\Models\EvalsDenorm', 'user_id', 'user_id');
     }
 }
