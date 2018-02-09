@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $primaryKey = 'user_id';
+    public $incrementing = false;
 
     protected $guarded = [
         'addr_prov', 'addr_dist', 'telno_personal', 
