@@ -18,4 +18,16 @@ class DocumentRepository implements DocumentRepositoryInterface {
     ]);
   }
 
+  public function update() {
+    $document = new DocumentTypeRepository;
+    $documentFormat = new DocumentFormatRepository;
+    return Document::where([
+      'user_id' => $userData['userId'],
+      'type_id' => $document->getIdByName($userData['fileType'])
+      ])->update([
+        'format_id' => $documentFormat->getIdByName($userData['documentFormat']),
+        'path' => $userData['path']
+    ]);
+  }
+
 }
