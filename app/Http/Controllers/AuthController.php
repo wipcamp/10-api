@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use Validator;
 use JWTAuth;
 use JWTFactory;
 use Tymon\JWTAuth\PayloadFactory;
