@@ -7,13 +7,11 @@ class ProfileRepository implements ProfileRepositoryInterface {
   protected $profiles;
 
   public function create($data) {
-    $this->profiles = new Profile($data);
-    $result = $this->profiles->save();
-    if ($result) {
-      $profilesRegistrant = new ProfileRegistrant($data);
-      $result = $this->profiles->profile_registrant()->save($profilesRegistrant);
-    }
-    return json_encode(['result' => $result]);
+    $profile = new Profile($data);
+    $profilesRegistrant = new ProfileRegistrant($data);
+    $result = $profile->save();
+    $profilesRegistrant->save();
+    return $data;
   }
   
   public function update($data) {
@@ -56,7 +54,7 @@ class ProfileRepository implements ProfileRepositoryInterface {
             'telno_parent' => $data['telno_parent']
         ]);
     }
-    return json_encode(['result' => $result ? true : false]);  
+    return $result;  
   }
 
   public function get() {
