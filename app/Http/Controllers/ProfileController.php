@@ -55,8 +55,21 @@ class ProfileController extends Controller
     }
 
     function update(Request $request) {
-        $data = $request->toArray();
-        return $this->profiles->update($data);
+        $schema = [
+            'user_id' => 'required',
+        ];
+        $data = $request->all();
+        // validate
+        $validator = Validator::make($data, $schema);
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
+        }
+        return response()->json([
+            'status' => 200,
+            'data' => $this->profiles->update($data)
+        ]);
     }
 
     function get() {
