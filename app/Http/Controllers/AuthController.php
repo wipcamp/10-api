@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\AuthProvider;
 use App\Repositories\UserRepository;
 use App\Repositories\ProviderUserRepository;
 
@@ -21,28 +22,13 @@ class AuthController extends Controller
     }
 
     public function login() {
-        $schema = [
-            'id' => 'required',
-            'accessToken' => 'required'
-        ];
-        // get request data
         $credentials = request(['id', 'accessToken']);
-        // validate
-        $validator = Validator::make($credentials, $schema);
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => 'Invalid Data.'
-            ]);
-        }
-        $URL = "https://graph.facebook.com/me?access_token=${credentials['accessToken']}";
-        $client = new \GuzzleHttp\Client;
-        $res = null;
-        try {
-            $res = $client->get($URL);
-        } catch (\Exception $e) { }
-
-        if ($res == null) {
-            return response()->json(['error' => 'Invalid Facebook Account'], 401);
+        
+        $auth = new AuthProvider;
+        $auth = $auth->Authentication($credentials);
+        
+        if(gettype($auth) == 'object') {
+            return $auth;
         }
 
         $user = new UserRepository;
@@ -54,7 +40,6 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
-
     }
     
     public function me() {
