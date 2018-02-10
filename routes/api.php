@@ -82,24 +82,26 @@ Route::prefix('/v1')->group(function () {
         // API Genders
         Route::get('/genders', 'GenderController@get');
         // API Approve
-        Route::prefix('/approve')->group(['middleware' => 'checkUserByRole'], function () {
-            Route::get('/{doctype}','ApproveController@Doctype');
-            Route::get('/','ApproveController@Index');
-        });
-        //API Dashboard
-        Route::prefix('/dashboard')->group(['middleware' => 'checkUserByRole'], function (){
-            Route::get('','DashboardController@Index');
-        });
-        // API Report Problem
-        Route::prefix('/problemtypes')->group(['middleware' => 'checkUserByRole'], function () {
-            Route::get('/', 'ProblemTypeController@getAll');
-            Route::get('/{id}', 'ProblemTypeController@getProblemType');
-        });
-        Route::prefix('/problems')->group(['middleware' => 'checkUserByRole'], function () {
-            Route::get('/', 'ProblemController@getAll');
-            Route::get('/{id}', 'ProblemController@getProblem');
-            Route::post('/', 'ProblemController@createProblem');
-            Route::put('/{id}', 'ProblemController@updateProblem');
+        Route::group(['middleware' => ['checkUserByRole']], function () {
+            Route::prefix('/approve')->group(function () {
+                Route::get('/{doctype}','ApproveController@Doctype');
+                Route::get('/','ApproveController@Index');
+            });
+            //API Dashboard
+            Route::prefix('/dashboard')->group(function (){
+                Route::get('','DashboardController@Index');
+            });
+            // API Report Problem
+            Route::prefix('/problemtypes')->group(function () {
+                Route::get('/', 'ProblemTypeController@getAll');
+                Route::get('/{id}', 'ProblemTypeController@getProblemType');
+            });
+            Route::prefix('/problems')->group(function () {
+                Route::get('/', 'ProblemController@getAll');
+                Route::get('/{id}', 'ProblemController@getProblem');
+                Route::post('/', 'ProblemController@createProblem');
+                Route::put('/{id}', 'ProblemController@updateProblem');
+            });
         });
     });
 });
