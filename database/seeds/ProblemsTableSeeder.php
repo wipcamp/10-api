@@ -18,7 +18,7 @@ class ProblemsTableSeeder extends Seeder
                  'topic' => $faker->sentence($nbWords = 8, $variableNbWords = true),
                  'problem_type_id' => $faker->numberBetween($min = 1, $max = 6),
                  'description' => $faker->text($maxNbChars = 300),
-                 'report_id' => $faker->numberBetween($min = 10000, $max = 10009),
+                 'report_id' => $faker->numberBetween($min = 100000, $max = 100009),
                  'is_solve' => false,
                  'not_solve' => false
              ]);

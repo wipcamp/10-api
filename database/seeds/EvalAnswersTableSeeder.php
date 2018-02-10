@@ -14,7 +14,7 @@ class EvalAnswersTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i=10000; $i < 10010; $i++) { 
+        for ($i=100000; $i < 100010; $i++) { 
             DB::table('eval_answers')->insert([
                 'user_id' => $i,
                 'question_id' => $faker->numberBetween($min = 1, $max = 6),
