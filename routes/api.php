@@ -31,8 +31,7 @@ Route::prefix('/v1')->group(function () {
     // API Get and Create User
     Route::prefix('/users')->group(function () {
         Route::post('/', 'UserController@create');
-        Route::post('/{providerAcc}', 'UserController@getByProviderAcc')
-        ->middleware('checkUserByProviderId');
+        Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
