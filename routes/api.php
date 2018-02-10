@@ -33,6 +33,11 @@ Route::prefix('/v1')->group(function () {
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
         Route::post('/', 'UserController@create');
     });
+    // API Register
+    Route::prefix('/profiles')->group(function () {
+        Route::post('/', 'ProfileController@create');
+        Route::put('/', 'ProfileController@update');
+    });
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
         // API User
@@ -44,8 +49,6 @@ Route::prefix('/v1')->group(function () {
         });
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::post('/', 'ProfileController@create');
-            Route::put('/', 'ProfileController@update');
             Route::get('/', 'ProfileController@get');
             Route::get('/{id}', 'ProfileController@getProfile');
         });
