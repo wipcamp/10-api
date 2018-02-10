@@ -60,7 +60,7 @@ pipeline {
       when {
         expression {
           branch = sh(returnStdout: true, script: 'echo $GIT_BRANCH').trim()
-          return branch == 'develop' || branch == 'master'
+          return branch == 'develop'
         }
       }
       steps {
