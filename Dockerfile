@@ -14,4 +14,4 @@ ENV SENTRY_DSN=
 
 EXPOSE 80
 
-CMD ["php", "artisan", "serv", "--port=80"]
+CMD ["php", "artisan", "serv", "--port=80", "--host=0.0.0.0"]
