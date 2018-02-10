@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+use JWTAuth;
+use JWTAuthException;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use JWTAuth;
-use JWTAuthException;
-use Validator;
 
+use App\Http\Controllers\AuthProvider;
 use App\Repositories\UserRepository;
 
 class UserController extends Controller
@@ -50,11 +52,21 @@ class UserController extends Controller
     }
 
     public function getByProviderAcc($providerAcc) {
+        $credentials = request(['id', 'accessToken']);
+        
+        $auth = new AuthProvider;
+        $auth = $auth->Authentication($credentials);
+        
+        if(gettype($auth) == 'object') {
+            return $auth;
+        }
+        
         $user = new UserRepository;
         return response()->json([
             'status' => 200,
             'data' => $user->getByProviderAcc($providerAcc)
         ]);
+        
       }
 
 }
