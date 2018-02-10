@@ -32,7 +32,7 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/users')->group(function () {
         Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc')
-        ->middleware('CheckUserByProviderId');
+        ->middleware('checkUserByProviderId');
     });
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
