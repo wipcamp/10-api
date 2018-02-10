@@ -15,7 +15,7 @@ class EntrustSetupTables extends Migration
 
         // Create table for storing roles
         Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
@@ -24,24 +24,28 @@ class EntrustSetupTables extends Migration
                 ->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
-        });
-
-        // Create table for associating roles to users (Many-to-Many)
-        Schema::create('user_roles', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('role_id')->unsigned();
-
+            });
+            
+            // Create table for associating roles to users (Many-to-Many)
+            Schema::create('user_roles', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('role_id');
+            
+            $table->unique(['user_id', 'role_id']);
             $table->foreign('user_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
-                ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->primary(['user_id', 'role_id']);
+            ->onUpdate('cascade')->onDelete('cascade');
+            
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')
+            ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
         // Create table for storing permissions
         Schema::create('permissions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
@@ -54,15 +58,15 @@ class EntrustSetupTables extends Migration
 
         // Create table for associating permissions to roles (Many-to-Many)
         Schema::create('role_permissions', function (Blueprint $table) {
-            $table->integer('role_id')->unsigned();
-            $table->integer('permission_id')->unsigned();
+            $table->increments('id')->unsigned();
+            $table->unsignedInteger('role_id');
+            $table->unsignedInteger('permission_id');
 
+            $table->unique(['permission_id', 'role_id']);
             $table->foreign('permission_id')->references('id')
                 ->on('permissions')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->primary(['permission_id', 'role_id']);
         });
 
         DB::commit();

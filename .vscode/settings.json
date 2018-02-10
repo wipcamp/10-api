@@ -4,10 +4,11 @@
   "editor.rulers": [
     80
   ],
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.renderWhitespace": "boundary",
   "window.title": "WIP Camp API: ${dirty}${activeEditorShort}",
-  "[html]": {
-    "editor.tabSize": 2
-  }
+  "[php]": {
+    "editor.tabSize": 4
+  },
+  "php.validate.run": "onType"
 }

@@ -14,16 +14,20 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('validation_code');
-            $table->boolean('validation_status');
-            $table->rememberToken();
+            $table->increments('id')->unsigned();
+            $table->unsignedInteger('provider_id')->default(1);
+            $table->string('provider_acc', 20);
+            $table->string('account_name');
+            $table->string('access_token', 255);
+            $table->string('refresh_token')->nullable();
+            $table->string('expired_in');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')
-            ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-        });
+                ->default(
+                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+                );    
+            });
+        DB::update("ALTER TABLE users AUTO_INCREMENT = 10000;");
     }
 
     /**

@@ -51,8 +51,8 @@ WIP Camp API is a middleware between [WIP Camp Management System](https://github
 - **Patric Emmel** - *Developer* &mdash; [ewqdsacxz](https://github.com/ewqdsacxz "Go to Patric Emmel's GitHub profile.")
 - **Phachara Kamthong** - *Developer* &mdash; [mixkungz](https://github.com/mixkungz "Go to Phachara Kamthong's GitHub profile.")
 - **Phongphan Bunlom** - *Developer* &mdash; [athagoras](https://github.com/athagoras "Go to Phongphan Bunlom's GitHub profile.")
-- **Supawit Ruenruetaikul** - *Developer* &mdash; [basinw](https://github.com/basinw "Go to Supawit Ruenruthaikul's GitHub profile.")
-
+- **Supawit Ruenruthaikul** - *Developer* &mdash; [basinw](https://github.com/basinw "Go to Supawit Ruenruthaikul's GitHub profile.")
+- **Puripat Arayasirikul** - *Developer* &mdash; [boat46450](https://github.com/boat46450 "Go to Puripat Arayasirikul's Github profile.")
 
 See also the list of [contributors](https://github.com/wipcamp/wip-api/contributors "Go to the contributors page of this repository.") who participated in this project.
 
