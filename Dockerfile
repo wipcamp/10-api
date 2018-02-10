@@ -10,9 +10,8 @@ RUN docker-php-ext-install pdo pdo_mysql && \
 
 ENV DB_PASSWORD=
 ENV APP_KEY=
+ENV SENTRY_DSN=
 
 EXPOSE 80
-
-ENTRYPOINT [ "/bin/sh" ]
 
 CMD ["php", "artisan", "serv", "--port=80"]
