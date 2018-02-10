@@ -30,13 +30,9 @@ Route::prefix('/v1')->group(function () {
 
     // API Get and Create User
     Route::prefix('/users')->group(function () {
-        Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
         Route::post('/', 'UserController@create');
-    });
-    // API Register
-    Route::prefix('/profiles')->group(function () {
-        Route::post('/', 'ProfileController@create');
-        Route::put('/', 'ProfileController@update');
+        Route::post('/{providerAcc}', 'UserController@getByProviderAcc')
+        ->middleware('CheckUserByProviderId');
     });
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
@@ -44,18 +40,25 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('/users')->group(function () {
             // API User with user_id
             Route::prefix('/{userId}')->group(function () {
-                Route::get('/answers/{questionId}', 'AnswerController@getById');
+                Route::get('/answers/{questionId}', 'AnswerController@getById')
+                ->middleware('checkUserByUserId');
             });
         });
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::get('/', 'ProfileController@get');
-            Route::get('/{id}', 'ProfileController@getProfile');
+            Route::post('/', 'ProfileController@create');
+            Route::put('/', 'ProfileController@update');
+            Route::get('/', 'ProfileController@get')
+            ->middleware('checkUserByRole');
+            Route::get('/{userId}', 'ProfileController@getProfile')
+            ->middleware('checkUserByUserId');
         });
         // API Registrants
         Route::prefix('/registrants')->group(function () {
-            Route::get('/{userId}', 'ProfileController@getRegistrantsById');
-            Route::get('/', 'ProfileController@getRegistrants');
+            Route::get('/{userId}', 'ProfileController@getRegistrantsById')
+            ->middleware('checkUserByUserId');
+            Route::get('/', 'ProfileController@getRegistrants')
+            ->middleware('checkUserByRole');
         });
         
         // API Upload
@@ -70,28 +73,29 @@ Route::prefix('/v1')->group(function () {
         // API Answer
         Route::prefix('/answers')->group(function () {
             Route::post('/', 'AnswerController@create');
-            Route::get('/', 'AnswerController@get');
             Route::put('/', 'AnswerController@update');
+            Route::get('/', 'AnswerController@get')
+            ->middleware('checkUserByRole');
         });
         // API Religions
         Route::get('/religions', 'ReligionController@get');
         // API Genders
         Route::get('/genders', 'GenderController@get');
         // API Approve
-        Route::prefix('/approve')->group(function () {
+        Route::prefix('/approve')->group(['middleware' => 'checkUserByRole'], function () {
             Route::get('/{doctype}','ApproveController@Doctype');
             Route::get('/','ApproveController@Index');
         });
         //API Dashboard
-        Route::prefix('/dashboard')->group(function (){
+        Route::prefix('/dashboard')->group(['middleware' => 'checkUserByRole'], function (){
             Route::get('','DashboardController@Index');
         });
         // API Report Problem
-        Route::prefix('/problemtypes')->group(function () {
+        Route::prefix('/problemtypes')->group(['middleware' => 'checkUserByRole'], function () {
             Route::get('/', 'ProblemTypeController@getAll');
             Route::get('/{id}', 'ProblemTypeController@getProblemType');
         });
-        Route::prefix('/problems')->group(function () {
+        Route::prefix('/problems')->group(['middleware' => 'checkUserByRole'], function () {
             Route::get('/', 'ProblemController@getAll');
             Route::get('/{id}', 'ProblemController@getProblem');
             Route::post('/', 'ProblemController@createProblem');
