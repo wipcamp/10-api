@@ -23,15 +23,6 @@ class ApproveRepository implements ApproveRepositoryInterface {
     }
     public function updateDocApproveStatus($id,$status){
         $this->document  = new Document();
-        return $this->document->where('id',$id)->update(['is_approve' => convertStarus($status)]);
-    }
-    public function convertStarus($status){
-        if($status == 'approve' ){
-            return 1;
-        }else if($status == 'reject'){
-            return 0;
-        }else{
-            return null;
-        }
+        return $this->document->where('id',$id)->update(['is_approve' => $status]);
     }
 }

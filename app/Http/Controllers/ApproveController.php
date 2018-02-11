@@ -52,7 +52,8 @@ class ApproveController extends Controller
     }
 
     function updateDoc($id,Request $request){
-        return $request->input('is_approve');
+        $approve = new ApproveRepository();
+        return $approve->updateDocApproveStatus($id,$request->input('is_approve'));
     } 
 }
 
