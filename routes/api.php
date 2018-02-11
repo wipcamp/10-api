@@ -60,6 +60,16 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkUserByRole');
         });
         
+        // API Role
+        Route::prefix('/roles')->group(function () {
+            Route::get('/name/{name}', 'RoleController@getByName');
+        });
+
+        // API User Role
+        Route::prefix('/userroles')->group(function () {
+            Route::get('/user_id/{id}', 'UserRoleController@getByUserId');
+        });
+
         // API Upload
         Route::prefix('/uploads')->group(function () {
             Route::post('/', 'UploadFilesController@create');
