@@ -30,7 +30,7 @@ class AuthProvider
             $res = json_decode($res, true);
         } catch (\Exception $e) { }
         
-        if ($res == null) {
+        if ($res == null || $credentials['id'] !== $res['id']) {
             return response()->json(['error' => 'Invalid Facebook Account']);
         }
 
