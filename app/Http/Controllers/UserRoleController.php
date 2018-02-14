@@ -9,12 +9,12 @@ class UserRoleController extends Controller
 {
     protected $userRoleRepo;
 
-    public function __construct(UserRoleRepositoryInterface $ur) {
-        $this->userRoleRepo = $ur;
+    public function __construct(UserRoleRepositoryInterface $userRole) {
+        $this->userRoleRepo = $userRole;
     }
 
-    public function getByUserId($id) {
-        $data = $this->userRoleRepo->getByUserId($id);
+    public function getByUserId($userId) {
+        $data = $this->userRoleRepo->getByUserId($userId);
         return json_encode($data);
     }
 }
