@@ -17,7 +17,7 @@ class ProfileRegistrantsTableSeeder extends Seeder
         $edu_major = ['วิทย์-คณิต', 'วิทย์-คอม', 'ศิลป์-คำนวน', 'ประกาศนียบัตรวิชาชีพ'];
         $parent_relation = ['บิดา', 'มารดา', 'อื่น ๆ'];
         $faker = Faker::create('ne_NP');
-        for ($i=1; $i < 10; $i++) { 
+        for ($i=100000; $i < 100010; $i++) { 
             DB::table('profile_registrants')->insert([
                 'user_id' => $i,
                 'addr_prov' => $faker->cityName,

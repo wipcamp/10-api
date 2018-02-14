@@ -10,7 +10,10 @@ class Profile extends Model
     public $incrementing = false;
 
     protected $guarded = [
-        'user_id', 'created_at', 'updated_at'
+        'addr_prov', 'addr_dist', 'telno_personal', 
+        'edu_name', 'edu_lv', 'edu_major', 'edu_gpax',
+        'known_via', 'activities', 'skill_computer', 'past_camp',
+        'parent_relation', 'telno_parent'
     ];
 
     public function user()

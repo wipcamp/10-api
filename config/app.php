@@ -180,7 +180,10 @@ return [
 
         // cors
         Barryvdh\Cors\ServiceProvider::class,
-
+        // jwt auth
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        // sentry
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class
     ],
 
     /*
@@ -230,6 +233,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        // jwt auth
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        // sentry
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
     ],
 
 ];

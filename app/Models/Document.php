@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $guarded = [
-        'id', 'created_at', 'updated_at'
+    protected $fillable = [
+        'user_id', 'type_id', 'format_id', 'path'
+    ];
+
+    protected $dates = [
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     public function profile()

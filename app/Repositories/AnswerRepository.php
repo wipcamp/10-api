@@ -12,8 +12,8 @@ class AnswerRepository implements AnswerRepositoryInterface {
 
   public function create($data) {
     $this->answers = new EvalAnswer($data);
-    $result = $this->answers->save();
-    return json_encode(['result' => $result]);
+    $this->answers->save();
+    return $data;
   }
 
   public function get() {
@@ -33,15 +33,15 @@ class AnswerRepository implements AnswerRepositoryInterface {
 
   public function update($data) {
     $time = new Carbon;
-    $result = $this->answers
+    $this->answers
       ->where([
         'user_id' => $data['user_id'],
         'question_id' => $data['question_id']
         ])
       ->update([
         'data' => $data['data'],
-        'updated_at' => $time->now()->toDateTimeString(),
+        'updated_at' => $time->now()->toDateTimeString()
       ]);
-    return $result;
+    return $data;
   }
 }

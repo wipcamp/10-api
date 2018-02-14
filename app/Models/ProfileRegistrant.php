@@ -6,23 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProfileRegistrant extends Model
 {
-    protected $fillable = [
-        'addr_prov', 'addr_dist', 'telno_personal', 
-        'edu_name', 'edu_lv', 'edu_major', 'edu_gpax',
-        'known_via', 'activities', 'skill_computer', 'past_camp',
-        'parent_relation', 'telno_parent'
-    ];
-    
     protected $guarded = [
-        'user_id', 'created_at', 'updated_at'
+        'first_name', 'last_name', 'first_name_en', 'last_name_en', 'nickname',
+        'gender_id', 'citizen_id', 'religion_id', 'birth_at',
+        'blood_group', 'congenital_diseases', 'allergic_foods', 'congenital_drugs'
     ];
 
     public function profile() {
-        return $this->belongsTo('App/Profile', 'id', 'user_id');
+        return $this->belongsTo('App\Models\Profile', 'id', 'user_id');
     }
 
     public function evals_denorm()
     {
-        return $this->hasOne('App/EvalsDenorm', 'user_id', 'user_id');
+        return $this->hasOne('App\Models\EvalsDenorm', 'user_id', 'user_id');
     }
 }

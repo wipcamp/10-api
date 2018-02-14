@@ -11,6 +11,6 @@ class ProfileRegistrantFavfield extends Model
     ];
 
     public function profile() {
-        return $this->belongsTo('App/Profile', 'user_id', 'user_id');
+        return $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
     }
 }

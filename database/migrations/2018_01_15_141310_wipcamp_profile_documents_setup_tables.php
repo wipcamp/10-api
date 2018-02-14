@@ -55,7 +55,7 @@ class WipcampProfileDocumentsSetupTables extends Migration
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
 
-            $table->foreign('user_id')->references('user_id')->on('profiles')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('type_id')->references('id')->on('document_types')
                 ->onUpdate('cascade')->onDelete('cascade');
