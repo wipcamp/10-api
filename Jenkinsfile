@@ -6,8 +6,8 @@ pipeline {
   stages {
     stage('install-dependencies') {
       steps {
-        sh 'docker container run -v "$(pwd):/app" --rm composer:1.6.3 install'
-        sh 'docker container run -v "$(pwd):/app" --rm composer:1.6.3 dump-autoload'
+        sh 'sudo docker container run -v "$(pwd):/app" --rm composer:1.6.3 install'
+        sh 'sudo docker container run -v "$(pwd):/app" --rm composer:1.6.3 dump-autoload'
       }
     }
     stage('build-image') {
