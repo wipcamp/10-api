@@ -15,4 +15,9 @@ class UserRoleRepository implements UserRoleRepositoryInterface {
     ]);
   }
 
+  public function getByUserId($userId) {
+    $data = UserRole::where('user_id', $userId)->get();
+    return $data;
+  }
+
 }

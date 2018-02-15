@@ -11,10 +11,17 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->insert([
-            'name' => 'reg_registrants',
-            'display_name' => 'reg_registrants',
-            'description' => 'reg_registrants'
-        ]);
+        $roles = [
+            ['reg_registrants', 'ผู้สมัครค่าย'],
+            ['freshmen', 'ปี 1'],
+            ['sophomore', 'ปี 2 ขึ้นไป']
+        ];
+        for ($i=0; $i < sizeof($roles); $i++) { 
+             DB::table('roles')->insert([
+                'name' => $roles[$i][0],
+                'display_name' => $roles[$i][0],
+                'description' => $roles[$i][1]
+             ]);
+        }
     }
 }
