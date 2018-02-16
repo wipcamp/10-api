@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Zizaco\Entrust\EntrustPermission;
 
-class Permission extends Model
+class Permission extends EntrustPermission
 {
     protected $guarded = [
         'id', 'created_at', 'updated_at'
