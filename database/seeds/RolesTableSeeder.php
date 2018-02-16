@@ -13,8 +13,9 @@ class RolesTableSeeder extends Seeder
     {
         $roles = [
             ['reg_registrants', 'ผู้สมัครค่าย'],
-            ['freshmen', 'ปี 1'],
-            ['sophomore', 'ปี 2 ขึ้นไป']
+            ['camp_staffs_junior', 'พี่ค่าย (ปี 1)'],
+            ['camp_staffs_senior', 'พี่ค่าย (ปี 2 ขึ้นไป)'],
+            ['camp_wipper', 'พี่ค่ายที่เข้าถึง wippo system ได้']
         ];
         for ($i=0; $i < sizeof($roles); $i++) { 
              DB::table('roles')->insert([
