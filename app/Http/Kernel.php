@@ -60,10 +60,15 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        // entrust
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
         // jwt auth
         'jwt-auth' => \App\Http\Middleware\JWTAuthentication::class,
         'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
-        'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',    
+        'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken', 
+        // custom middleware   
         'checkUserByProviderId' => '\App\Http\Middleware\CheckUserByProviderId',    
         'checkUserByUserId' => '\App\Http\Middleware\CheckUserByUserId',    
         'checkUserByRole' => '\App\Http\Middleware\CheckUserByRole',    
