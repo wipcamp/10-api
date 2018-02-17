@@ -50,8 +50,7 @@ pipeline {
         }
       }
       steps {
-        sh 'sudo kubectl rolling-update wip-api -n development --image registry.wip.camp/wip-api:$GIT_BRANCH --container wip-api-app'
-      }
+        sh 'sudo kubectl rolling-update wip-api -n development --image registry.wip.camp/wip-api:$GIT_BRANCH --image-pull-policy=Always'
     }
   }
   post {
