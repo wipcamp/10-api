@@ -33,12 +33,11 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
-
     // API Staff
     Route::prefix('/staffs')->group(function () {
         Route::post('/', 'StaffController@create');
         Route::get('/', 'StaffController@get');
-        // Route::put('/', 'StaffController@update');
+        Route::post('/{id}/roles', 'RoleController@createWipper');
         Route::get('/{id}', 'StaffController@getStaff');
         // ->middleware('checkUserByRole');
         // Route::get('/{userId}', 'StaffController@getProfile')
