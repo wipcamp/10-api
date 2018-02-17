@@ -28,7 +28,7 @@ class ProfileRepository implements ProfileRepositoryInterface {
   public function create($data) {
     $profile = new Profile($data);
     $profilesRegistrant = new ProfileRegistrant($data);
-    $result = $profile->save();
+    $profile->save();
     $profilesRegistrant->save();
     return $data;
   }
