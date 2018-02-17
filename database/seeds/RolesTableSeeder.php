@@ -18,11 +18,12 @@ class RolesTableSeeder extends Seeder
             ['camp_campers', 'ผู้เข้าร่วมค่าย'],
             ['camp_staffs_junior', 'พี่ค่าย (ปี 1)'],
             ['camp_staffs_senior', 'พี่ค่าย (ปี 2 ขึ้นไป)'],
-            ['camp_wipper', 'พี่ค่ายที่เข้าถึง wippo system ได้'],
+            ['camp_staffs_speacials', 'พี่ค่ายที่ access profile น้องได้'],
             ['camp_president', 'ประธานค่าย'],
             ['camp_president_vice', 'รองประธานค่าย'],
             ['camp_accountants', 'เจ้าหน้าที่บัญชี'],
             ['camp_auditors', 'เจ้าหน้าที่ตรวจสอบบัญชี'],
+            ['sys_developer', 'ผู้พัฒนาระบบ'],
             ['sys_admin', 'ผู้ดูแลระบบ'],
         ];
         for ($i=0; $i < sizeof($roles); $i++) { 
