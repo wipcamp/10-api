@@ -19,6 +19,12 @@ class RoleController extends Controller
     }
 
     public function createWipper($id) {
+        if (!is_numeric($id)) {
+            return response()->json([
+                'status' => 200,
+                'error' => 'Invalid Data.'
+            ]);
+        }
         $roleId = $this->roleRepo->getIdByName('camp_staffs_senior');
         $data = $this->roleRepo->createStaff($id, $roleId);
         return response()->json($data);
