@@ -32,6 +32,11 @@ class ProfileRepository implements ProfileRepositoryInterface {
     $profilesRegistrant->save();
     return $data;
   }
+
+  public function createStaff($data) {
+    $profile = new Profile($data);
+    return $profile->save();
+  }
   
   public function update($data) {
     $this->profiles = new Profile;
