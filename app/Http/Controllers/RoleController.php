@@ -17,4 +17,10 @@ class RoleController extends Controller
         $data = $this->roleRepo->getIdByName($name);
         return json_encode($data);
     }
+
+    public function createWipper($id) {
+        $roleId = $this->roleRepo->getIdByName('camp_staffs_senior');
+        $data = $this->roleRepo->createStaff($id, $roleId);
+        return response()->json($data);
+    }
 }
