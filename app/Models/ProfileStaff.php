@@ -10,6 +10,11 @@ class ProfileStaff extends Model
         'created_at', 'updated_at'
     ];
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
     public function profile()
     {
         return $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
