@@ -33,6 +33,17 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
+
+    // API Staff
+    Route::prefix('/staffs')->group(function () {
+        Route::post('/', 'StaffController@create');
+        Route::get('/', 'StaffController@get');
+        // Route::put('/', 'StaffController@update');
+        Route::get('/{id}', 'StaffController@getStaff');
+        // ->middleware('checkUserByRole');
+        // Route::get('/{userId}', 'StaffController@getProfile')
+        // ->middleware('checkUserByUserId');
+    });
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
         // API User
@@ -52,6 +63,7 @@ Route::prefix('/v1')->group(function () {
             Route::get('/{userId}', 'ProfileController@getProfile')
             ->middleware('checkUserByUserId');
         });
+
         // API Registrants
         Route::prefix('/registrants')->group(function () {
             Route::get('/{userId}', 'ProfileController@getRegistrantsById')
