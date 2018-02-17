@@ -10,13 +10,18 @@ class ProfileStaff extends Model
         'created_at', 'updated_at'
     ];
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
     public function profile()
     {
-        $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
+        return $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
     }
 
     public function camp_section()
     {
-        $this->belongTo('App\Models\CampSection', 'id', 'section_id');
+        return $this->belongTo('App\Models\CampSection', 'id', 'section_id');
     }
 }
