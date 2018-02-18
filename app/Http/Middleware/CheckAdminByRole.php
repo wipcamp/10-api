@@ -6,7 +6,7 @@ use Closure;
 use JWTAuth;
 use App\Http\Middleware\CheckRole;
 
-class CheckWipperByRole
+class CheckAdminByRole
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class CheckWipperByRole
      */
     public function handle($request, Closure $next)
     {
-        $role = 'camp_staffs_senior';
+        $role = 'sys_admin';
         $user = JWTAuth::parseToken()->toUser()->toArray();
         $checkRole = new CheckRole;
         return $checkRole->dynamicCheckRole($user, $role, $next);
