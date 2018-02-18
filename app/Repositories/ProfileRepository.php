@@ -80,4 +80,9 @@ class ProfileRepository implements ProfileRepositoryInterface {
       'eval_answers'
       ])->where('user_id', $userId)->get();
   }
+
+  public function getById($userId) {
+    $this->profiles = new Profile;
+    return $this->profiles->where('user_id',$userId)->with('profile_registrant')->first();
+  }
 }

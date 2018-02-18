@@ -6,27 +6,15 @@ use Illuminate\Http\Request;
 use App\Repositories\ApproveRepository;
 
 class ApproveController extends Controller
-{
+{   
+    protected $approveRepo;
+
+    function __construct(){
+        $this->approveRepo = new ApproveRepository();
+    }
     //
     function Index(){
-        return response()->json([
-            'status' => 200,
-            'message' => 'Hi! Approve',
-            'array' => [
-                '0' => ['id'=>0,'name'=>'farang','surname'=>'emmel',
-                    'document'=>[
-                        '0'=>['name'=>'Transcript','isApprove'=>0],
-                        '1'=>['name'=>'ParentPermission','isApprove'=>1]
-                    ]
-                ],
-                '1' => ['id'=>1,'name'=>'bas','surname'=>'tualek',
-                    'document'=>[
-                        '0'=>['name'=>'Transcript','isApprove'=>1],
-                        '1'=>['name'=>'ParentPermission','isApprove'=>0]
-                    ]
-                ]
-            ]
-        ]); 
+        return $this->approveRepo->getAllItimsWithDoc();
     }
 
     function Doctype($doctype){
@@ -36,22 +24,36 @@ class ApproveController extends Controller
                 'status' => 200,
                 'data' => $document->getParentPermissionDocument()
             ]);
-        }
-        else if(strtolower($doctype) == 'transcript'){
+        }else if(strtolower($doctype) == 'transcript'){
             return response()->json([
                 'status' => 200,
                 'data' =>$document->getTransactionDocument()
             ]);
+        }else{
+            return 'Error Document type: ' . $doctype;
         }
-        else{
-            return 'hello ' . $req->name . ' : ' . $req->surname;
+    }
+
+    function DocutypeCount($doctype){
+        $document = new ApproveRepository();
+        if(strtolower($doctype) == 'parentpermission'){
+            return response()->json([
+                'status' => 200,
+                'data' => $document->getParentPermissionDocument()->count()
+            ]);
+        }else if(strtolower($doctype) == 'transcript'){
+            return response()->json([
+                'status' => 200,
+                'data' =>$document->getTransactionDocument()->count()
+            ]);
+        }else{
+            return 'Error Document type: ' . $doctype;
         }
     }
-    function GetCheckTranscriptAmount(){
-        return 31;
-    }
-    function GetCheckParentPermissionAmount(){
-        return 44;
-    }
+
+    function updateDoc($id,Request $request){
+        $approve = new ApproveRepository();
+        return $approve->updateDocApproveStatus($id,$request->input('is_approve'));
+    } 
 }
 
