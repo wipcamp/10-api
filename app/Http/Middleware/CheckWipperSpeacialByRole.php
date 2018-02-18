@@ -20,6 +20,6 @@ class CheckWipperSpeacialByRole
         $role = 'camp_staffs_speacials';
         $user = JWTAuth::parseToken()->toUser()->toArray();
         $checkRole = new CheckRole;
-        return $checkRole->dynamicCheckRole($user, $role, $next);
+        return $checkRole->dynamicCheckRole($user, $role, $next, $request);
     }
 }

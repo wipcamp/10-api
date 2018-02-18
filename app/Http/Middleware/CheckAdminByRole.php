@@ -20,6 +20,6 @@ class CheckAdminByRole
         $role = 'sys_admin';
         $user = JWTAuth::parseToken()->toUser()->toArray();
         $checkRole = new CheckRole;
-        return $checkRole->dynamicCheckRole($user, $role, $next);
+        return $checkRole->dynamicCheckRole($user, $role, $next, $request);
     }
 }
