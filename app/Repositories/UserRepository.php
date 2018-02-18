@@ -43,6 +43,6 @@ class UserRepository implements UserRepositoryInterface {
   }
   
   public function getByProviderAcc($providerAcc) {
-    return User::where('provider_acc', $providerAcc)->first();
+    return User::with(['user_roles'])->where('provider_acc', $providerAcc)->first();
   }
 }
