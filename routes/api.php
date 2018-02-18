@@ -95,14 +95,14 @@ Route::prefix('/v1')->group(function () {
             Route::post('/', 'AnswerController@create');
             Route::put('/', 'AnswerController@update');
             Route::get('/', 'AnswerController@get')
-            ->middleware('checkUserByRole');
+            ->middleware('checkWipperByRole');
         });
         // API Religions
         Route::get('/religions', 'ReligionController@get');
         // API Genders
         Route::get('/genders', 'GenderController@get');
         // API Approve
-        Route::group(['middleware' => ['checkUserByRole']], function () {
+        Route::group(['middleware' => ['checkWipperByRole']], function () {
             Route::prefix('/approve')->group(function () {
                 Route::get('/{doctype}','ApproveController@Doctype');
                 Route::get('/','ApproveController@Index');

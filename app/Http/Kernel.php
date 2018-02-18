@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'checkUserByProviderId' => '\App\Http\Middleware\CheckUserByProviderId',    
         'checkUserByUserId' => '\App\Http\Middleware\CheckUserByUserId',    
         'checkUserByRole' => '\App\Http\Middleware\CheckUserByRole',    
+        'checkWipperByRole' => '\App\Http\Middleware\CheckWipperByRole',    
     ];
 }
