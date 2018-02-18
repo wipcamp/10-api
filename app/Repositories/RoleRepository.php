@@ -9,6 +9,10 @@ class RoleRepository implements RoleRepositoryInterface {
   public function getIdByName($roleName) {
     return Role::where('name',  $roleName)->first()->id;
   }
+  
+  public function getIdByUserId($userId) {
+    return UserRole::where('user_id',  $userId)->get();
+  }
 
   public function createStaff($id, $roleId) {
     return UserRole::create([
