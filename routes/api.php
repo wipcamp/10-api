@@ -99,6 +99,9 @@ Route::prefix('/v1')->group(function () {
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             // API Approve
             Route::group(['middleware' => ['checkWipperSpeacialByRole']], function () {
+                Route::prefix('/documents')->group(function () {
+                    Route::put('/{id}','ApproveController@updateDoc');
+                });
                 Route::prefix('/approve')->group(function () {
                     Route::get('/{doctype}','ApproveController@Doctype');
                     Route::get('/','ApproveController@Index');
