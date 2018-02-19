@@ -65,16 +65,16 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'ProfileController@getRegistrants')
             ->middleware('checkWipperSpeacialByRole');
         });
-        Route::group(['middleware' => ['checkDeveloperByRole']], function () {    
-            // API Role
-            Route::prefix('/roles')->group(function () {
-                Route::get('/name/{name}', 'RoleController@getByName');
-            });
-            // API User Role
-            Route::prefix('/userroles')->group(function () {
-                Route::get('/user_id/{id}', 'UserRoleController@getByUserId');
-            });
+        // Route::group(['middleware' => ['checkDeveloperByRole']], function () {    
+        // API Role
+        Route::prefix('/roles')->group(function () {
+            Route::get('/name/{name}', 'RoleController@getByName');
         });
+        // API User Role
+        Route::prefix('/userroles')->group(function () {
+            Route::get('/user_id/{id}', 'UserRoleController@getByUserId');
+        });
+        // });
         // API Upload
         Route::prefix('/uploads')->group(function () {
             Route::post('/', 'UploadFilesController@create');
