@@ -6,7 +6,7 @@ use App\Repositories\RoleRepository;
 
 class CheckRole
 {
-    public function dynamicCheckRole($user, $roleName, $next) {
+    public function dynamicCheckRole($user, $roleName, $next, $request) {
         $roleRepo = new RoleRepository;
         $this->roleId = $roleRepo->getIdByName($roleName);
         $user['user_roles'] = $roleRepo->getIdByUserId($user['id'])->toArray();
