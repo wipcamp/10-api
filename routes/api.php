@@ -38,9 +38,11 @@ Route::prefix('/v1')->group(function () {
         // API User
         Route::prefix('/users')->group(function () {
             // API User with user_id
-            Route::prefix('/{userId}')->group(function () {
-                Route::get('/answers/{questionId}', 'AnswerController@getById')
-                ->middleware('checkUserByUserId');
+            Route::group(['middleware' => ['checkUserByUserId']], function () {
+                Route::prefix('/{userId}')->group(function () {
+                    Route::get('/', 'UserController@getByUserId');
+                    Route::get('/answers/{questionId}', 'AnswerController@getById');
+                });
             });
         });
         // API Create Staff
