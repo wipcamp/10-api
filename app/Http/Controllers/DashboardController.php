@@ -7,16 +7,21 @@ use App\Repositories\DashboardRepository;
 
 class DashboardController extends Controller
 {
-    //
+    function __construct() {
+        $this->dashboard = new DashboardRepository;
+    }
     function Index ()
     {
-        $dashboard = new DashboardRepository();
         return response()->json([
             'status'=>200,
             'data'=>[
-                'registerTodayAmount'=>$dashboard->getProfileRegistrantAmountInToday(),
-                'campDetail'=>$dashboard->getCampDetail()
+                'registerTodayAmount'=>$this->dashboard->getProfileRegistrantAmountInToday(),
+                'campDetail'=>$this->dashboard->getCampDetail()
             ]
         ]);
+    }
+    
+    function getAllSuccessRegister () {
+        return response()->json($this->dashboard->getAllSuccessRegister());
     }
 }
