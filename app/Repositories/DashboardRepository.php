@@ -1,5 +1,7 @@
 <?php
 namespace App\Repositories;
+
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Profile;
 use App\Models\Camp;

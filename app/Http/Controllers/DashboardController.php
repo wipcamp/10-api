@@ -22,9 +22,6 @@ class DashboardController extends Controller
     }
     
     function getAllSuccessRegister () {
-        return response()->json([
-            'status' => 200,
-            'data' => $this->dashboard->getAllSuccessRegister()
-        ])
+        return response()->json($this->dashboard->getAllSuccessRegister());
     }
 }
