@@ -119,6 +119,7 @@ Route::prefix('/v1')->group(function () {
             Route::prefix('/dashboard')->group(function (){
                 Route::get('','DashboardController@Index');
                 Route::get('/register/success','DashboardController@getAllSuccessRegister');
+                Route::get('/register/all','DashboardController@getAllRegister');
             });
         });
         

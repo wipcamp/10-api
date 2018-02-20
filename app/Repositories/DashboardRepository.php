@@ -28,4 +28,11 @@ class DashboardRepository implements DashboardRepositoryInterface {
             '
         );
     }
+    public function getAllRegister () {
+        return DB::select(
+            '
+            SELECT count(*) FROM `profiles`
+            '
+        );
+    }
 }
