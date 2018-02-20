@@ -35,4 +35,11 @@ class DashboardRepository implements DashboardRepositoryInterface {
             '
         );
     }
+    public function getAllUserDocSuccess () {
+        return DB::select(
+            '
+            SELECT COUNT(user_id) FROM `documents` WHERE type_id = 2 && user_id in (SELECT user_id FROM `documents` WHERE type_id = 3)
+            '
+        );
+    }
 }

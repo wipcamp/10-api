@@ -28,4 +28,7 @@ class DashboardController extends Controller
     function getAllRegister () {
         return response()->json($this->dashboard->getAllRegister());
     }
+    function getAllUserDocSuccess () {
+        return response()->json($this->dashboard->getAllUserDocSuccess());
+    }
 }
