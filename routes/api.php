@@ -89,6 +89,7 @@ Route::prefix('/v1')->group(function () {
             //API Dashboard
             Route::prefix('/dashboard')->group(function (){
                 Route::get('','DashboardController@Index');
+                Route::get('/register/success','DashboardController@getAllSuccessRegister');
             });
             // API Report Problem
             Route::prefix('/problemtypes')->group(function () {
