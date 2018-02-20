@@ -34,4 +34,10 @@ class DashboardController extends Controller
     function getAllProfileSuccess () {
         return response()->json($this->dashboard->getAllProfileSuccess());
     }
+    function getCountTranscript () {
+        return response()->json($this->dashboard->getCountTranscript());
+    }
+    function getCountParentAccept () {
+        return response()->json($this->dashboard->getCountParentAccept());
+    }
 }

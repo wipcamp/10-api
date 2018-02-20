@@ -21,6 +21,20 @@ class DashboardRepository implements DashboardRepositoryInterface {
         $result = $this->camp->where('season',10)->get();
         return $result[0];
     }
+    public function getCountTranscript (){
+        return DB::select(
+            '
+            SELECT COUNT(*) as sum FROM `documents` WHERE type_id = 2
+            '
+        );
+    }
+    public function getCountParentAccept (){
+        return DB::select(
+            '
+            SELECT COUNT(*) as sum FROM `documents` WHERE type_id = 3
+            '
+        );
+    }
     public function getAllSuccessRegister () {
         return DB::select(
             '

@@ -103,6 +103,8 @@ Route::prefix('/v1')->group(function () {
                     Route::put('/{id}','ApproveController@updateDoc');
                 });
                 Route::prefix('/approve')->group(function () {
+                    Route::get('/count/transcript','DashboardController@getCountTranscript');
+                    Route::get('/count/parentpermission','DashboardController@getCountParentAccept');
                     Route::get('/{doctype}','ApproveController@Doctype');
                     Route::get('/','ApproveController@Index');
                 });
