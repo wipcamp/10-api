@@ -120,17 +120,18 @@ Route::prefix('/v1')->group(function () {
                 Route::get('','DashboardController@Index');
                 Route::get('/register/success','DashboardController@getAllSuccessRegister');
             });
-            // API Report Problem
-            Route::prefix('/problemtypes')->group(function () {
-                Route::get('/', 'ProblemTypeController@getAll');
-                Route::get('/{id}', 'ProblemTypeController@getProblemType');
-            });
-            Route::prefix('/problems')->group(function () {
-                Route::get('/', 'ProblemController@getAll');
-                Route::get('/{id}', 'ProblemController@getProblem');
-                Route::post('/', 'ProblemController@createProblem');
-                Route::put('/{id}', 'ProblemController@updateProblem');
-            });
+        });
+        
+        // API Report Problem
+        Route::prefix('/problemtypes')->group(function () {
+            Route::get('/', 'ProblemTypeController@getAll');
+            Route::get('/{id}', 'ProblemTypeController@getProblemType');
+        });
+        Route::prefix('/problems')->group(function () {
+            Route::get('/', 'ProblemController@getAll');
+            Route::get('/{id}', 'ProblemController@getProblem');
+            Route::post('/', 'ProblemController@createProblem');
+            Route::put('/{id}', 'ProblemController@updateProblem');
         });
     });
 });
