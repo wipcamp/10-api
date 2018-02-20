@@ -120,7 +120,8 @@ Route::prefix('/v1')->group(function () {
                 Route::get('','DashboardController@Index');
                 Route::get('/register/success','DashboardController@getAllSuccessRegister');
                 Route::get('/register/all','DashboardController@getAllRegister');
-                Route::get('/documents/success','DashboardController@getAllUserDocSuccess');
+                Route::get('/document/success','DashboardController@getAllUserDocSuccess');
+                Route::get('/profile/success','DashboardController@getAllProfileSuccess');
             });
         });
         

@@ -31,4 +31,7 @@ class DashboardController extends Controller
     function getAllUserDocSuccess () {
         return response()->json($this->dashboard->getAllUserDocSuccess());
     }
+    function getAllProfileSuccess () {
+        return response()->json($this->dashboard->getAllProfileSuccess());
+    }
 }
