@@ -38,14 +38,14 @@ class DashboardRepository implements DashboardRepositoryInterface {
     public function getAllUserDocSuccess () {
         return DB::select(
             '
-            SELECT COUNT(user_id) FROM `documents` WHERE type_id = 2 && user_id in (SELECT user_id FROM `documents` WHERE type_id = 3)
+            SELECT COUNT(user_id) as sum FROM `documents` WHERE type_id = 2 && user_id in (SELECT user_id FROM `documents` WHERE type_id = 3)
             '
         );
     }
     public function getAllProfileSuccess () {
         return DB::select(
             '
-            SELECT COUNT(*) FROM `profile_registrants` as pr JOIN `profiles` as p ON pr.user_id = p.user_id WHERE pr.known_via is NOT NULL && pr.activities is NOT NULL && pr.skill_computer is NOT NULL && pr.activities is NOT NULL
+            SELECT COUNT(*) as sum FROM `profile_registrants` as pr JOIN `profiles` as p ON pr.user_id = p.user_id WHERE pr.known_via is NOT NULL && pr.activities is NOT NULL && pr.skill_computer is NOT NULL && pr.activities is NOT NULL
             '
         );
     }
