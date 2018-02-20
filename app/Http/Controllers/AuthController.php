@@ -32,7 +32,7 @@ class AuthController extends Controller
         }
 
         $user = new UserRepository;
-        $user = $user->getUserProviderByCredentials($credentials['id']);
+        $user = $user->getByProviderAcc($credentials['id']);
 
         $token = auth()->login($user);
         if (!$token) {

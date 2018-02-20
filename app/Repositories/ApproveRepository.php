@@ -21,8 +21,11 @@ class ApproveRepository implements ApproveRepositoryInterface {
         $this->profile = new Profile();
         return $this->profile->with('documents.document_type')->get();
     }
-    public function updateDocApproveStatus($id,$status){
+    public function updateDocApproveStatus($id, $status, $comment){
         $this->document  = new Document();
-        return $this->document->where('id',$id)->update(['is_approve' => $status]);
+        return $this->document->where('id',$id)->update([
+            'is_approve' => $status,
+            'approve_reason' => $comment
+            ]);
     }
 }
