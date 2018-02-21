@@ -48,6 +48,8 @@ Route::prefix('/v1')->group(function () {
         // API Create Staff
         Route::prefix('/staffs')->group(function () {
             Route::post('/', 'StaffController@create');
+            Route::get('/{userId}', 'StaffController@getStaff')
+            ->middleware('checkUserByUserId');
         });
         // API Register
         Route::prefix('/profiles')->group(function () {
@@ -114,7 +116,6 @@ Route::prefix('/v1')->group(function () {
                 Route::prefix('/staffs')->group(function () {
                     Route::get('/', 'StaffController@get');
                     Route::post('/{id}/roles', 'RoleController@createWipper');
-                    Route::get('/{id}', 'StaffController@getStaff');
                 });
             });
             //API Dashboard

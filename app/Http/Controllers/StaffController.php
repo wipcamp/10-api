@@ -55,10 +55,10 @@ class StaffController extends Controller
         ]);
     }
 
-    public function getStaff($id) {
+    public function getStaff($userId) {
         return response()->json([
             'status' => 200,
-            'data' => $this->staffs->getStaff($id)
+            'data' => $this->staffs->getStaff($userId)
         ]);
     }
 
