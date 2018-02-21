@@ -41,17 +41,12 @@ class UserRepository implements UserRepositoryInterface {
 
     return [ 'user' => $user, 'document' => $document ];
   }
-
-  public function getUserProviderByCredentials($facebookId) {
-    $user = new User;
-    return $user
-        ->where([
-            'provider_acc' => $facebookId
-            ])
-        ->first();
-  }
   
   public function getByProviderAcc($providerAcc) {
     return User::where('provider_acc', $providerAcc)->first();
+  }
+  
+  public function getByUserId($userId) {
+    return User::where('id', $userId)->first();
   }
 }

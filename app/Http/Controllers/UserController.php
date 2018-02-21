@@ -65,6 +65,14 @@ class UserController extends Controller
         return response()->json([
             'status' => 200,
             'data' => $user->getByProviderAcc($providerAcc)
+        ]);   
+    }
+      
+    public function getByUserId($userId) {
+        $user = new UserRepository;
+        return response()->json([
+            'status' => 200,
+            'data' => $user->getByUserId($userId)
         ]);
         
       }

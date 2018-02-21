@@ -28,9 +28,14 @@ class ProfileRepository implements ProfileRepositoryInterface {
   public function create($data) {
     $profile = new Profile($data);
     $profilesRegistrant = new ProfileRegistrant($data);
-    $result = $profile->save();
+    $profile->save();
     $profilesRegistrant->save();
     return $data;
+  }
+
+  public function createStaff($data) {
+    $profile = new Profile($data);
+    return $profile->save();
   }
   
   public function update($data) {
@@ -74,5 +79,10 @@ class ProfileRepository implements ProfileRepositoryInterface {
       'documents',
       'eval_answers'
       ])->where('user_id', $userId)->get();
+  }
+
+  public function getById($userId) {
+    $this->profiles = new Profile;
+    return $this->profiles->where('user_id',$userId)->with('profile_registrant')->first();
   }
 }
