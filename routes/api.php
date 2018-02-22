@@ -99,14 +99,24 @@ Route::prefix('/v1')->group(function () {
         Route::get('/genders', 'GenderController@get');
         
         Route::group(['middleware' => ['checkWipperByRole']], function () {
+            //API Dashboard
+            Route::prefix('/dashboard')->group(function (){
+                Route::get('','DashboardController@Index');
+                Route::get('/register/success','DashboardController@getAllSuccessRegister');
+                Route::get('/register/all','DashboardController@getAllRegister');
+                Route::get('/document/success','DashboardController@getAllUserDocSuccess');
+                Route::get('/profile/success','DashboardController@getAllProfileSuccess');
+            });
+            Route::prefix('/approve')->group(function () {
+                Route::get('/count/transcript','DashboardController@getCountTranscript');
+                Route::get('/count/parentpermission','DashboardController@getCountParentAccept');
+            });
             // API Approve
             Route::group(['middleware' => ['checkWipperSpeacialByRole']], function () {
                 Route::prefix('/documents')->group(function () {
                     Route::put('/{id}','ApproveController@updateDoc');
                 });
                 Route::prefix('/approve')->group(function () {
-                    Route::get('/count/transcript','DashboardController@getCountTranscript');
-                    Route::get('/count/parentpermission','DashboardController@getCountParentAccept');
                     Route::get('/{doctype}','ApproveController@Doctype');
                     Route::get('/','ApproveController@Index');
                 });
@@ -117,14 +127,6 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/', 'StaffController@get');
                     Route::post('/{id}/roles', 'RoleController@createWipper');
                 });
-            });
-            //API Dashboard
-            Route::prefix('/dashboard')->group(function (){
-                Route::get('','DashboardController@Index');
-                Route::get('/register/success','DashboardController@getAllSuccessRegister');
-                Route::get('/register/all','DashboardController@getAllRegister');
-                Route::get('/document/success','DashboardController@getAllUserDocSuccess');
-                Route::get('/profile/success','DashboardController@getAllProfileSuccess');
             });
         });
         
