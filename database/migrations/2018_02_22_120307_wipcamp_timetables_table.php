@@ -21,8 +21,8 @@ class WipcampTimetablesTable extends Migration
             $table->string('event');
             $table->text('description');
             $table->string('location');
-            $table->timestamp('start');
-            $table->timestamp('end');            
+            $table->timestamp('start_on')->nullable();
+            $table->timestamp('finish_on')->nullable();            
             $table->unsignedInteger('created_id');
             $table->unsignedInteger('role_team_id');
             $table->timestamp('created_at')->useCurrent();
