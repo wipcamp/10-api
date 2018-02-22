@@ -63,4 +63,11 @@ class AnswerController extends Controller
             'data' => $this->answers->update($data)
         ]);
     }
+
+    function getCountById($userId) {
+        return response()->json([
+            'status' => 200,
+            'data' => $this->answers->getCountById($userId)
+        ]);
+    }
 }
