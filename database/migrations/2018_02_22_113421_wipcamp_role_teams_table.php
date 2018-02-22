@@ -32,12 +32,12 @@ class WipcampRoleTeamsTable extends Migration
         Schema::create('user_role_teams', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('role_teams_id');
+            $table->unsignedInteger('role_team_id');
             
-            $table->unique(['user_id', 'role_teams_id']);
+            $table->unique(['user_id', 'role_team_id']);
             $table->foreign('user_id')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('role_teams_id')->references('id')->on('role_teams')
+            $table->foreign('role_team_id')->references('id')->on('role_teams')
             ->onUpdate('cascade')->onDelete('cascade');
             
             $table->timestamp('created_at')->useCurrent();
