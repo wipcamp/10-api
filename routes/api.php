@@ -139,5 +139,14 @@ Route::prefix('/v1')->group(function () {
             Route::post('/', 'ProblemController@createProblem');
             Route::put('/{id}', 'ProblemController@updateProblem');
         });
+
+        // API Role Team
+        Route::prefix('/roleteams')->group(function () {
+            Route::get('/name/{name}', 'RoleTeamController@getByName');
+        });
+        // API User Role Team
+        Route::prefix('/userroleteams')->group(function () {
+            Route::get('/user_id/{id}', 'UserRoleTeamController@getByUserId');
+        });
     });
 });
