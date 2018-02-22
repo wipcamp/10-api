@@ -48,6 +48,8 @@ Route::prefix('/v1')->group(function () {
         // API Create Staff
         Route::prefix('/staffs')->group(function () {
             Route::post('/', 'StaffController@create');
+            Route::get('/nonapprove', 'StaffController@getNonApprove')
+            ->middleware('checkAdminByRole');
             Route::get('/{userId}', 'StaffController@getStaff')
             ->middleware('checkUserByUserId');
         });
