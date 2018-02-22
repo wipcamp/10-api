@@ -44,4 +44,8 @@ class AnswerRepository implements AnswerRepositoryInterface {
       ]);
     return $data;
   }
+
+  public function getCountById($userId) {
+    return $this->answers->where('user_id', $userId)->count();
+  }
 }
