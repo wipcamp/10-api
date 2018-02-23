@@ -148,5 +148,12 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('/userroleteams')->group(function () {
             Route::get('/user_id/{id}', 'UserRoleTeamController@getByUserId');
         });
+
+        // API Timetable
+        Route::prefix('timetables')->group(function () {
+            Route::get('/', 'TimetableController@getAll');
+            Route::get('/{id}', 'TimetableController@getTimetable');
+            Route::get('/role_team_id/{id}', 'TimetableController@getByRoleTeamId');
+        }); 
     });
 });
