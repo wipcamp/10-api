@@ -10,10 +10,6 @@ class Timetable extends Model
         'id', 'created_at'
     ];
 
-    protected $hidden = [
-        'id'
-    ];
-
     public function user()
     {
         return $this->belongsTo('App\User', 'id', 'created_id');
