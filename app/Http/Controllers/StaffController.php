@@ -68,4 +68,8 @@ class StaffController extends Controller
             'data' => $this->staffs->getAll()
         ]);
     }
+
+    public function getNonApprove() {
+        return $this->staffs->getNonApprove();
+    }
 }
