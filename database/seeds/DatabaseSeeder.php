@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             DocumentTypesTableSeeder::class,
             DocumentFormatsTableSeeder::class,
-            DocumentsTableSeeder::class
+            DocumentsTableSeeder::class,
+            RoleTeamsTableSeeder::class,
+            TimetablesTableSeeder::class
         ]);
     }
 }

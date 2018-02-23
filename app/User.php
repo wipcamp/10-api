@@ -54,6 +54,16 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Problem');
     }
 
+    public function user_role_teams()
+    {
+        return $this->hasMany('App\Models\UserRoleTeam');
+    }
+
+    public function timetables()
+    {
+        return $this->hasMany('App\Models\Timetable');
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
