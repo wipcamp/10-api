@@ -38,7 +38,7 @@ class DashboardRepository implements DashboardRepositoryInterface {
     public function getAllSuccessRegister () {
         return DB::select(
             '
-            SELECT p.user_id FROM `profiles` as p JOIN `profile_registrants` as pr ON pr.user_id = p.user_id WHERE pr.known_via is NOT NULL && pr.activities is NOT NULL && pr.skill_computer is NOT NULL && pr.activities is NOT NULL
+            SELECT p.user_id FROM `profiles` as p JOIN `profile_registrants` as pr ON pr.user_id = p.user_id WHERE pr.known_via is NOT NULL && pr.activities is NOT NULL && pr.skill_computer is NOT NULL && pr.activities is NOT NULL && p.user_id in (SELECT user_id FROM `eval_answers` GROUP BY user_id HAVING COUNT(*) = 6) && p.user_id in (SELECT user_id FROM `documents` WHERE type_id = 2 && user_id in (SELECT user_id FROM `documents` WHERE type_id = 3))
             '
         );
     }
