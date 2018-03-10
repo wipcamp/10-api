@@ -64,6 +64,7 @@ Route::prefix('/v1')->group(function () {
         });
         // API Registrants
         Route::prefix('/registrants')->group(function () {
+            Route::get('/success','');
             Route::get('/{userId}', 'ProfileController@getRegistrantsById')
             ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@getRegistrants')
