@@ -76,5 +76,6 @@ class Kernel extends HttpKernel
         'checkWipperSpeacialByRole' => '\App\Http\Middleware\CheckWipperSpeacialByRole',    
         'checkDeveloperByRole' => '\App\Http\Middleware\CheckDeveloperByRole',    
         'checkAdminByRole' => '\App\Http\Middleware\CheckAdminByRole',    
+        'checkCloseRegister' => '\App\Http\Middleware\CloseRegister',    
     ];
 }

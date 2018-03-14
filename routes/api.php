@@ -28,6 +28,8 @@ Route::prefix('/v1')->group(function () {
         Route::post('me', 'AuthController@me');
     });
 
+    Route::post('/profiles', 'ProfileController@create')
+    ->middleware('checkCloseRegister');
     // API Get and Create User
     Route::prefix('/users')->group(function () {
         Route::post('/', 'UserController@create');
@@ -55,7 +57,8 @@ Route::prefix('/v1')->group(function () {
         });
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::post('/', 'ProfileController@create');
+            Route::post('/', 'ProfileController@create')
+            ->middleware('checkCloseRegister');
             Route::put('/', 'ProfileController@update');
             Route::get('/', 'ProfileController@get')
             ->middleware('checkWipperSpeacialByRole');
