@@ -90,7 +90,7 @@ class ProfileController extends Controller
     }
 
     function getSuccessRegistrants(){
-        return $this->dashboard->getAllProfileSuccess();
+        return $this->dashboard->getAllSuccessRegister();
     }
 
     function getRegistrantsById($userId) {
