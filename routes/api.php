@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,13 @@ use Illuminate\Http\Request;
 
 // v1
 Route::prefix('/v1')->group(function () {
+    // -----------------------------
+    // API Check Time Server
+    // -----------------------------
+    Route::get('/time', function() {
+        return Carbon::now();
+    });
+    
     // -----------------------------
     // API Auth
     // -----------------------------
