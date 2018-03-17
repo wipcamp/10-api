@@ -171,6 +171,12 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'TimetableController@getAll');
             Route::get('/{id}', 'TimetableController@getTimetable');
             Route::get('/role_team_id/{id}', 'TimetableController@getByRoleTeamId');
-        }); 
+        });
+
+        // API Announce
+        Route::prefix('announces')->group(function () {
+            Route::get('/', 'AnnounceController@getAll');
+            Route::get('/{id}', 'AnnounceController@getAnnounce');
+        });
     });
 });
