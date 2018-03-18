@@ -98,8 +98,7 @@ Route::prefix('/v1')->group(function () {
             Route::put('/', 'AnswerController@update');
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
-            Route::get('/{teamId}','AnswerController@getByTeam')
-            ->middleware('checkWipperByRole');
+            Route::get('/{teamId}','AnswerController@getByTeam');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
             ->middleware('checkWipperByRole');
         });

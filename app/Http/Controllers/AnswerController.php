@@ -45,7 +45,7 @@ class AnswerController extends Controller
     }
 
     function getByTeam($teamId){
-        $data = $this->answer->getByTeam($teamId);
+        $data = $this->answers->getByTeam($teamId);
         return json_encode(['data' => $data]);
     }
 
