@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,13 @@ use Illuminate\Http\Request;
 // v1
 Route::prefix('/v1')->group(function () {
     // -----------------------------
+    // API Check Time Server
+    // -----------------------------
+    Route::get('/time', function() {
+        return Carbon::now();
+    });
+    
+    // -----------------------------
     // API Auth
     // -----------------------------
     Route::group([
@@ -28,6 +36,8 @@ Route::prefix('/v1')->group(function () {
         Route::post('me', 'AuthController@me');
     });
 
+    Route::post('/profiles', 'ProfileController@create')
+    ->middleware('checkCloseRegister');
     // API Get and Create User
     Route::prefix('/users')->group(function () {
         Route::post('/', 'UserController@create');
@@ -55,7 +65,8 @@ Route::prefix('/v1')->group(function () {
         });
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::post('/', 'ProfileController@create');
+            Route::post('/', 'ProfileController@create')
+            ->middleware('checkCloseRegister');
             Route::put('/', 'ProfileController@update');
             Route::get('/', 'ProfileController@get')
             ->middleware('checkWipperSpeacialByRole');
@@ -144,6 +155,28 @@ Route::prefix('/v1')->group(function () {
             Route::get('/{id}', 'ProblemController@getProblem');
             Route::post('/', 'ProblemController@createProblem');
             Route::put('/{id}', 'ProblemController@updateProblem');
+        });
+
+        // API Role Team
+        Route::prefix('/roleteams')->group(function () {
+            Route::get('/name/{name}', 'RoleTeamController@getByName');
+        });
+        // API User Role Team
+        Route::prefix('/userroleteams')->group(function () {
+            Route::get('/user_id/{id}', 'UserRoleTeamController@getByUserId');
+        });
+
+        // API Timetable
+        Route::prefix('timetables')->group(function () {
+            Route::get('/', 'TimetableController@getAll');
+            Route::get('/{id}', 'TimetableController@getTimetable');
+            Route::get('/role_team_id/{id}', 'TimetableController@getByRoleTeamId');
+        });
+
+        // API Announce
+        Route::prefix('announces')->group(function () {
+            Route::get('/', 'AnnounceController@getAll');
+            Route::get('/{id}', 'AnnounceController@getAnnounce');
         });
     });
 });
