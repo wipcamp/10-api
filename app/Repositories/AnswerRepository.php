@@ -2,6 +2,7 @@
 namespace App\Repositories;
 use App\Models\EvalAnswer;
 use Carbon\Carbon;
+use DB;
 
 class AnswerRepository implements AnswerRepositoryInterface {
   protected $answers;
@@ -29,6 +30,11 @@ class AnswerRepository implements AnswerRepositoryInterface {
         ])
       ->get();
     return $result;
+  }
+
+  public function getByTeam($teamId)
+  {
+    DB::select('select * from eval_answers a join eval_questions q on a.question_id = q.id where q.question_role_teams ='+$teamId);
   }
 
   public function update($data) {

@@ -44,6 +44,11 @@ class AnswerController extends Controller
         return json_encode(['data' => $data]);
     }
 
+    function getByTeam($teamId){
+        $data = $this->answer->getByTeam($teamId);
+        return json_encode(['data' => $data]);
+    }
+
     function update(Request $request) {
         $data = $request->all();
         $validator = Validator::make($data, [
