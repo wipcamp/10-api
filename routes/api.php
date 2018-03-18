@@ -40,8 +40,7 @@ Route::prefix('/v1')->group(function () {
     ->middleware('checkCloseRegister');
     // API Get and Create User
     Route::prefix('/users')->group(function () {
-        Route::post('/', 'UserController@create')
-        ->middleware('checkCloseRegister');
+        Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
     // -----------------------------
