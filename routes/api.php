@@ -40,7 +40,8 @@ Route::prefix('/v1')->group(function () {
     ->middleware('checkCloseRegister');
     // API Get and Create User
     Route::prefix('/users')->group(function () {
-        Route::post('/', 'UserController@create');
+        Route::post('/', 'UserController@create')
+        ->middleware('checkCloseRegister');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
     // -----------------------------
@@ -67,7 +68,8 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('/profiles')->group(function () {
             Route::post('/', 'ProfileController@create')
             ->middleware('checkCloseRegister');
-            Route::put('/', 'ProfileController@update');
+            Route::put('/', 'ProfileController@update')
+            ->middleware('checkCloseRegister');
             Route::get('/', 'ProfileController@get')
             ->middleware('checkWipperSpeacialByRole');
             Route::get('/{userId}', 'ProfileController@getProfile')
@@ -92,17 +94,21 @@ Route::prefix('/v1')->group(function () {
         // });
         // API Upload
         Route::prefix('/uploads')->group(function () {
-            Route::post('/', 'UploadFilesController@create');
+            Route::post('/', 'UploadFilesController@create')
+            ->middleware('checkCloseRegister');
         });
         // API Question
         Route::prefix('/questions')->group(function () {
-            Route::get('/{questionId}', 'QuestionController@getById');
+            Route::get('/{questionId}', 'QuestionController@getById')
+            ->middleware('checkCloseRegister');
             Route::get('/', 'QuestionController@get');
         });
         // API Answer
         Route::prefix('/answers')->group(function () {
-            Route::post('/', 'AnswerController@create');
-            Route::put('/', 'AnswerController@update');
+            Route::post('/', 'AnswerController@create')
+            ->middleware('checkCloseRegister');
+            Route::put('/', 'AnswerController@update')
+            ->middleware('checkCloseRegister');
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
