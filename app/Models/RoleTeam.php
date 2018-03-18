@@ -19,6 +19,11 @@ class RoleTeam extends Model
         return $this->hasMany('App\Models\UserRoleTeam');
     }
 
+    public function team_question()
+    {
+        return $this->hasMany('App\Models\EvalQuestion')
+    }
+
     public function timetable()
     {
         return $this->hasMany('App\Models\Timetable');
