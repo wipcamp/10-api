@@ -37,6 +37,11 @@ class AnswerRepository implements AnswerRepositoryInterface {
     return DB::select('select * from eval_answers a join eval_questions q on a.question_id = q.id where q.question_role_teams = '.$teamId);
   }
 
+  public function getSuccessRegistranceAnswerByTeam($teamId)
+  {
+    return DB::select('select * from eval_answers a join eval_questions q on a.question_id = q.id join profiles p on a.user_id = p.user_id join profile_registrants pr on a.user_id = pr.user_id && pr.known_via is NOT NULL && pr.activities is NOT NULL && pr.skill_computer is NOT NULL && pr.activities is NOT NULL && p.user_id in (SELECT user_id FROM `eval_answers` GROUP BY user_id HAVING COUNT(*) = 6) && p.user_id in (SELECT user_id FROM `documents` WHERE type_id = 2 && user_id in (SELECT user_id FROM `documents` WHERE type_id = 3)) && q.question_role_teams = '.$teamId);
+  }
+
   public function update($data) {
     $time = new Carbon;
     $this->answers
