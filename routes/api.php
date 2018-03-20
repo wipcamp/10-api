@@ -140,6 +140,10 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/{doctype}','ApproveController@Doctype');
                     Route::get('/','ApproveController@Index');
                 });
+                Route::prefix('/evals')->group(function () {
+                    Route::get('/','EvalController@Index');
+                    Route::get('/{questionId}','EvalController@getEvalsById');
+                });
             });
             // API Staff
             Route::group(['middleware' => ['checkAdminByRole']], function () {
