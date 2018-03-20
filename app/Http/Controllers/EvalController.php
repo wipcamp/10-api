@@ -15,10 +15,12 @@ class EvalController extends Controller
     {
         return response()->json([
             'status'=>200,
-            'data'=>[
-                
-            ]
+            'data'=>$this->evals->getEvals()
         ]);
     }
-    
+    function getEvalsById ($questionId)
+    {
+        return response()->json($this->evals->getEvalsByQuestionId($questionId));
+    }
+
 }
