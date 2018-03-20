@@ -17,7 +17,7 @@ class EvalQuestion extends Model
 
     public function question_role()
     {
-        return $this->belongsTo('App\Models\RoleTeam','question_role_teams','id')
+        return $this->belongsTo('App\Models\RoleTeam','question_role_teams','id');
     }
 
     public function eval_answers()

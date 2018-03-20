@@ -20,4 +20,8 @@ class QuestionController extends Controller
     function getById($questionId) {
         return $this->questions->getById($questionId);
     }
+
+    function getByTeam($teamId) {
+        return $this->questions->getByTeam($teamId);
+    }
 }
