@@ -90,6 +90,7 @@ Route::prefix('/v1')->group(function () {
         // API Question
         Route::prefix('/questions')->group(function () {
             Route::get('/{questionId}', 'QuestionController@getById');
+            Route::get('/role/{teamId}','QuestionController@getByTeam');
             Route::get('/', 'QuestionController@get');
         });
         // API Answer
