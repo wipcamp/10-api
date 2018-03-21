@@ -4,7 +4,7 @@ use App\Models\Evals;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class AnswerRepository implements AnswerRepositoryInterface {
+class EvalsRepository implements EvalsRepositoryInterface {
   protected $evals;
 
   public function __construct(){
