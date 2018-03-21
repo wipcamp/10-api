@@ -32,6 +32,10 @@ class AnswerRepository implements AnswerRepositoryInterface {
     return $result;
   }
 
+  public function getAnswerById($answerId){
+    return DB::select('select * from eval_answers where id = '.$answerId);
+  }
+
   public function getByTeam($teamId)
   {
     return DB::select('select * from eval_answers a join eval_questions q on a.question_id = q.id where q.question_role_teams = '.$teamId);

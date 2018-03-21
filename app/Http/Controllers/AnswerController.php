@@ -44,6 +44,10 @@ class AnswerController extends Controller
         return json_encode(['data' => $data]);
     }
 
+    function getAnswerById($answerId){
+        return $this->answers->getAnswerById($answerId);
+    }
+
     function getByTeam($teamId){
         $data = $this->answers->getSuccessRegistranceAnswerByTeam($teamId);
         return json_encode(['data' => $data]);
@@ -68,7 +72,7 @@ class AnswerController extends Controller
             'data' => $this->answers->update($data)
         ]);
     }
-
+        
     function getCountById($userId) {
         return response()->json([
             'status' => 200,
