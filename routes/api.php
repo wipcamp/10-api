@@ -100,6 +100,7 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
             Route::get('answer/{answerId}/','AnswerController@getAnswerById');
+            Route::get('{quistionId}/{checkerId}','AnswerController@getCheckerAnswer');
             // Route::get('/{teamId}','AnswerController@getByTeam');
             Route::get('/{questionId}','AnswerController@getByQuestion');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
@@ -133,7 +134,7 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/','ApproveController@Index');
                 });
             });
-            
+
             Route::prefix('/evals')->group(function () {
                 Route::get('/','EvalController@Index');
                 Route::get('/{questionId}','EvalController@getEvalsById');

@@ -53,6 +53,11 @@ class AnswerController extends Controller
         return json_encode(['data' => $data]);
     }
 
+    function getCheckerAnswer($questionId,$checkerId){
+        return $this->answers->checkerAnswer($questionId,$checkerId);
+    }
+
+
     function update(Request $request) {
         $data = $request->all();
         $validator = Validator::make($data, [
