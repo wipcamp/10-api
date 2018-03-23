@@ -166,6 +166,11 @@ Route::prefix('/v1')->group(function () {
             Route::put('/{id}', 'ProblemController@updateProblem');
         });
 
+        Route::prefix('/prioritys')->group(function () {
+            Route::get('/', 'PriorityController@getAll');
+            Route::get('/{id}', 'PriorityController@getPriority');
+        });
+
         // API Role Team
         Route::prefix('/roleteams')->group(function () {
             Route::get('/name/{name}', 'RoleTeamController@getByName');
@@ -186,6 +191,17 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('announces')->group(function () {
             Route::get('/', 'AnnounceController@getAll');
             Route::get('/{id}', 'AnnounceController@getAnnounce');
+        });
+
+        // API Expo Token
+        Route::prefix('expotokens')->group(function () {
+            Route::post('/', 'ExpoTokenController@createToken');
+        });
+
+        // API Notification
+        Route::prefix('notifications')->group(function () {
+            Route::get('/', 'NotificationController@getAll');
+            Route::get('/user_id/{id}', 'NotificationController@getByUserId');
         });
     });
 });
