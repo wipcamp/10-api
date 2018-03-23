@@ -26,7 +26,7 @@ class WipcampReportProblemsTables extends Migration
                 );
         });
 
-        Schema::create('prioritys', function (Blueprint $table) {
+        Schema::create('priorities', function (Blueprint $table) {
             $table->Increments('id')->unsigned();
             $table->string('name')->unique();
             $table->timestamp('created_at')->useCurrent();
