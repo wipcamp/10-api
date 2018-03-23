@@ -159,6 +159,12 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'ProblemTypeController@getAll');
             Route::get('/{id}', 'ProblemTypeController@getProblemType');
         });
+
+        Route::prefix('/prioritys')->group(function () {
+            Route::get('/', 'PriorityController@getAll');
+            Route::get('/{id}', 'PriorityController@getPriority');
+        });
+
         Route::prefix('/problems')->group(function () {
             Route::get('/', 'ProblemController@getAll');
             Route::get('/{id}', 'ProblemController@getProblem');
@@ -166,9 +172,10 @@ Route::prefix('/v1')->group(function () {
             Route::put('/{id}', 'ProblemController@updateProblem');
         });
 
-        Route::prefix('/prioritys')->group(function () {
-            Route::get('/', 'PriorityController@getAll');
-            Route::get('/{id}', 'PriorityController@getPriority');
+        Route::prefix('/assigns')->group(function () {
+            Route::get('/problem_id/{id}', 'AssignController@getByProblemId');
+            Route::get('/role_team_id/{id}', 'AssignController@getByRoleTeamId');
+            Route::get('/assigned_id/{id}', 'AssignController@getByAssignedId');            
         });
 
         // API Role Team
