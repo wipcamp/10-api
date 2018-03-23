@@ -49,9 +49,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Evals', 'checker_id');
     }
 
-    public function problem()
+    public function problems()
     {
         return $this->hasMany('App\Models\Problem');
+    }
+
+    public function assigns()
+    {
+        return $this->hasMany('App\Models\Assign');
     }
 
     public function user_role_teams()
@@ -67,6 +72,16 @@ class User extends Authenticatable implements JWTSubject
     public function announces()
     {
         return $this->hasMany('App\Models\Announce');
+    }
+
+    public function expo_tokens()
+    {
+        return $this->hasMany('App\Models\ExpoToken');
+    }
+
+    public function notificaions()
+    {
+        return $this->hasMany('App\Models\Notification');
     }
 
     public function getJWTIdentifier()
