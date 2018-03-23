@@ -18,6 +18,7 @@ class AnnouncesTableSeeder extends Seeder
                  'topic' => $faker->sentence($nbWords = 8, $variableNbWords = true),
                  'description' => $faker->text($maxNbChars = 300),
                  'creater_id' => $faker->numberBetween($min = 100000, $max = 100009),
+                 'role_team_id' => $faker->numberBetween($min = 2, $max = 6)
              ]);
         }
     }
