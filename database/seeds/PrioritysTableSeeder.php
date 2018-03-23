@@ -12,9 +12,9 @@ class PrioritysTableSeeder extends Seeder
     public function run()
     {
         $types = [
-            'มาก',
-            'ธรรมดา',
-            'น้อย'
+            'high',
+            'medium',
+            'low'
         ];
         for ($i=0; $i < sizeof($types); $i++) { 
              DB::table('prioritys')->insert([
