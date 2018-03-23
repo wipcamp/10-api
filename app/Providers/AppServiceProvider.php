@@ -35,7 +35,8 @@ class AppServiceProvider extends ServiceProvider
             'Announce',
             'ExpoToken',
             'Notification',
-            'Priority'
+            'Priority',
+            'Assign'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
