@@ -26,13 +26,24 @@ class WipcampReportProblemsTables extends Migration
                 );
         });
 
+        Schema::create('prioritys', function (Blueprint $table) {
+            $table->Increments('id')->unsigned();
+            $table->string('name')->unique();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')
+                ->default(
+                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+                );
+        });
+
         // Create table for storing problems
         Schema::create('problems', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('topic');
-            $table->unsignedInteger('problem_type_id');
+            $table->unsignedInteger('problem_type_id')->nullable();
             $table->text('description');
             $table->unsignedInteger('report_id');
+            $table->unsignedInteger('priority_id')->nullable();
             $table->boolean('is_solve');
             $table->boolean('not_solve');            
             $table->timestamp('created_at')->useCurrent();
@@ -44,6 +55,8 @@ class WipcampReportProblemsTables extends Migration
             $table->foreign('problem_type_id')->references('id')->on('problem_types')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('report_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+                $table->foreign('priority_id')->references('id')->on('prioritys')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
@@ -58,6 +71,7 @@ class WipcampReportProblemsTables extends Migration
     public function down()
     {
         Schema::dropIfExists('problem_types');
+        Schema::dropIfExists('prioritys');
         Schema::dropIfExists('problems');
     }
 }
