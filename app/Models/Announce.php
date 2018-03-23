@@ -14,4 +14,9 @@ class Announce extends Model
     {
         return $this->belongsTo('App\User', 'id', 'creater_id');
     }
+
+    public function role_team()
+    {
+        return $this->belongsTo('App\Models\RoleTeam', 'id', 'role_team_id');
+    }
 }

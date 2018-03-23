@@ -14,13 +14,14 @@ class ProblemRepository implements ProblemRepositoryInterface {
         return $data;
     }
 
-    public function createProblem($topic, $problem_type_id, $description, $report_id) {
+    public function createProblem($topic, $problem_type_id, $description, $report_id, $priority_id) {
         $newProblem = new Problem;
 
         $newProblem->topic = $topic;
         $newProblem->problem_type_id = $problem_type_id;
         $newProblem->description = $description;
         $newProblem->report_id = $report_id;
+        $newProblem->priority_id = $priority_id;
         $newProblem->is_solve = false;
         $newProblem->not_solve = false;
         

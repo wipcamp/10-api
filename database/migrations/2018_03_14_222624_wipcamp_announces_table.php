@@ -21,11 +21,14 @@ class WipcampAnnouncesTable extends Migration
             $table->string('topic');
             $table->text('description');           
             $table->unsignedInteger('creater_id');
+            $table->unsignedInteger('role_team_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')
             ->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 
             $table->foreign('creater_id')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('role_team_id')->references('id')->on('role_teams')
             ->onUpdate('cascade')->onDelete('cascade');
         });
 

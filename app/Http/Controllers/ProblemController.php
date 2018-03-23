@@ -30,11 +30,14 @@ class ProblemController extends Controller
         $problem_type_id = array_get($data, 'problem_type_id');
         $description = array_get($data, 'description');
         $report_id = array_get($data, 'report_id');
+        $priority_id = array_get($data, 'priority_id');
         
         $result = 'false';
 
-        if(!is_null($topic) && !is_null($problem_type_id) && !is_null($description) && !is_null($report_id)) {
-            $result = $this->problemRepo->createProblem($topic, $problem_type_id, $description, $report_id);
+        if(!is_null($topic) && !is_null($problem_type_id) &&
+            !is_null($description) && !is_null($report_id) &&
+            !is_null($priority_id)) {
+            $result = $this->problemRepo->createProblem($topic, $problem_type_id, $description, $report_id, $priority_id);
         }
 
         return json_encode($result);
