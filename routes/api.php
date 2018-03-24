@@ -91,6 +91,7 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('/questions')->group(function () {
             Route::get('/{questionId}', 'QuestionController@getById');
             Route::get('/role/{teamId}','QuestionController@getByTeam');
+            Route::get('/criterias/{questionId}','QuestionController@getQuestionCriteriasByID');
             Route::get('/', 'QuestionController@get');
         });
         // API Answer

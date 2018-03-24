@@ -22,6 +22,10 @@ class QuestionRepository implements QuestionRepositoryInterface {
         return $result;
     }
 
+    public function getQuestionCriteriasByID($questionId){
+        return DB::select('select * from eval_criterias where question_id = '.$questionId);
+      }
+
     public function getByTeam($teamId)
     {
         return DB::select('select * from eval_questions where question_role_teams = '.$teamId);

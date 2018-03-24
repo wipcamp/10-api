@@ -24,4 +24,8 @@ class QuestionController extends Controller
     function getByTeam($teamId) {
         return $this->questions->getByTeam($teamId);
     }
+
+    function getQuestionCriteriasByID($questionId){
+        return $this->questions->getQuestionCriteriasByID($questionId);
+    }
 }

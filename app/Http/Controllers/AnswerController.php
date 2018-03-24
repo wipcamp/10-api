@@ -57,7 +57,6 @@ class AnswerController extends Controller
         return $this->answers->checkerAnswer($roleId,$checkerId);
     }
 
-
     function update(Request $request) {
         $data = $request->all();
         $validator = Validator::make($data, [
