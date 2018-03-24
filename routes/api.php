@@ -192,6 +192,7 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'TimetableController@getAll');
             Route::get('/{id}', 'TimetableController@getTimetable');
             Route::get('/role_team_id/{id}', 'TimetableController@getByRoleTeamId');
+            Route::get('/start_on/{time}', 'TimetableController@getByDate');
         });
 
         // API Announce

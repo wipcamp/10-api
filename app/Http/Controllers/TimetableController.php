@@ -27,4 +27,9 @@ class TimetableController extends Controller
         $data = $this->timetableRepo->getByRoleTeamId($roleTeamId);
         return json_encode($data);
     }
+
+    public function getByDate($date) {
+        $data = $this->timetableRepo->getByDate($date);
+        return json_encode($data);
+    }
 }
