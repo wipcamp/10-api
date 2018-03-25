@@ -28,4 +28,14 @@ class RoleTeam extends Model
     {
         return $this->hasMany('App\Models\Timetable');
     }
+
+    public function assign()
+    {
+        return $this->hasMany('App\Models\Assign');
+    }
+
+    public function announces()
+    {
+        return $this->hasMany('App\Models\Announce');
+    }
 }

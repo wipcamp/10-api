@@ -4,8 +4,50 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7590ba26fbbad847ea89066fefb66e09",
+    "content-hash": "d4a2f8221b31de59d7775e7077444cf5",
     "packages": [
+        {
+            "name": "alymosul/exponent-server-sdk-php",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Alymosul/exponent-server-sdk-php.git",
+                "reference": "5f34abd2517450f211d6edb15a3c002f091c9450"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Alymosul/exponent-server-sdk-php/zipball/5f34abd2517450f211d6edb15a3c002f091c9450",
+                "reference": "5f34abd2517450f211d6edb15a3c002f091c9450",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ExponentPhpSDK\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aly Suleiman",
+                    "email": "alymosul@gmail.com"
+                }
+            ],
+            "description": "Server-side library for working with Expo push notifications using PHP",
+            "keywords": [
+                "expo",
+                "exponent",
+                "notifications",
+                "push"
+            ],
+            "time": "2017-07-19T09:48:08+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "1.2.0",

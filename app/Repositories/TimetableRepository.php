@@ -20,4 +20,9 @@ class TimetableRepository implements TimetableRepositoryInterface {
         return $data;
     }
 
+    public function getByDate($date) {
+        $data = Timetable::whereDate('start_on', $date)->get();
+        return $data;
+    }
+
 }

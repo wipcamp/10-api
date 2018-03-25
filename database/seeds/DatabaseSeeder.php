@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             ProvidersTableSeeder::class,
             UsersTableSeeder::class,
             ProblemTypesTableSeeder::class,
+            PrioritysTableSeeder::class,
             ProblemsTableSeeder::class,
             ProfileGendersTableSeeder::class,
             ProfileReligionsTableSeeder::class,

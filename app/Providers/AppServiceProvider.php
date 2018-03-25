@@ -32,7 +32,11 @@ class AppServiceProvider extends ServiceProvider
             'RoleTeam',
             'UserRole',
             'UserRoleTeam',
-            'Announce'
+            'Announce',
+            'ExpoToken',
+            'Notification',
+            'Priority',
+            'Assign'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
