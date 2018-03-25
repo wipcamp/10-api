@@ -2,6 +2,7 @@
 namespace App\Repositories;
 use App\Models\EvalAnswer;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AnswerRepository implements AnswerRepositoryInterface {
   protected $answers;
@@ -29,6 +30,25 @@ class AnswerRepository implements AnswerRepositoryInterface {
         ])
       ->get();
     return $result;
+  }
+
+  public function getAnswerById($answerId){
+    return DB::select('select * from eval_answers where id = '.$answerId);
+  }
+
+  public function getByTeam($teamId)
+  {
+    return DB::select('select * from eval_answers a join eval_questions q on a.question_id = q.id where q.question_role_teams = '.$teamId);
+  }
+
+  public function getSuccessRegistranceAnswerByTeam($teamId)
+  {
+    return DB::select('select a.*,p.* from eval_answers a join eval_questions q on a.question_id = q.id join profiles p on a.user_id = p.user_id join profile_registrants pr on a.user_id = pr.user_id && pr.known_via is NOT NULL && pr.activities is NOT NULL && pr.skill_computer is NOT NULL && pr.activities is NOT NULL && p.user_id in (SELECT user_id FROM `eval_answers` GROUP BY user_id HAVING COUNT(*) = 6) && p.user_id in (SELECT user_id FROM `documents` WHERE type_id = 2 && user_id in (SELECT user_id FROM `documents` WHERE type_id = 3)) && q.question_role_teams = '.$teamId);
+  }
+
+  public function checkerAnswer($roleId,$checkerId){
+    $data =  DB::select('select a.id,p.nickname,p.user_id,c.* FROM eval_answers a join eval_questions q on a.question_id = q.id join profiles p on a.user_id = p.user_id join profile_registrants pr on a.user_id = pr.user_id left join eval_criterias c on c.question_id = a.question_id where q.question_role_team = '.$roleId.' and NOT EXISTS (SELECT * from evals where evals.checker_id = '.$checkerId.' and evals.answer_id = a.id) && pr.known_via is NOT NULL && pr.activities is NOT NULL && pr.skill_computer is NOT NULL && pr.activities is NOT NULL && p.user_id in (SELECT user_id FROM `eval_answers` GROUP BY user_id HAVING COUNT(*) = 6) && p.user_id in (SELECT user_id FROM `documents` WHERE type_id = 2 && user_id in (SELECT user_id FROM `documents` WHERE type_id = 3))');
+    return $data;
   }
 
   public function update($data) {

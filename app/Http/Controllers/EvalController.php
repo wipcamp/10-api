@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Repositories\EvalsRepository;
 
@@ -22,5 +20,4 @@ class EvalController extends Controller
     {
         return response()->json($this->evals->getEvalsByQuestionId($questionId));
     }
-
 }

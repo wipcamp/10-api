@@ -76,6 +76,7 @@ Route::prefix('/v1')->group(function () {
         });
         // API Registrants
         Route::prefix('/registrants')->group(function () {
+            Route::get('/success','ProfileController@getSuccessRegistrants');
             Route::get('/{userId}', 'ProfileController@getRegistrantsById')
             ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@getRegistrants')
@@ -98,8 +99,10 @@ Route::prefix('/v1')->group(function () {
         });
         // API Question
         Route::prefix('/questions')->group(function () {
-            Route::get('/{questionId}', 'QuestionController@getById')
-            ->middleware('checkCloseRegister');
+            Route::get('/{questionId}', 'QuestionController@getById');
+            Route::get('/role/{teamId}','QuestionController@getByTeam');
+            Route::get('/criterias/{questionId}','QuestionController@getQuestionCriteriasByID');
+
             Route::get('/', 'QuestionController@get');
         });
         // API Answer
@@ -110,6 +113,10 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkCloseRegister');
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
+            Route::get('answer/{answerId}/','AnswerController@getAnswerById');
+            Route::get('{roleId}/{checkerId}','AnswerController@getCheckerAnswer');
+            // Route::get('/{teamId}','AnswerController@getByTeam');
+            Route::get('/{questionId}','AnswerController@getByQuestion');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
             ->middleware('checkWipperByRole');
         });
@@ -144,6 +151,11 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/','EvalController@Index');
                     Route::get('/{questionId}','EvalController@getEvalsById');
                 });
+            });
+
+            Route::prefix('/evals')->group(function () {
+                Route::get('/','EvalController@Index');
+                Route::get('/{questionId}','EvalController@getEvalsById');
             });
             // API Staff
             Route::group(['middleware' => ['checkAdminByRole']], function () {
