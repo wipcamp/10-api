@@ -152,10 +152,10 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/{questionId}','EvalController@getEvalsById');
                 });
             });
-
             Route::prefix('/evals')->group(function () {
                 Route::get('/','EvalController@Index');
                 Route::get('/{questionId}','EvalController@getEvalsById');
+                Route::get('answer/{answerId}','EvalController@getEvalByQuestionId')
             });
             // API Staff
             Route::group(['middleware' => ['checkAdminByRole']], function () {
