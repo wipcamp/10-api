@@ -19,4 +19,8 @@ class EvalsRepository implements EvalsRepositoryInterface {
     return $this->evals->where('question_id',$questionId)->get();
   }
 
+  function createEval($answerId,$criteriaId,$score){
+    
+  }
+
 }
