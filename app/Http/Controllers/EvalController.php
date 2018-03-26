@@ -18,6 +18,6 @@ class EvalController extends Controller
     }
     function getEvalsById ($questionId)
     {
-        return response()->json($this->evals->getEvalsByQuestionId($questionId));
+        return response()->json($this->evals->getEvalsById($questionId));
     }
 }

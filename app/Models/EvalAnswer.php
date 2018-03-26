@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvalAnswer extends Model
 {
+    protected $table = 'eval_answers';
+
     protected $guarded = [
         'id', 'created_at', 'updated_at'
     ];

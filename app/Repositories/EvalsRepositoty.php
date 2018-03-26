@@ -16,7 +16,11 @@ class EvalsRepository implements EvalsRepositoryInterface {
   }
 
   function getEvalsQuestionByQuestionId($questionId){
-    return $this->evals->where('question_id',$questionId)->get();
+    return DB::select('select e.*,c.* from evals e join eval_answers a on e.answer_id = a.id join users u on e.checker_id = u.id left join eval_criterias c on e.criteria_id = c.id');
+  }
+
+  function updateEvalsByQuestionId(){
+
   }
 
   function createEval($answerId,$criteriaId,$score){
