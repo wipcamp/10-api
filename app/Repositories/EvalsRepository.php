@@ -10,6 +10,8 @@ class EvalsRepository implements EvalsRepositoryInterface {
     }
     public function getEvalsByQuestionId($questionId){
         $this->evals = new Evals();
-        return $this->evals->with('eval_answer')->where('question_id',$questionId)->get();
+        return $this->evals->with(['eval_answer' => function ($query) use ($questionId) {
+            $query->where('question_id', $questionId);
+        }])->get();
     }
 }
