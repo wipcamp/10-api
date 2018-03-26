@@ -199,6 +199,7 @@ Route::prefix('/v1')->group(function () {
         // API User Role Team
         Route::prefix('/userroleteams')->group(function () {
             Route::get('/user_id/{id}', 'UserRoleTeamController@getByUserId');
+            Route::post('/', 'UserRoleTeamController@create');
         });
 
         // API Timetable
