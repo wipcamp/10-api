@@ -95,7 +95,7 @@ Route::prefix('/v1')->group(function () {
         // API Upload
         Route::prefix('/uploads')->group(function () {
             Route::post('/', 'UploadFilesController@create')
-            ->middleware('checkCloseRegister');
+            ->middleware('checkDeveloperByRole');
         });
         // API Question
         Route::prefix('/questions')->group(function () {
@@ -193,10 +193,13 @@ Route::prefix('/v1')->group(function () {
         // API Role Team
         Route::prefix('/roleteams')->group(function () {
             Route::get('/name/{name}', 'RoleTeamController@getByName');
+            Route::get('/', 'RoleTeamController@getRoles');
         });
+        
         // API User Role Team
         Route::prefix('/userroleteams')->group(function () {
             Route::get('/user_id/{id}', 'UserRoleTeamController@getByUserId');
+            Route::post('/', 'UserRoleTeamController@create');
         });
 
         // API Timetable
