@@ -17,7 +17,7 @@ class PrioritysTableSeeder extends Seeder
             'low'
         ];
         for ($i=0; $i < sizeof($types); $i++) { 
-             DB::table('prioritys')->insert([
+             DB::table('priorities')->insert([
                  'name' => $types[$i]
              ]);
         }
