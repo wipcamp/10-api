@@ -81,6 +81,8 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@getRegistrants')
             ->middleware('checkWipperSpeacialByRole');
+            Route::get('/evals', 'ProfileController@getRegistrantsForEvaluate')
+            ->middleware('checkWipperByRole');
         });
         // Route::group(['middleware' => ['checkDeveloperByRole']], function () {    
         // API Role
