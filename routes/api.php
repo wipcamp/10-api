@@ -116,6 +116,7 @@ Route::prefix('/v1')->group(function () {
             Route::get('answer/{answerId}/','AnswerController@getAnswerById');
             Route::get('{roleId}/{checkerId}','AnswerController@getCheckerAnswer');
             // Route::get('/{teamId}','AnswerController@getByTeam');
+            Route::get('/evals/{$answerId}', 'AnswerController@getEvalsAnswer');
             Route::get('/{questionId}','AnswerController@getByQuestion');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
             ->middleware('checkWipperByRole');
@@ -155,7 +156,7 @@ Route::prefix('/v1')->group(function () {
             Route::prefix('/evals')->group(function () {
                 Route::get('/','EvalController@Index');
                 Route::get('/{questionId}','EvalController@getEvalsById');
-                Route::get('answer/{answerId}','EvalController@getEvalByQuestionId')
+                Route::get('answer/{answerId}','EvalController@getEvalByQuestionId');
             });
             // API Staff
             Route::group(['middleware' => ['checkAdminByRole']], function () {
