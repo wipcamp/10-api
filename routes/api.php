@@ -95,7 +95,7 @@ Route::prefix('/v1')->group(function () {
         // API Upload
         Route::prefix('/uploads')->group(function () {
             Route::post('/', 'UploadFilesController@create')
-            ->middleware('checkCloseRegister');
+            ->middleware('checkDeveloperByRole');
         });
         // API Question
         Route::prefix('/questions')->group(function () {
