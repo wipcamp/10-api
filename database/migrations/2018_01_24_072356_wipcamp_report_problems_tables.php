@@ -27,7 +27,7 @@ class WipcampReportProblemsTables extends Migration
         });
 
         Schema::create('priorities', function (Blueprint $table) {
-            $table->Increments('id')->unsigned();
+            $table->increments('id')->unsigned();
             $table->string('name')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')
@@ -56,7 +56,7 @@ class WipcampReportProblemsTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('report_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-                $table->foreign('priority_id')->references('id')->on('prioritys')
+                $table->foreign('priority_id')->references('id')->on('priorities')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
