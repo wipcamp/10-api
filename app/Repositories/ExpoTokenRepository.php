@@ -3,16 +3,22 @@
 namespace App\Repositories;
 
 use App\Models\ExpoToken;
+use Exception;
 
 class ExpoTokenRepository implements ExpoTokenRepositoryInterface {
     public function create($userId, $token) {
-        $expoToken = new ExpoToken;
+        try {
+            $expoToken = new ExpoToken;
 
-        $expoToken->user_id = $userId;
-        $expoToken->expo = $token;
+            $expoToken->user_id = $userId;
+            $expoToken->expo = $token;
 
-        $expoToken->save();
+            $expoToken->save();
 
-        return "true";
+            return "true";
+        }
+        catch(Exception $exception) {
+            return "false";
+        }
     }
 }
