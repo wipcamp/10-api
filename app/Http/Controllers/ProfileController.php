@@ -96,4 +96,11 @@ class ProfileController extends Controller
     function getRegistrantsById($userId) {
         return $this->profiles->getRegistrantsById($userId);
     }
+
+    function getRegistrantsForEvaluate() {
+        return response()->json([
+            'status' => 200,
+            'data' => $this->profiles->getRegistrantsForEvaluate()
+        ]);
+    }
 }

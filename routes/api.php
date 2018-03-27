@@ -81,6 +81,8 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@getRegistrants')
             ->middleware('checkWipperSpeacialByRole');
+            Route::get('/evals', 'ProfileController@getRegistrantsForEvaluate')
+            ->middleware('checkWipperByRole');
         });
         // Route::group(['middleware' => ['checkDeveloperByRole']], function () {    
         // API Role
@@ -148,16 +150,15 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/{doctype}','ApproveController@Doctype');
                     Route::get('/','ApproveController@Index');
                 });
+            });
+            
+            Route::group(['middleware' => ['checkWipperByRole']], function () {
                 Route::prefix('/evals')->group(function () {
                     Route::get('/','EvalController@Index');
                     Route::get('/{questionId}','EvalController@getEvalsById');
                 });
             });
-            Route::prefix('/evals')->group(function () {
-                Route::get('/','EvalController@Index');
-                Route::get('/{questionId}','EvalController@getEvalsById');
-                Route::get('answer/{answerId}','EvalController@getEvalByQuestionId');
-            });
+
             // API Staff
             Route::group(['middleware' => ['checkAdminByRole']], function () {
                 Route::prefix('/staffs')->group(function () {
