@@ -10,4 +10,11 @@ class UserRoleTeamRepository implements UserRoleTeamRepositoryInterface {
         return $data;
     }
 
+    public function create($userId, $roleTeamId) {
+        return UserRoleTeam::create([
+            'user_id' => $userId,
+            'role_team_id' => $roleTeamId
+        ]);
+    }
+
 }

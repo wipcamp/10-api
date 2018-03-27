@@ -10,12 +10,17 @@ class EvalCriteria extends Model
         'id', 'created_at', 'updated_at'
     ];
 
-    public function eval_criterias() {
+    public function eval_question_criterias() {
         return $this->hasMany('App\Models\EvalQuestionCriteria', 'criteria_id');
     }
 
     public function evals()
     {
-        return $this->hasMany('App/Model/Evals', 'criteria_id');
+        return $this->hasOne('App/Model/Evals', 'id');
+    }
+
+    public function eval_question()
+    {
+        return $this->belongsTo('App/Model/EvalQuestion', 'id' ,'question_id');
     }
 }

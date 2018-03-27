@@ -17,4 +17,10 @@ class RoleTeamController extends Controller
         $data = $this->roleTeamRepo->getIdByName($name);
         return json_encode($data);
     }
+    public function getRoles() {
+        return response()->json([
+            'status' => 200,
+            'data' => $this->roleTeamRepo->getRoles()
+        ]);
+    }
 }

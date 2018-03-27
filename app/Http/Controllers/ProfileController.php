@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Repositories\ProfileRepository;
+use App\Repositories\DashboardRepository;
 
 class ProfileController extends Controller
 {
     protected $profiles;
+    protected $dashboard;
+
 
     function __construct() {
         $this->profiles = new ProfileRepository;
+        $this->dashboard  = new DashboardRepository;
     }
 
     function create(Request $request) {
@@ -85,7 +89,18 @@ class ProfileController extends Controller
         return $this->profiles->getRegistrants();
     }
 
+    function getSuccessRegistrants(){
+        return $this->dashboard->getAllSuccessRegister();
+    }
+
     function getRegistrantsById($userId) {
         return $this->profiles->getRegistrantsById($userId);
+    }
+
+    function getRegistrantsForEvaluate() {
+        return response()->json([
+            'status' => 200,
+            'data' => $this->profiles->getRegistrantsForEvaluate()
+        ]);
     }
 }

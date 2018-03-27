@@ -71,6 +71,13 @@ class ProfileRepository implements ProfileRepositoryInterface {
       'eval_answers'
       ])->get();
   }
+
+  public function getRegistrantsForEvaluate() {
+    $this->profiles = new Profile;
+    return $this->profiles->with([
+      'eval_answers'
+      ])->get(['user_id', 'nickname']);
+  }
   
   public function getRegistrantsById($userId) {
     $this->profiles = new Profile;

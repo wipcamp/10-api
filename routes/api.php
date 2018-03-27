@@ -76,10 +76,13 @@ Route::prefix('/v1')->group(function () {
         });
         // API Registrants
         Route::prefix('/registrants')->group(function () {
+            Route::get('/success','ProfileController@getSuccessRegistrants');
             Route::get('/{userId}', 'ProfileController@getRegistrantsById')
             ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@getRegistrants')
             ->middleware('checkWipperSpeacialByRole');
+            Route::get('/evals', 'ProfileController@getRegistrantsForEvaluate')
+            ->middleware('checkWipperByRole');
         });
         // Route::group(['middleware' => ['checkDeveloperByRole']], function () {    
         // API Role
@@ -94,12 +97,14 @@ Route::prefix('/v1')->group(function () {
         // API Upload
         Route::prefix('/uploads')->group(function () {
             Route::post('/', 'UploadFilesController@create')
-            ->middleware('checkCloseRegister');
+            ->middleware('checkDeveloperByRole');
         });
         // API Question
         Route::prefix('/questions')->group(function () {
-            Route::get('/{questionId}', 'QuestionController@getById')
-            ->middleware('checkCloseRegister');
+            Route::get('/{questionId}', 'QuestionController@getById');
+            Route::get('/role/{teamId}','QuestionController@getByTeam');
+            Route::get('/criterias/{questionId}','QuestionController@getQuestionCriteriasByID');
+
             Route::get('/', 'QuestionController@get');
         });
         // API Answer
@@ -110,6 +115,11 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkCloseRegister');
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
+            Route::get('answer/{answerId}/','AnswerController@getAnswerById');
+            Route::get('{roleId}/{checkerId}','AnswerController@getCheckerAnswer');
+            // Route::get('/{teamId}','AnswerController@getByTeam');
+            Route::get('/evals/{$answerId}', 'AnswerController@getEvalsAnswer');
+            Route::get('/{questionId}','AnswerController@getByQuestion');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
             ->middleware('checkWipperByRole');
         });
@@ -141,6 +151,17 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/','ApproveController@Index');
                 });
             });
+            
+            Route::group(['middleware' => ['checkWipperByRole']], function () {
+                Route::prefix('/evals')->group(function () {
+                    Route::get('/','EvalController@Index');
+                    Route::get('/{answerId}','EvalController@getEvalsById');
+                    Route::get('/criteria/{questionId}','EvalController@getCriteriaByAnswer');
+                    Route::post('/criteria','EvalController@postCriteria');
+                    Route::put('/criteria/{criteriaId}','EvalController@putCriteria');
+                });
+            });
+
             // API Staff
             Route::group(['middleware' => ['checkAdminByRole']], function () {
                 Route::prefix('/staffs')->group(function () {
@@ -155,6 +176,12 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'ProblemTypeController@getAll');
             Route::get('/{id}', 'ProblemTypeController@getProblemType');
         });
+
+        Route::prefix('/prioritys')->group(function () {
+            Route::get('/', 'PriorityController@getAll');
+            Route::get('/{id}', 'PriorityController@getPriority');
+        });
+
         Route::prefix('/problems')->group(function () {
             Route::get('/', 'ProblemController@getAll');
             Route::get('/{id}', 'ProblemController@getProblem');
@@ -162,13 +189,22 @@ Route::prefix('/v1')->group(function () {
             Route::put('/{id}', 'ProblemController@updateProblem');
         });
 
+        Route::prefix('/assigns')->group(function () {
+            Route::get('/problem_id/{id}', 'AssignController@getByProblemId');
+            Route::get('/role_team_id/{id}', 'AssignController@getByRoleTeamId');
+            Route::get('/assigned_id/{id}', 'AssignController@getByAssignedId');            
+        });
+
         // API Role Team
         Route::prefix('/roleteams')->group(function () {
             Route::get('/name/{name}', 'RoleTeamController@getByName');
+            Route::get('/', 'RoleTeamController@getRoles');
         });
+        
         // API User Role Team
         Route::prefix('/userroleteams')->group(function () {
             Route::get('/user_id/{id}', 'UserRoleTeamController@getByUserId');
+            Route::post('/', 'UserRoleTeamController@create');
         });
 
         // API Timetable
@@ -176,12 +212,24 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'TimetableController@getAll');
             Route::get('/{id}', 'TimetableController@getTimetable');
             Route::get('/role_team_id/{id}', 'TimetableController@getByRoleTeamId');
+            Route::get('/start_on/{time}', 'TimetableController@getByDate');
         });
 
         // API Announce
         Route::prefix('announces')->group(function () {
             Route::get('/', 'AnnounceController@getAll');
             Route::get('/{id}', 'AnnounceController@getAnnounce');
+        });
+
+        // API Expo Token
+        Route::prefix('expotokens')->group(function () {
+            Route::post('/', 'ExpoTokenController@createToken');
+        });
+
+        // API Notification
+        Route::prefix('notifications')->group(function () {
+            Route::get('/', 'NotificationController@getAll');
+            Route::get('/user_id/{id}', 'NotificationController@getByUserId');
         });
     });
 });

@@ -17,7 +17,8 @@ class RoleTeamsTableSeeder extends Seeder
             ['SWATDIKARN', 'พี่สวัสดิการ'],
             ['LOCATION', 'พี่สถานที่'],
             ['MC', 'พี่MC'],
-            ['WIPPER', 'พี่WIPPER']
+            ['WIPPER', 'พี่WIPPER'],
+            ['CENTRAL', 'กองอำนวยการณ์']
         ];
         for ($i=0; $i < sizeof($roles); $i++) { 
              DB::table('role_teams')->insert([
