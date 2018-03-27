@@ -155,7 +155,10 @@ Route::prefix('/v1')->group(function () {
             Route::group(['middleware' => ['checkWipperByRole']], function () {
                 Route::prefix('/evals')->group(function () {
                     Route::get('/','EvalController@Index');
-                    Route::get('/{questionId}','EvalController@getEvalsById');
+                    Route::get('/{answerId}','EvalController@getEvalsById');
+                    Route::get('/criteria/{questionId}','EvalController@getCriteriaByAnswer');
+                    Route::post('/criteria','EvalController@postCriteria');
+                    Route::put('/criteria/{criteriaId}','EvalController@putCriteria');
                 });
             });
 
