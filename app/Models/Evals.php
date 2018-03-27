@@ -24,6 +24,6 @@ class Evals extends Model
 
     public function eval_checker()
     {
-        return $this->belongsTo('App\User', 'id', 'checker_id');
+        return $this->belongsTo('App\Models\Profile', 'user_id', 'checker_id');
     }
 }

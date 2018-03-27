@@ -24,4 +24,8 @@ class ProfileStaff extends Model
     {
         return $this->belongTo('App\Models\CampSection', 'id', 'section_id');
     }
+
+    public function evalCriteria(){
+        return $this->belongTo('App\Models\EvalCriteria')
+    }
 }
