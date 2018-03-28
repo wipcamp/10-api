@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ProblemRepositoryInterface;
+use App\Repositories\ExpoTokenRepositoryInterface;
+use App\Repositories\NotificationRepositoryInterface;
 
 class ProblemController extends Controller
 {
     protected $problemRepo;
+    protected $expoRepo;
+    protected $notiRepo;
 
-    public function __construct(ProblemRepositoryInterface $prob) {
+    public function __construct(ProblemRepositoryInterface $prob, ExpoTokenRepositoryInterface $expo, NotificationRepositoryInterface $noti) {
         $this->problemRepo = $prob;
+        $this->expoRepo = $expo;
+        $this->notiRepo = $noti;
     }
 
     public function getAll() {
@@ -50,9 +56,39 @@ class ProblemController extends Controller
         $not_solve = array_get($data, 'not_solve');
         
         $result = 'false';
-
+        
         if($is_solve xor $not_solve) {
             $result = $this->problemRepo->updateProblem($id, $is_solve);
+        }
+
+        if($result == 'true') {
+            $problem = $this->problemRepo->getProblem($id);
+            $expoTokens = $this->expoRepo->getByUserId($problem->report_id);
+            $title = "ปัญหา : " . $problem->topic;
+            $tableName = "problems";
+            foreach ($expoTokens as $expoToken) {
+                if($is_solve) {
+                    $this->notiRepo->createNotification(
+                        $expoToken->user_id,
+                        $expoToken->expo,
+                        $title,
+                        "ปัญหาของคุณได้รับการแก้ไขแล้ว",
+                        $tableName,
+                        $id
+                    );
+                }
+                else {
+                    $this->notiRepo->createNotification(
+                        $expoToken->user_id,
+                        $expoToken->expo,
+                        $title,
+                        "ปัญหาของคุณไม่ได้รับการแก้ไข",
+                        $tableName,
+                        $id
+                    );
+                }
+            }
+            
         }
 
         return json_encode($result);
