@@ -33,7 +33,7 @@ class AnswerRepository implements AnswerRepositoryInterface {
   }
 
   public function getAnswerById($answerId){
-    return DB::select('select * from eval_answers where id = '.$answerId);
+    return EvalAnswer::where('id', $answerId)->get();
   }
 
   public function getByTeam($teamId)

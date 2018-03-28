@@ -14,4 +14,7 @@ class EvalsRepository implements EvalsRepositoryInterface {
             $query->where('question_id', $questionId);
         }])->get();
     }
+    public function insertEvals($evals) {
+        return Evals::insert($evals);
+    }
 }
