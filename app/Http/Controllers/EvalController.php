@@ -32,13 +32,32 @@ class EvalController extends Controller
             'data' => $this->evals->insertEvals($evals)
         ]);
     }
+    
     function putCriteria($criteriaId,Request $request){
+        
         return DB::table('evals')->where('id', $criteriaId)
         ->update([
             'answer_id' => $request['answer_id'],
             'criteria_id'=> $request['criteria_id'],
             'checker_id' => $request['checker_id'],
             'score' => $request->input('score')
+        ]);
+    }
+
+    function putCriterias(Request $request){
+        $evals = $request->all();
+
+        foreach ($evals as $eval) {
+            $this->evals->updateEvals(
+                $eval['answer_id'],
+                $eval['criteria_id'],
+                $eval
+            );
+        }
+
+        return response()->json([
+            'status' => 200,
+            'data' => true
         ]);
     }
 }
