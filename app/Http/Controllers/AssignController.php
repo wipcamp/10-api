@@ -13,6 +13,11 @@ class AssignController extends Controller
         $this->assignRepo = $assign;
     }
 
+    public function getAssign($assignId) {
+        $data = $this->assignRepo->getAssign($assignId);
+        return json_encode($data);
+    }
+
     public function getByProblemId($problemId) {
         $data = $this->assignRepo->getByProblemId($problemId);
         return json_encode($data);

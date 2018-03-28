@@ -4,6 +4,11 @@ namespace App\Repositories;
 use App\Models\Assign;
 
 class AssignRepository implements AssignRepositoryInterface {
+    public function getAssign($assignId) {
+        $data = Assign::find($assignId);
+        return $data;
+    }
+
     public function getByProblemId($problemId) {
         $data = Assign::where('problem_id', $problemId)->get();
         return $data;
