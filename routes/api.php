@@ -158,6 +158,7 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/{answerId}','EvalController@getEvalsById');
                     Route::get('/criteria/{questionId}','EvalController@getCriteriaByAnswer');
                     Route::post('/criteria','EvalController@postCriteria');
+                    Route::put('/criteria','EvalController@putCriterias');
                     Route::put('/criteria/{criteriaId}','EvalController@putCriteria');
                 });
             });
