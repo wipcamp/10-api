@@ -17,6 +17,7 @@ class QuestionRepository implements QuestionRepositoryInterface {
 
     public function getById($question_id) {
         $result = $this->questions
+            ->with('eval_criteria')
             ->where('id', $question_id)
             ->get();
         return $result;
