@@ -19,7 +19,7 @@ class EvalController extends Controller
     }
     function getEvalsById ($answerId)
     {
-       return DB::select('select * from evals where answer_id = '.$answerId);
+       return DB::select('select * from evals where answer_id = '.$answerId.' order by criteria_id');
     }
     function getCriteriaByAnswer ($questionId){
         return DB::select('select * from eval_criterias where question_id = '.$questionId);
