@@ -25,11 +25,11 @@ class EvalController extends Controller
         return DB::select('select * from eval_criterias where question_id = '.$questionId);
     }
     function postCriteria(Request $request){//Insert into eval by criteria
-        return DB::table('evals')->insert([
-            'answer_id' => $request->input('answer_id'),
-            'criteria_id'=> $request->input('criteria_id'),
-            'checker_id' => $request->input('checker_id'),
-            'score' => $request->input('score')
+        $evals = $request->all();
+
+        return response()->json([
+            'status' => 200,
+            'data' => $this->evals->insertEvals($evals)
         ]);
     }
     function putCriteria($criteriaId,Request $request){
