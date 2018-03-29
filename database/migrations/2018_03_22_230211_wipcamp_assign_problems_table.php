@@ -26,6 +26,8 @@ class WipcampAssignProblemsTable extends Migration
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
 
+            $table->unique(['problem_id', 'role_team_id', 'assigned_id']);
+
             $table->foreign('problem_id')->references('id')->on('problems')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_team_id')->references('id')->on('role_teams')
