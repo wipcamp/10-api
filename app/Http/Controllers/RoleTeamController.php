@@ -13,14 +13,20 @@ class RoleTeamController extends Controller
         $this->roleTeamRepo = $roleTeam;
     }
 
-    public function getByName($name) {
-        $data = $this->roleTeamRepo->getIdByName($name);
-        return json_encode($data);
-    }
     public function getRoles() {
         return response()->json([
             'status' => 200,
             'data' => $this->roleTeamRepo->getRoles()
         ]);
+    }
+
+    public function getRole($roleId) {
+        $data = $this->roleTeamRepo->getRoleTeam($roleId);
+        return json_encode($data);
+    }
+
+    public function getByName($name) {
+        $data = $this->roleTeamRepo->getIdByName($name);
+        return json_encode($data);
     }
 }
