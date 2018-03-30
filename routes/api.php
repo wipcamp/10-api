@@ -109,17 +109,20 @@ Route::prefix('/v1')->group(function () {
         });
         // API Answer
         Route::prefix('/answers')->group(function () {
+            Route::get('answer/{answerId}/','AnswerController@getAnswerById')
+            ->middleware('checkWipperByRole');
+            Route::get('/success', 'AnswerController@getAnswersSuccess')
+            ->middleware('checkWipperByRole');
             Route::post('/', 'AnswerController@create')
             ->middleware('checkCloseRegister');
             Route::put('/', 'AnswerController@update')
             ->middleware('checkCloseRegister');
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
-            Route::get('answer/{answerId}/','AnswerController@getAnswerById');
-            Route::get('{roleId}/{checkerId}','AnswerController@getCheckerAnswer');
+            // Route::get('{roleId}/{checkerId}','AnswerController@getCheckerAnswer');
             // Route::get('/{teamId}','AnswerController@getByTeam');
             Route::get('/evals/{$answerId}', 'AnswerController@getEvalsAnswer');
-            Route::get('/{questionId}','AnswerController@getByQuestion');
+            // Route::get('/{questionId}','AnswerController@getByQuestion');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
             ->middleware('checkWipperByRole');
         });

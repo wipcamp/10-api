@@ -53,8 +53,11 @@ class AnswerController extends Controller
         return json_encode(['data' => $data]);
     }
 
-    function getCheckerAnswer($roleId,$checkerId){
-        return $this->answers->checkerAnswer($roleId,$checkerId);
+    // function getCheckerAnswer($roleId,$checkerId){
+    //     return $this->answers->checkerAnswer($roleId,$checkerId);
+    // }
+    function getAnswersSuccess(){
+        return $this->answers->getAnswersSuccess();
     }
 
     function update(Request $request) {
