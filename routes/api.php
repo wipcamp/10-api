@@ -158,6 +158,7 @@ Route::prefix('/v1')->group(function () {
                     Route::get('/{answerId}','EvalController@getEvalsById');
                     Route::get('/criteria/{questionId}','EvalController@getCriteriaByAnswer');
                     Route::post('/criteria','EvalController@postCriteria');
+                    Route::put('/criteria','EvalController@putCriterias');
                     Route::put('/criteria/{criteriaId}','EvalController@putCriteria');
                 });
             });
@@ -190,6 +191,7 @@ Route::prefix('/v1')->group(function () {
         });
 
         Route::prefix('/assigns')->group(function () {
+            Route::get('/{id}', 'AssignController@getAssign');
             Route::get('/problem_id/{id}', 'AssignController@getByProblemId');
             Route::get('/role_team_id/{id}', 'AssignController@getByRoleTeamId');
             Route::get('/assigned_id/{id}', 'AssignController@getByAssignedId');            

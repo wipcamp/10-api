@@ -25,6 +25,7 @@ class WipcampNotificationsTable extends Migration
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );
 
+            $table->unique(['user_id', 'expo']);
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
