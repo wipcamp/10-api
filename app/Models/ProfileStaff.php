@@ -26,6 +26,6 @@ class ProfileStaff extends Model
     }
 
     public function evalCriteria(){
-        return $this->belongTo('App\Models\EvalCriteria')
+        return $this->belongTo('App\Models\EvalCriteria');
     }
 }
