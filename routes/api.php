@@ -76,7 +76,6 @@ Route::prefix('/v1')->group(function () {
         });
         // API Registrants
         Route::prefix('/registrants')->group(function () {
-            Route::get('/success','ProfileController@getSuccessRegistrants');
             Route::get('/{userId}', 'ProfileController@getRegistrantsById')
             ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@getRegistrants')
@@ -84,7 +83,6 @@ Route::prefix('/v1')->group(function () {
             Route::get('/evals', 'ProfileController@getRegistrantsForEvaluate')
             ->middleware('checkWipperByRole');
         });
-        // Route::group(['middleware' => ['checkDeveloperByRole']], function () {    
         // API Role
         Route::prefix('/roles')->group(function () {
             Route::get('/name/{name}', 'RoleController@getByName');
@@ -119,10 +117,7 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkCloseRegister');
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
-            // Route::get('{roleId}/{checkerId}','AnswerController@getCheckerAnswer');
-            // Route::get('/{teamId}','AnswerController@getByTeam');
             Route::get('/evals/{$answerId}', 'AnswerController@getEvalsAnswer');
-            // Route::get('/{questionId}','AnswerController@getByQuestion');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
             ->middleware('checkWipperByRole');
         });
@@ -134,7 +129,7 @@ Route::prefix('/v1')->group(function () {
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             //API Dashboard
             Route::prefix('/dashboard')->group(function (){
-                Route::get('','DashboardController@Index');
+                Route::get('/','DashboardController@Index');
                 Route::get('/register/success','DashboardController@getAllSuccessRegister');
                 Route::get('/register/all','DashboardController@getAllRegister');
                 Route::get('/document/success','DashboardController@getAllUserDocSuccess');
