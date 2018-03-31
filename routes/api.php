@@ -43,6 +43,7 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
+
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
         // API User
@@ -88,8 +89,9 @@ Route::prefix('/v1')->group(function () {
             Route::post('/', 'ConfirmController@insertConfirmCamper')
             ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
         });
+        // API Leave Camper
         Route::prefix('/leave-campers')->group(function () {
-            Route::put('/', 'ProfileController@update')
+            Route::put('/', 'ProfileController@updateLeaveCamper')
             ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
         });
         // API Camper
