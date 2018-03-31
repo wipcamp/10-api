@@ -83,6 +83,13 @@ Route::prefix('/v1')->group(function () {
             Route::get('/evals', 'ProfileController@getRegistrantsForEvaluate')
             ->middleware('checkWipperByRole');
         });
+        // API Camper
+        Route::prefix('/campers')->group(function () {
+            Route::get('/{userId}', 'CamperController@getCamperByUserId')
+            ->middleware('checkUserByUserId');
+            Route::get('/', 'CamperController@getAllCampers')
+            ->middleware('checkWipperByRole');
+        });
         // API Role
         Route::prefix('/roles')->group(function () {
             Route::get('/name/{name}', 'RoleController@getByName');
