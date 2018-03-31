@@ -10,8 +10,9 @@ class ProfileCamper extends Model
         'user_id', 'section_id'
     ];
 
-    public function profile() {
-        $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
+    public function profile()
+    {
+      return $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
     }
 
     public function camp_section() {
