@@ -83,6 +83,11 @@ Route::prefix('/v1')->group(function () {
             Route::get('/evals', 'ProfileController@getRegistrantsForEvaluate')
             ->middleware('checkWipperByRole');
         });
+        // API Confirm Camper
+        Route::prefix('/confirm-campers')->group(function () {
+            Route::post('/', 'ConfirmController@insertConfirmCamper')
+            ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
+        });
         // API Camper
         Route::prefix('/campers')->group(function () {
             Route::get('/{userId}', 'CamperController@getCamperByUserId')
