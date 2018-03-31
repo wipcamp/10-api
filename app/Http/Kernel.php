@@ -77,5 +77,6 @@ class Kernel extends HttpKernel
         'checkDeveloperByRole' => '\App\Http\Middleware\CheckDeveloperByRole',    
         'checkAdminByRole' => '\App\Http\Middleware\CheckAdminByRole',    
         'checkCloseRegister' => '\App\Http\Middleware\CloseRegister',    
+        'checkCamperByUserId' => '\App\Http\Middleware\CheckCamperByUserId',    
     ];
 }
