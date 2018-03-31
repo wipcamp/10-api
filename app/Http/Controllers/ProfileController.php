@@ -61,7 +61,7 @@ class ProfileController extends Controller
 
     function update(Request $request) {
         $schema = [
-            'user_id' => 'required',
+            'userId' => 'required',
         ];
         $data = $request->all();
         // validate

@@ -88,6 +88,10 @@ Route::prefix('/v1')->group(function () {
             Route::post('/', 'ConfirmController@insertConfirmCamper')
             ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
         });
+        Route::prefix('/leave-campers')->group(function () {
+            Route::put('/', 'ProfileController@update')
+            ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
+        });
         // API Camper
         Route::prefix('/campers')->group(function () {
             Route::get('/{userId}', 'CamperController@getCamperByUserId')
