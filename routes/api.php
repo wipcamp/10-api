@@ -91,7 +91,7 @@ Route::prefix('/v1')->group(function () {
         });
         // API Leave Camper
         Route::prefix('/leave-campers')->group(function () {
-            Route::put('/', 'ProfileController@updateLeaveCamper')
+            Route::put('/{userId}', 'ProfileController@updateLeaveCamper')
             ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
         });
         // API Camper
