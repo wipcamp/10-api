@@ -43,6 +43,7 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
+
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
         // API User
@@ -76,7 +77,6 @@ Route::prefix('/v1')->group(function () {
         });
         // API Registrants
         Route::prefix('/registrants')->group(function () {
-            Route::get('/success','ProfileController@getSuccessRegistrants');
             Route::get('/{userId}', 'ProfileController@getRegistrantsById')
             ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@getRegistrants')
@@ -84,7 +84,23 @@ Route::prefix('/v1')->group(function () {
             Route::get('/evals', 'ProfileController@getRegistrantsForEvaluate')
             ->middleware('checkWipperByRole');
         });
-        // Route::group(['middleware' => ['checkDeveloperByRole']], function () {    
+        // API Confirm Camper
+        Route::prefix('/confirm-campers')->group(function () {
+            Route::post('/', 'ConfirmController@insertConfirmCamper')
+            ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
+        });
+        // API Leave Camper
+        Route::prefix('/leave-campers')->group(function () {
+            Route::put('/{userId}', 'ProfileController@updateLeaveCamper')
+            ->middleware(['checkUserByUserId', 'checkCamperByUserId']);
+        });
+        // API Camper
+        Route::prefix('/campers')->group(function () {
+            Route::get('/{userId}', 'CamperController@getCamperByUserId')
+            ->middleware('checkUserByUserId');
+            Route::get('/', 'CamperController@getAllCampers')
+            ->middleware('checkWipperByRole');
+        });
         // API Role
         Route::prefix('/roles')->group(function () {
             Route::get('/name/{name}', 'RoleController@getByName');
@@ -109,17 +125,17 @@ Route::prefix('/v1')->group(function () {
         });
         // API Answer
         Route::prefix('/answers')->group(function () {
+            Route::get('answer/{answerId}/','AnswerController@getAnswerById')
+            ->middleware('checkWipperByRole');
+            Route::get('/success', 'AnswerController@getAnswersSuccess')
+            ->middleware('checkWipperByRole');
             Route::post('/', 'AnswerController@create')
             ->middleware('checkCloseRegister');
             Route::put('/', 'AnswerController@update')
             ->middleware('checkCloseRegister');
             Route::get('/', 'AnswerController@get')
             ->middleware('checkWipperByRole');
-            Route::get('answer/{answerId}/','AnswerController@getAnswerById');
-            Route::get('{roleId}/{checkerId}','AnswerController@getCheckerAnswer');
-            // Route::get('/{teamId}','AnswerController@getByTeam');
             Route::get('/evals/{$answerId}', 'AnswerController@getEvalsAnswer');
-            Route::get('/{questionId}','AnswerController@getByQuestion');
             Route::get('/{userId}/count', 'AnswerController@getCountById')
             ->middleware('checkWipperByRole');
         });
@@ -131,7 +147,7 @@ Route::prefix('/v1')->group(function () {
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             //API Dashboard
             Route::prefix('/dashboard')->group(function (){
-                Route::get('','DashboardController@Index');
+                Route::get('/','DashboardController@Index');
                 Route::get('/register/success','DashboardController@getAllSuccessRegister');
                 Route::get('/register/all','DashboardController@getAllRegister');
                 Route::get('/document/success','DashboardController@getAllUserDocSuccess');
@@ -199,8 +215,9 @@ Route::prefix('/v1')->group(function () {
 
         // API Role Team
         Route::prefix('/roleteams')->group(function () {
-            Route::get('/name/{name}', 'RoleTeamController@getByName');
             Route::get('/', 'RoleTeamController@getRoles');
+            Route::get('/{id}', 'RoleTeamController@getRole');
+            Route::get('/name/{name}', 'RoleTeamController@getByName');
         });
         
         // API User Role Team

@@ -59,11 +59,14 @@ class ProfileController extends Controller
         ]);
     }
 
-    function update(Request $request) {
+    function updateLeaveCamper(Request $request) {
         $schema = [
-            'user_id' => 'required',
+            'userId' => 'required',
+            'reason' => 'required',
         ];
+        
         $data = $request->all();
+
         // validate
         $validator = Validator::make($data, $schema);
         if ($validator->fails()) {
@@ -71,9 +74,15 @@ class ProfileController extends Controller
                 'error' => 'Invalid Data.'
             ]);
         }
+        
+        $user = [
+            'user_id' => $data['userId'],
+            'tell_wipper' => $data['reason']
+        ];
+
         return response()->json([
             'status' => 200,
-            'data' => $this->profiles->update($data)
+            'data' => $this->profiles->updateLeaveCamper($user)
         ]);
     }
 

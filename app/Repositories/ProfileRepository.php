@@ -53,6 +53,13 @@ class ProfileRepository implements ProfileRepositoryInterface {
     return array_merge($profile, $profileRegistrant);  
   }
 
+  public function updateLeaveCamper($user) {
+    $this->profiles = new ProfileRegistrant;
+    return $this->profiles
+      ->where('user_id', $user['user_id'])
+      ->update($user);
+  }
+
   public function get() {
     $this->profiles = new Profile;
     return $this->profiles->get();
