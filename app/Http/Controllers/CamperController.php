@@ -16,7 +16,7 @@ class CamperController extends Controller
         if ($camper) {
             return response()->json([
                 'status' => 200,
-                'data' => true
+                'data' => $camper
             ]);
         }
         return response()->json([

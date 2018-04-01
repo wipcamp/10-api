@@ -15,6 +15,16 @@ class ProfileCamper extends Model
       return $this->belongsTo('App\Models\Profile', 'user_id', 'user_id');
     }
 
+    public function profile_registrant()
+    {
+      return $this->hasOne('App\Models\ProfileRegistrant', 'user_id', 'user_id');
+    }
+
+    public function confirm_camper()
+    {
+      return $this->hasOne('App\Models\ConfirmCamper', 'user_id', 'user_id');
+    }
+
     public function camp_section() {
         $this->belongsTo('App\Models\CampSection', 'id', 'section_id');
     }
