@@ -250,5 +250,11 @@ Route::prefix('/v1')->group(function () {
             Route::get('/', 'NotificationController@getAll');
             Route::get('/user_id/{id}', 'NotificationController@getByUserId');
         });
+        //API Approve Slip
+        Route::prefix('slip')->group(function () {
+            Route::get('/all','SlipController@allCampers');//fetch camper and its slip
+            Route::get('/{docId}');//fetch document with camper detail
+            Route::put('/{docId}');//update document detail and comment
+        });
     });
 });
