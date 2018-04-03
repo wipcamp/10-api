@@ -9,11 +9,13 @@ class SlipController extends Controller
 {   
     protected $slip;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->slip = new SlipRepository;
     }
 
-    function allCampers() {
-        return $this->slip->test();
+    function allCampers() 
+    {
+        return $this->slip->getCamperWithDoc();
     }
 }
