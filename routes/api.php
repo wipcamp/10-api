@@ -113,7 +113,7 @@ Route::prefix('/v1')->group(function () {
         // API Upload
         Route::prefix('/uploads')->group(function () {
             Route::post('/', 'UploadFilesController@create')
-            ->middleware('checkDeveloperByRole');
+            ->middleware('checkUserByUserId');
         });
         // API Question
         Route::prefix('/questions')->group(function () {
