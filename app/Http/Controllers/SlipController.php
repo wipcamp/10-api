@@ -14,8 +14,21 @@ class SlipController extends Controller
         $this->slip = new SlipRepository;
     }
 
-    function allCampers() 
+    public function allCampers() 
     {
         return $this->slip->getCamperWithDoc();
     }
+
+    public function getDocWithCamper($docId)
+    {
+        return $this->slip->getDocWithCamper($docId);
+    }
+
+    public function putDocument(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('is_approve');
+        return $this->slip->putDocument($id,$status);
+    }
+    
 }
