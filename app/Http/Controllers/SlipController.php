@@ -24,12 +24,11 @@ class SlipController extends Controller
         return $this->slip->getDocWithCamper($docId);
     }
 
-    public function putDocument(Request $request)
+    public function putDocument($docId,Request $request)
     {
-        $id = $request->input('id');
         $status = $request->input('is_approve');
         $comment = $request->input('approve_reason');
-        return $this->slip->putDocument($id,$status,$comment);
+        return $this->slip->putDocument($docId,$status,$comment);
     }
     
 }
