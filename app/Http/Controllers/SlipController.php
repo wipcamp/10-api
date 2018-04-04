@@ -16,7 +16,7 @@ class SlipController extends Controller
 
     public function allCampers() 
     {
-        return $this->slip->getCamperWithDoc();
+        return $this->slip->allCampers();
     }
 
     public function getDocWithCamper($docId)

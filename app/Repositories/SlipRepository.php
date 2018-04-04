@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Models\Document;
 use App\Models\ProfileCamper;
+use App\User;
 
 
 class SlipRepository implements SlipRepositoryInterface {
@@ -38,7 +39,7 @@ class SlipRepository implements SlipRepositoryInterface {
 
     public function getDocWithCamper($id)
     {
-        return $this->document->with('profile')->where('id',$id)->first();//**CHECK ORDER! */
+        return $this->document->with('profile')->with('profile.user')->where('id',$id)->first();//**CHECK ORDER! */
     }
 
     public function putDocument($id,$status)//update document status by id 
