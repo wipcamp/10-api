@@ -28,7 +28,8 @@ class SlipController extends Controller
     {
         $id = $request->input('id');
         $status = $request->input('is_approve');
-        return $this->slip->putDocument($id,$status);
+        $comment = $request->input('approve_reason');
+        return $this->slip->putDocument($id,$status,$comment);
     }
     
 }
