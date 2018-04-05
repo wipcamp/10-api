@@ -113,7 +113,7 @@ Route::prefix('/v1')->group(function () {
         // API Upload
         Route::prefix('/uploads')->group(function () {
             Route::post('/', 'UploadFilesController@create')
-            ->middleware('checkDeveloperByRole');
+            ->middleware('checkUserByUserId');
         });
         // API Question
         Route::prefix('/questions')->group(function () {
@@ -165,6 +165,13 @@ Route::prefix('/v1')->group(function () {
                 Route::prefix('/approve')->group(function () {
                     Route::get('/{doctype}','ApproveController@Doctype');
                     Route::get('/','ApproveController@Index');
+                });
+                //API Approve Slip
+                Route::prefix('/slips')->group(function () {
+                    Route::get('/','SlipController@allCampers');//fetch camper and its slip
+                    Route::get('/{docId}','SlipController@getDocWithCamper');//fetch document with camper detail
+                    Route::put('/{docId}','SlipController@putDocument');//update document detail and comment
+                    //Put method in laravel use _method = put in Request header
                 });
             });
             
