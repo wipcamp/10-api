@@ -37,13 +37,13 @@ class SlipRepository implements SlipRepositoryInterface {
         return $this->camper->with('profile','profile.documents')->get(); //getAllItims from Profile_camper 
     }
 
-    public function getDocWithCamper($id)
+    public function getDocWithCamper($userId)
     {
-        return $this->document->with('profile')->with('profile.profile_registrant')->with('profile.user')->where('id',$id)->first();//**CHECK ORDER! */
+        return $this->document->with('profile')->with('profile.profile_registrant')->with('profile.user')->where('id', $userId)->first();//**CHECK ORDER! */
     }
 
-    public function putDocument($id,$status,$comment)//update document status by id 
+    public function putDocument($userId,$status,$comment)//update document status by id 
     {
-        return $this->document->where('id',$id)->update(['is_approve'=>$status,'approve_reason' => $comment]); 
+        return $this->document->where('id', $userId)->update(['is_approve'=>$status,'approve_reason' => $comment]); 
     }
 }
