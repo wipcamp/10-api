@@ -34,7 +34,7 @@ class SlipRepository implements SlipRepositoryInterface {
 
     public function allCampers() 
     {
-        return $this->camper->with('profile','profile.documents')->get(); //getAllItims from Profile_camper 
+        return $this->camper->with('profile','profile.documents', 'profile.profile_registrant')->get(); //getAllItims from Profile_camper 
     }
 
     public function getDocWithCamper($userId)
