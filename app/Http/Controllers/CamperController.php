@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Repositories\CamperRepository;
+use Illuminate\Database\QueryException;
 
 class CamperController extends Controller
 {
     function __construct() {
         $this->camper = new CamperRepository;
+        $this->validator = new Validator;
     }
 
     public function getCamperByUserId($userId) {
@@ -24,10 +27,37 @@ class CamperController extends Controller
             'data' => false
         ]);
     }
+    
     public function getAllCampers() {
         return response()->json([
             'status' => 200,
             'data' => $this->camper->getAllCampers()
+        ]);
+    }
+
+    public function updateFlavor(Request $request, $userId) {
+        $data = $request->all();
+
+        $validator = $this->validator->make($data, [
+            'sectionId' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
+        }
+
+        $result;
+        try {
+            $result = $this->camper->updateFlavor($userId, $data['sectionId']);
+        } catch (QueryException $e) {
+            $result = $e;
+        }
+        
+        return response()->json([
+            'status' => 200,
+            'data' => $result
         ]);
     }
 }

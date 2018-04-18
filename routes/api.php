@@ -100,6 +100,8 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkUserByUserId');
             Route::get('/', 'CamperController@getAllCampers')
             ->middleware('checkWipperByRole');
+            Route::put('/{userId}/flavors', 'CamperController@updateFlavor')
+            ->middleware('checkWipperSpeacialByRole');
         });
         // API Role
         Route::prefix('/roles')->group(function () {
@@ -143,6 +145,9 @@ Route::prefix('/v1')->group(function () {
         Route::get('/religions', 'ReligionController@get');
         // API Genders
         Route::get('/genders', 'GenderController@get');
+        // API Flavors
+        Route::get('/flavors', 'FlavorController@getAllFlavors')
+        ->middleware('checkWipperByRole');        
         
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             //API Dashboard
