@@ -11,6 +11,7 @@ class CamperController extends Controller
 {
     function __construct() {
         $this->camper = new CamperRepository;
+        $this->validator = new Validator;
     }
 
     public function getCamperByUserId($userId) {
@@ -37,7 +38,7 @@ class CamperController extends Controller
     public function updateFlavor(Request $request, $userId) {
         $data = $request->all();
 
-        $validator = Validator::make($data, [
+        $validator = $this->validator->make($data, [
             'sectionId' => 'required',
         ]);
 
