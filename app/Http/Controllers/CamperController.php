@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Repositories\CamperRepository;
+use Illuminate\Database\QueryException;
 
 class CamperController extends Controller
 {
@@ -46,9 +47,16 @@ class CamperController extends Controller
             ]);
         }
 
+        $result;
+        try {
+            $result = $this->camper->updateFlavor($userId, $data['sectionId']);
+        } catch (QueryException $e) {
+            $result = $e;
+        }
+        
         return response()->json([
             'status' => 200,
-            'data' => $this->camper->updateFlavor($userId, $data['sectionId'])
+            'data' => $result
         ]);
     }
 }
