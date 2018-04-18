@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Repositories\CamperRepository;
 
@@ -24,10 +25,30 @@ class CamperController extends Controller
             'data' => false
         ]);
     }
+    
     public function getAllCampers() {
         return response()->json([
             'status' => 200,
             'data' => $this->camper->getAllCampers()
+        ]);
+    }
+
+    public function updateFlavor(Request $request, $userId) {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'sectionId' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'data' => $this->camper->updateFlavor($userId, $data['sectionId'])
         ]);
     }
 }

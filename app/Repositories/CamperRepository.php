@@ -9,6 +9,11 @@ class CamperRepository implements CamperRepositoryInterface {
     }
 
     public function getAllCampers() {
-        return ProfileCamper::with(['profile_registrant', 'confirm_camper'])->get();
+        return ProfileCamper::with(['profile', 'profile_registrant', 'confirm_camper'])->get();
+    }
+
+    public function updateFlavor($userId, $sectionId) {
+        return ProfileCamper::where('user_id', $userId)
+        ->update(['section_id' => $sectionId]);
     }
 }

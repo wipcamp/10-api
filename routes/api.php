@@ -100,6 +100,8 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkUserByUserId');
             Route::get('/', 'CamperController@getAllCampers')
             ->middleware('checkWipperByRole');
+            Route::put('/{userId}/flavors', 'CamperController@updateFlavor')
+            ->middleware('checkWipperSpeacialByRole');
         });
         // API Role
         Route::prefix('/roles')->group(function () {
