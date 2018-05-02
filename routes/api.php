@@ -216,6 +216,7 @@ Route::prefix('/v1')->group(function () {
             Route::get('/{id}', 'ProblemController@getProblem');
             Route::post('/', 'ProblemController@createProblem');
             Route::put('/{id}', 'ProblemController@updateProblem');
+            Route::put('/{id}/wippo', 'ProblemController@updateProblemAll');
         });
 
         Route::prefix('/assigns')->group(function () {
