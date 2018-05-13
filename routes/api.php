@@ -98,9 +98,13 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('/campers')->group(function () {
             Route::get('/{userId}', 'CamperController@getCamperByUserId')
             ->middleware('checkUserByUserId');
+            Route::get('/{personId}/person', 'CamperController@getCamperByPersonId')
+            ->middleware('checkUserByUserId');
             Route::get('/', 'CamperController@getAllCampers')
             ->middleware('checkWipperByRole');
             Route::put('/{userId}/flavors', 'CamperController@updateFlavor')
+            ->middleware('checkWipperSpeacialByRole');
+            Route::put('/{userId}/checkin', 'CamperController@updateCheckin')
             ->middleware('checkWipperSpeacialByRole');
         });
         // API Role
