@@ -34,6 +34,20 @@ class CamperController extends Controller
         ]);
     }
 
+    public function getCamperByPersonId($personId) {
+        $camper = $this->camper->getCamperByPersonId($personId);
+        if ($camper) {
+            return response()->json([
+                'status' => 200,
+                'data' => $camper
+            ]);
+        }
+        return response()->json([
+            'status' => 200,
+            'data' => false
+        ]);
+    }
+
     public function updateFlavor(Request $request, $userId) {
         $data = $request->all();
 

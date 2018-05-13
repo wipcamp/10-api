@@ -1,11 +1,16 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Profile;
 use App\Models\ProfileCamper;
 
 class CamperRepository implements CamperRepositoryInterface {
     public function getCamperByUserId($userId) {
         return ProfileCamper::with(['profile_registrant', 'confirm_camper'])->where('user_id', $userId)->get();
+    }
+
+    public function getCamperByPersonId($personId) {
+        return Profile::with(['profile_camper', 'profile_registrant'])->where('citizen_id', $personId)->get();
     }
 
     public function getAllCampers() {
