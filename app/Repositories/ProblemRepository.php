@@ -44,4 +44,18 @@ class ProblemRepository implements ProblemRepositoryInterface {
 
         return 'true';
     }
+
+    public function updateProblemAll($id, $topic, $problem_type_id, $description, $priority_id, $is_solve, $not_solve) {
+        $problem = Problem::find($id);
+
+        $problem->topic = $topic;
+        $problem->problem_type_id = $problem_type_id;
+        $problem->description = $description;
+        $problem->priority_id = $priority_id;
+        $problem->is_solve = $is_solve;
+        $problem->not_solve = $not_solve;
+        
+        $problem->save();
+        return true;
+    }
 }
