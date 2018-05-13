@@ -21,4 +21,9 @@ class CamperRepository implements CamperRepositoryInterface {
         return ProfileCamper::where('user_id', $userId)
         ->update(['section_id' => $sectionId]);
     }
+    
+    public function updateCheckin($userId, $checkedAt) {
+        return ProfileCamper::where('user_id', $userId)
+        ->update(['checked_at' => $checkedAt]);
+    }
 }

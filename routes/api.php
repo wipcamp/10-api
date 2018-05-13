@@ -104,6 +104,8 @@ Route::prefix('/v1')->group(function () {
             ->middleware('checkWipperByRole');
             Route::put('/{userId}/flavors', 'CamperController@updateFlavor')
             ->middleware('checkWipperSpeacialByRole');
+            Route::put('/{userId}/checkin', 'CamperController@updateCheckin')
+            ->middleware('checkWipperSpeacialByRole');
         });
         // API Role
         Route::prefix('/roles')->group(function () {
