@@ -100,9 +100,28 @@ class CamperController extends Controller
         $result;
 
         if ($checkedClient == $checkedServer) {
+            $URL = env('SMS_URL');
+            $METHOD = env('SMS_POST');
+            $USERNAME = env('SMS_USERNAME');
+            $SENDER = env('SMS_SENDER');
+            $PASSWORD = env('SMS_PASSWORD');
+
             try {
                 $this->camper->updateCheckin($userId, Carbon::now());
-                $result = true;
+
+                $camper = $this->camper->getCamperByUserId($userId)[0];
+                $nickname = $camper->profile->nickname;
+                $telnoParent = $camper->profile_registrant->telno_parent;
+        
+                $messageCheckin = urlencode("น้อง ${nickname} ได้เช็คอินและอยู่ในความดูแลที่ค่าย WIP Camp #10 เรียบร้อยแล้วครับ จาก WIP Camp #10");
+                
+                $POST_SMS = $URL.$METHOD.'?'."User=${USERNAME}"."&Password=${PASSWORD}"."&Msnlist=${telnoParent}"."&Msg=${messageCheckin}"."&Sender=${SENDER}";
+                try {
+                    $client = new \GuzzleHttp\Client;
+                    $result = (string) $client->get($POST_SMS)->getBody(true);
+                } catch (\Exception $e) {
+                    $result = 'Exception at SMS';
+                }
             } catch (QueryException $e) {
                 $result = $e;
             }
@@ -115,4 +134,5 @@ class CamperController extends Controller
             'data' => $result
         ]);
     }
+
 }

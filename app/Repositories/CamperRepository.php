@@ -6,7 +6,7 @@ use App\Models\ProfileCamper;
 
 class CamperRepository implements CamperRepositoryInterface {
     public function getCamperByUserId($userId) {
-        return ProfileCamper::with(['profile_registrant', 'confirm_camper'])->where('user_id', $userId)->get();
+        return ProfileCamper::with(['profile', 'profile_registrant', 'confirm_camper'])->where('user_id', $userId)->get();
     }
 
     public function getCamperByPersonId($personId) {
