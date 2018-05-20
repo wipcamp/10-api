@@ -22,6 +22,12 @@ Route::prefix('/v1')->group(function () {
     Route::get('/time', function() {
         return Carbon::now();
     });
+
+        // API Exams
+        Route::prefix('/exams')->group(function () {
+            Route::get('/', 'ExamController@getAll');
+            Route::post('/', 'ExamController@insertAnswer');
+        });
     
     // -----------------------------
     // API Auth
