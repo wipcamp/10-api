@@ -8,7 +8,7 @@ class ExamRepository implements ExamRepositoryInterface {
         return ExamQuestion::with('exam_choices')->get();
     }
 
-    public function insertAnswer() {
-        return 'hi';
+    public function insertAnswer($answer) {
+        return Exam::insert($answer);
     }
 }
