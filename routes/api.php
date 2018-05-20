@@ -22,12 +22,6 @@ Route::prefix('/v1')->group(function () {
     Route::get('/time', function() {
         return Carbon::now();
     });
-
-        // API Exams
-        Route::prefix('/exams')->group(function () {
-            Route::get('/', 'ExamController@getAll');
-            Route::post('/', 'ExamController@insertAnswer');
-        });
     
     // -----------------------------
     // API Auth
@@ -272,6 +266,14 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('notifications')->group(function () {
             Route::get('/', 'NotificationController@getAll');
             Route::get('/user_id/{id}', 'NotificationController@getByUserId');
+        });
+
+        // API Exams
+        Route::group(['middleware' => ['checkDateForExam']], function () {
+            Route::prefix('/exams')->group(function () {
+                Route::get('/', 'ExamController@getAll');
+                Route::post('/', 'ExamController@insertAnswer');
+            });
         });
     });
 });

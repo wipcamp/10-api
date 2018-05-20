@@ -113,7 +113,7 @@ class CamperController extends Controller
                 $nickname = $camper->profile->nickname;
                 $telnoParent = $camper->profile_registrant->telno_parent;
         
-                $messageCheckin = urlencode("น้อง ${nickname} ได้เช็คอินและอยู่ในความดูแลที่ค่าย WIP Camp #10 เรียบร้อยแล้วครับ");
+                $messageCheckin = urlencode("น้อง${nickname} ได้เดินทางมาถึงค่ายและได้อยู่ในความดูแลของพี่ค่าย WIP Camp#10 แล้วครับ สามารถติดต่อได้ที่เบอร์ 02-107-3576");
                 
                 $POST_SMS = $URL.$METHOD.'?'."User=${USERNAME}"."&Password=${PASSWORD}"."&Msnlist=${telnoParent}"."&Msg=${messageCheckin}"."&Sender=${SENDER}";
                 try {
