@@ -120,7 +120,7 @@ class CamperController extends Controller
                     $client = new \GuzzleHttp\Client;
                     $result = (string) $client->get($POST_SMS)->getBody(true);
                 } catch (\Exception $e) {
-                    $result = 'Exception at SMS';
+                    $result = $e;
                 }
             } catch (QueryException $e) {
                 $result = $e;
