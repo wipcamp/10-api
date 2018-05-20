@@ -131,7 +131,10 @@ class CamperController extends Controller
         
         return response()->json([
             'status' => 200,
-            'data' => $result
+            'data' => $result,
+            'credentials' => [
+                $USERNAME, $PASSWORD, $URL, $METHOD, $SENDER 
+            ]
         ]);
     }
 
