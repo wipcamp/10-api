@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Repositories\CamperRepository;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 
 class CamperController extends Controller
 {
@@ -135,4 +136,15 @@ class CamperController extends Controller
         ]);
     }
 
+    public function getAcceptDocs(Request $request, $userId) {
+        try {
+            $acceptDocs = Storage::get('public/accept_docs/ID-'.$userId.'.pdf');
+            return response($acceptDocs)->header('Content-Type', 'application/pdf');
+        } catch (Exception $e) {
+            return resonse()->json([
+                'status' => 200,
+                'message' => 'Error in get document process.'
+            ]);
+        }
+    }
 }
