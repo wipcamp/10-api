@@ -7,8 +7,7 @@ RUN docker-php-ext-install pdo pdo_mysql mbstring exif && \
     docker-php-ext-enable pdo pdo_mysql mbstring exif && \
     chmod 777 ./writeENV.sh && \
     chmod 777 -R /app/storage && \
-    chmod 777 -R /app/bootstrap/cache && \
-    php artisan storage:link
+    chmod 777 -R /app/bootstrap/cache
 
 ENV DB_PASSWORD=
 ENV APP_KEY=
