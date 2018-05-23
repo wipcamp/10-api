@@ -49,6 +49,29 @@ class ProblemController extends Controller
         return json_encode($result);
     }
 
+    public function updateProblemAll($id, Request $request) {
+        $data = $request->all();
+
+        $topic = array_get($data, 'topic');
+        $problem_type_id = array_get($data, 'problem_type_id');
+        $description = array_get($data, 'description');
+        $priority_id = array_get($data, 'priority_id');
+        $is_solve = array_get($data, 'is_solve');
+        $not_solve = array_get($data, 'not_solve');
+
+        $result = false;
+
+        if(!is_null($topic) && !is_null($problem_type_id) &&
+            !is_null($description) && !is_null($priority_id) &&
+            !is_null($is_solve) && !is_null($not_solve)) {
+            $result = $this->problemRepo->updateProblemAll($id, $topic, $problem_type_id, $description, $priority_id, $is_solve, $not_solve);
+        }
+
+        return response()->json([
+            'status' => $result
+        ]);
+    }
+
     public function updateProblem($id, Request $request) {
         $data = $request->all();
 
