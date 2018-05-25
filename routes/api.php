@@ -37,11 +37,16 @@ Route::prefix('/v1')->group(function () {
     });
 
     Route::post('/profiles', 'ProfileController@create');
-    // ->middleware('checkCloseRegister')
+    // ->middleware('checkCloseRegister');
     // API Get and Create User
     Route::prefix('/users')->group(function () {
         Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
+    });
+
+    Route::prefix('/scores')->group(function () {
+        Route::get('/', 'ScoreController@getAll');
+        Route::get('/{flavorId}/flavors', 'ScoreController@getScoreByFlavorId');
     });
 
     // -----------------------------
@@ -66,8 +71,6 @@ Route::prefix('/v1')->group(function () {
         });
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::post('/', 'ProfileController@create');
-            // ->middleware('checkCloseRegister');
             Route::put('/', 'ProfileController@update');
             // ->middleware('checkCloseRegister');
             Route::get('/', 'ProfileController@get')
@@ -275,6 +278,12 @@ Route::prefix('/v1')->group(function () {
                 Route::get('/', 'ExamController@getAll');
                 Route::post('/', 'ExamController@insertAnswer');
             });
+        });
+
+        // API Score for Create & Update
+        Route::prefix('/scores')->group(function () {
+            Route::put('/{scoreId}/flavors', 'ScoreController@update');
+            Route::post('/', 'ScoreController@create');
         });
     });
 });
