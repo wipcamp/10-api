@@ -66,10 +66,10 @@ Route::prefix('/v1')->group(function () {
         });
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::post('/', 'ProfileController@create')
-            ->middleware('checkCloseRegister');
-            Route::put('/', 'ProfileController@update')
-            ->middleware('checkCloseRegister');
+            Route::post('/', 'ProfileController@create');
+            // ->middleware('checkCloseRegister');
+            Route::put('/', 'ProfileController@update');
+            // ->middleware('checkCloseRegister');
             Route::get('/', 'ProfileController@get')
             ->middleware('checkWipperSpeacialByRole');
             Route::get('/{userId}', 'ProfileController@getProfile')
