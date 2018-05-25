@@ -45,7 +45,7 @@ Route::prefix('/v1')->group(function () {
     });
 
     Route::prefix('/scores')->group(function () {
-        Route::put('/{flavorId}/flavors', 'ScoreController@update');
+        Route::get('/', 'ScoreController@getAll');
         Route::get('/{flavorId}/flavors', 'ScoreController@getScoreByFlavorId');
     });
 
@@ -282,7 +282,7 @@ Route::prefix('/v1')->group(function () {
 
         // API Score for Create & Update
         Route::prefix('/scores')->group(function () {
-            Route::get('/', 'ScoreController@getAll');
+            Route::put('/{flavorId}/flavors', 'ScoreController@update');
             Route::post('/', 'ScoreController@create');
         });
     });
