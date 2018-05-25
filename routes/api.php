@@ -152,8 +152,7 @@ Route::prefix('/v1')->group(function () {
         // API Genders
         Route::get('/genders', 'GenderController@get');
         // API Flavors
-        Route::get('/flavors', 'FlavorController@getAllFlavors')
-        ->middleware('checkWipperByRole');        
+        Route::get('/flavors', 'FlavorController@getAllFlavors');        
         
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             //API Dashboard
