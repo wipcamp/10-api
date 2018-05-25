@@ -36,8 +36,8 @@ Route::prefix('/v1')->group(function () {
         Route::post('me', 'AuthController@me');
     });
 
-    Route::post('/profiles', 'ProfileController@create')
-    ->middleware('checkCloseRegister');
+    Route::post('/profiles', 'ProfileController@create');
+    // ->middleware('checkCloseRegister')
     // API Get and Create User
     Route::prefix('/users')->group(function () {
         Route::post('/', 'UserController@create');
@@ -98,10 +98,16 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('/campers')->group(function () {
             Route::get('/{userId}', 'CamperController@getCamperByUserId')
             ->middleware('checkUserByUserId');
+            Route::get('/{personId}/person', 'CamperController@getCamperByPersonId')
+            ->middleware(['checkCamperByPersonId', 'checkUserByUserId']);
             Route::get('/', 'CamperController@getAllCampers')
             ->middleware('checkWipperByRole');
             Route::put('/{userId}/flavors', 'CamperController@updateFlavor')
             ->middleware('checkWipperSpeacialByRole');
+            Route::put('/{userId}/checkin', 'CamperController@updateCheckin')
+            ->middleware('checkWipperSpeacialByRole');
+            Route::get('/{userId}/docs', 'CamperController@getAcceptDocs')
+            ->middleware(['checkCamperByUserId', 'checkUserByUserId']);
         });
         // API Role
         Route::prefix('/roles')->group(function () {
@@ -146,8 +152,7 @@ Route::prefix('/v1')->group(function () {
         // API Genders
         Route::get('/genders', 'GenderController@get');
         // API Flavors
-        Route::get('/flavors', 'FlavorController@getAllFlavors')
-        ->middleware('checkWipperByRole');        
+        Route::get('/flavors', 'FlavorController@getAllFlavors');        
         
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             //API Dashboard
@@ -262,6 +267,14 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('notifications')->group(function () {
             Route::get('/', 'NotificationController@getAll');
             Route::get('/user_id/{id}', 'NotificationController@getByUserId');
+        });
+
+        // API Exams
+        Route::group(['middleware' => ['checkDateForExam']], function () {
+            Route::prefix('/exams')->group(function () {
+                Route::get('/', 'ExamController@getAll');
+                Route::post('/', 'ExamController@insertAnswer');
+            });
         });
     });
 });

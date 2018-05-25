@@ -37,7 +37,8 @@ class AppServiceProvider extends ServiceProvider
             'Notification',
             'Priority',
             'Assign',
-            'Slip'
+            'Slip',
+            'Exam'
         );
         foreach ($models as $model) {
             $this->app->bind("App\Repositories\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
