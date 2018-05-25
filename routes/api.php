@@ -56,14 +56,7 @@ Route::prefix('/v1')->group(function () {
                 });
             });
         });
-        // API Create Staff
-        Route::prefix('/staffs')->group(function () {
-            Route::post('/', 'StaffController@create');
-            Route::get('/nonapprove', 'StaffController@getNonApprove')
-            ->middleware('checkAdminByRole');
-            Route::get('/{userId}', 'StaffController@getStaff')
-            ->middleware('checkUserByUserId');
-        });
+        
         // API Register
         Route::prefix('/profiles')->group(function () {
             Route::post('/', 'ProfileController@create');
@@ -153,6 +146,20 @@ Route::prefix('/v1')->group(function () {
         Route::get('/genders', 'GenderController@get');
         // API Flavors
         Route::get('/flavors', 'FlavorController@getAllFlavors');        
+
+        // API Staff
+        Route::prefix('/staffs')->group(function () {
+            
+            Route::post('/', 'StaffController@create');
+            Route::get('/nonapprove', 'StaffController@getNonApprove')
+            ->middleware('checkAdminByRole');
+            Route::get('/{userId}', 'StaffController@getStaff')
+            ->middleware('checkUserByUserId');
+            
+            Route::get('/', 'StaffController@get');
+            Route::post('/{id}/roles', 'RoleController@createWipper')
+            ->middleware('checkAdminByRole');
+        });
         
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             //API Dashboard
@@ -196,13 +203,7 @@ Route::prefix('/v1')->group(function () {
                 });
             });
 
-            // API Staff
-            Route::group(['middleware' => ['checkAdminByRole']], function () {
-                Route::prefix('/staffs')->group(function () {
-                    Route::get('/', 'StaffController@get');
-                    Route::post('/{id}/roles', 'RoleController@createWipper');
-                });
-            });
+            
         });
         
         // API Report Problem
