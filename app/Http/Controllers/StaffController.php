@@ -20,7 +20,8 @@ class StaffController extends Controller
         // validate
         $schema = [
             'userId' => 'required',
-            'stdId' => 'required'
+            'stdId' => 'required',
+            'flavorId' => 'required'
         ];
 
         $validator = Validator::make($user, $schema);
@@ -31,26 +32,12 @@ class StaffController extends Controller
             ]);
         }
 
-        $profile = new ProfileRepository;
-        if (blank($profile->getProfile($user['userId']))) {
-            $profile->createStaff([
-                'user_id' => $user['userId'],
-                'first_name' => '',
-                'first_name_en' => '',
-                'last_name' => '',
-                'last_name_en' => '',
-                'nickname' => '',
-                'gender_id' => 1,
-                'religion_id' => 1,
-                'blood_group' => 'ไม่ทราบ',
-            ]);
-        }
-
         return response()->json([
             'status' => 200,
             'data' => $this->staffs->create(
                 $user['userId'],
-                $user['stdId']
+                $user['stdId'],
+                $user['flavorId']
             )
         ]);
     }
