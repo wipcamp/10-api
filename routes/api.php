@@ -282,7 +282,7 @@ Route::prefix('/v1')->group(function () {
 
         // API Score for Create & Update
         Route::prefix('/scores')->group(function () {
-            Route::put('/{flavorId}/flavors', 'ScoreController@update');
+            Route::put('/{scoreId}/flavors', 'ScoreController@update');
             Route::post('/', 'ScoreController@create');
         });
     });
