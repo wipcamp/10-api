@@ -44,6 +44,11 @@ Route::prefix('/v1')->group(function () {
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
 
+    Route::prefix('/scores')->group(function () {
+        Route::put('/{flavorId}/flavors', 'ScoreController@update');
+        Route::get('/{flavorId}/flavors', 'ScoreController@getScoreByFlavorId');
+    });
+
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
         // API User
@@ -275,6 +280,12 @@ Route::prefix('/v1')->group(function () {
                 Route::get('/', 'ExamController@getAll');
                 Route::post('/', 'ExamController@insertAnswer');
             });
+        });
+
+        // API Score for Create & Update
+        Route::prefix('/scores')->group(function () {
+            Route::get('/', 'ScoreController@getAll');
+            Route::post('/', 'ScoreController@create');
         });
     });
 });
