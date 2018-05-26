@@ -52,13 +52,11 @@ Route::prefix('/v1')->group(function () {
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
         // API User
-        Route::prefix('/users')->group(function () {
+        Route::group(['middleware' => ['checkUserByUserId']], function () {
             // API User with user_id
-            Route::group(['middleware' => ['checkUserByUserId']], function () {
-                Route::prefix('/{userId}')->group(function () {
-                    Route::get('/', 'UserController@getByUserId');
-                    Route::get('/answers/{questionId}', 'AnswerController@getById');
-                });
+            Route::prefix('/users/{userId}')->group(function () {
+                Route::get('/', 'UserController@getByUserId');
+                Route::get('/answers/{questionId}', 'AnswerController@getById');
             });
         });
         // API Create Staff
