@@ -272,12 +272,12 @@ Route::prefix('/v1')->group(function () {
         });
 
         // API Exams
-        Route::group(['middleware' => ['checkDateForExam']], function () {
-            Route::prefix('/exams')->group(function () {
-                Route::get('/', 'ExamController@getAll');
-                Route::post('/', 'ExamController@insertAnswer');
-            });
+        // Route::group(['middleware' => ['checkDateForExam']], function () {
+        Route::prefix('/exams')->group(function () {
+            Route::get('/', 'ExamController@getAll');
+            Route::post('/', 'ExamController@insertAnswer');
         });
+        // });
 
         // API Score for Create & Update
         Route::prefix('/scores')->group(function () {
