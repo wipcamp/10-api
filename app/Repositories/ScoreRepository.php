@@ -18,7 +18,7 @@ class ScoreRepository implements ScoreRepositoryInterface {
   public function getAll() {
     return DB::table('section_scores')
     ->join('camp_sections', 'camp_sections.id', '=', 'section_scores.section_id')
-    ->select('section_scores.*', 'camp_sections.display_name', 'camp_sections.label_color')
+    ->select('section_scores.*', 'camp_sections.display_name', 'camp_sections.label_color', DB::raw('SUM(score) as score'))
     ->groupBy('section_scores.section_id')
     ->get();
   }
@@ -26,7 +26,8 @@ class ScoreRepository implements ScoreRepositoryInterface {
   public function getScoreByFlavorId($flavorId) {
     return DB::table('section_scores')
     ->join('camp_sections', 'camp_sections.id', '=', 'section_scores.section_id')
-    ->select('section_scores.*', 'camp_sections.display_name', 'camp_sections.label_color')
+    ->select('section_scores.*', 'camp_sections.display_name', 'camp_sections.label_color', DB::raw('SUM(score) as score'))
+    ->groupBy('section_scores.section_id')
     ->where('section_scores.section_id', $flavorId)
     ->get();
   }
