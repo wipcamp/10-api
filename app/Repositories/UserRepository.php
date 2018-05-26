@@ -12,7 +12,7 @@ class UserRepository implements UserRepositoryInterface {
 
   public function create($data) {
     // constant
-    $roleName = 'reg_registrants';
+    $roleName = 'camp_staffs_junior';
     $providerName = 'facebook';
     $fileType = 'profile_picture';
     $imageUrl = $data['picture']['data']['url'];
