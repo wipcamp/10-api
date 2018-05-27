@@ -19,7 +19,7 @@ class CheckCheckinByUserId
         $camper = new CamperRepository;
         $camper = $camper->getCamperByUserId($request->route('userId'));
         
-        if (array_has($camper[0], 'profile_camper') && blank($camper[0]->profile_camper->checked_at)) {
+        if (blank($camper[0]->checked_at)) {
             return $next($request);
         }
         return response()->json([
