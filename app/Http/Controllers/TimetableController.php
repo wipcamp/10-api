@@ -73,7 +73,7 @@ class TimetableController extends Controller
             !is_null($location) && !is_null($start_on) &&
             !is_null($finish_on) && !is_null($created_id) &&
             !is_null($role_team_id)) {
-            $result = $this->timetableRepo->update($event, $description, $location, $start_on, $finish_on, $created_id, $role_team_id);
+            $result = $this->timetableRepo->update($timetableId, $event, $description, $location, $start_on, $finish_on, $created_id, $role_team_id);
         }
 
         return json_encode($result);
