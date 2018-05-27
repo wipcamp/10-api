@@ -99,7 +99,7 @@ Route::prefix('/v1')->group(function () {
             Route::put('/{userId}/flavors', 'CamperController@updateFlavor')
             ->middleware('checkWipperSpeacialByRole');
             Route::put('/{userId}/checkin', 'CamperController@updateCheckin')
-            ->middleware('checkWipperSpeacialByRole');
+            ->middleware(['checkCheckinByUserId', 'checkWipperSpeacialByRole']);
             Route::get('/{userId}/docs', 'CamperController@getAcceptDocs')
             ->middleware(['checkCamperByUserId', 'checkUserByUserId']);
         });
