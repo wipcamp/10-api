@@ -25,4 +25,44 @@ class TimetableRepository implements TimetableRepositoryInterface {
         return $data;
     }
 
+    public function create($event, $description, $location, $start_on, $finish_on, $created_id, $role_team_id) {
+        $timetable = new Timetable;
+
+        $timetable->event = $event;
+        $timetable->description = $description;
+        $timetable->location = $location;
+        $timetable->start_on = $start_on;
+        $timetable->finish_on = $finish_on;
+        $timetable->created_id = $created_id;
+        $timetable->role_team_id = $role_team_id;
+
+        $timetable->save();
+        
+        return "true";
+    }
+
+    public function update($timetableId, $event, $description, $location, $start_on, $finish_on, $created_id, $role_team_id) {
+        $timetable = Timetable::find($timetableId);
+        
+        $timetable->event = $event;
+        $timetable->description = $description;
+        $timetable->location = $location;
+        $timetable->start_on = $start_on;
+        $timetable->finish_on = $finish_on;
+        $timetable->created_id = $created_id;
+        $timetable->role_team_id = $role_team_id;
+
+        $timetable->save();
+        
+        return "true";
+        
+    }
+
+    public function delete($timetableId) {
+        $timetable = Timetable::find($timetableId);
+
+        $timetable->delete();
+
+        return "true";
+    }
 }
