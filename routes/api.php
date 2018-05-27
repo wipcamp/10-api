@@ -252,6 +252,9 @@ Route::prefix('/v1')->group(function () {
             Route::get('/{id}', 'TimetableController@getTimetable');
             Route::get('/role_team_id/{id}', 'TimetableController@getByRoleTeamId');
             Route::get('/start_on/{time}', 'TimetableController@getByDate');
+            Route::post('/', 'TimetableController@create');
+            Route::put('/{id}', 'TimetableController@update');
+            Route::delete('/{id}', 'TimetableController@delete');
         });
 
         // API Announce
