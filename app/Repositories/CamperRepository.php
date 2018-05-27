@@ -10,7 +10,7 @@ class CamperRepository implements CamperRepositoryInterface {
     }
 
     public function getCamperByPersonId($personId) {
-        return Profile::with(['profile_camper', 'profile_registrant'])->where('citizen_id', $personId)->get();
+        return Profile::with(['profile_registrant', 'profile_gender', 'profile_religion', 'profile_camper'])->where('citizen_id', $personId)->get();
     }
 
     public function getAllCampers() {
