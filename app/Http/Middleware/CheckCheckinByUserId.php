@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Repositories\CamperRepository;
 
 class CheckCheckinByUserId
 {
