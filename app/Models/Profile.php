@@ -23,12 +23,12 @@ class Profile extends Model
 
     public function profile_gender()
     {
-        return $this->belongsTo('App\Models\ProfileGender', 'id', 'gender_id');
+        return $this->belongsTo('App\Models\ProfileGender', 'gender_id', 'id');
     }
 
     public function profile_religion()
     {
-        return $this->belongTo('App\Models\ProfileReligion', 'id', 'religion_id');
+        return $this->hasOne('App\Models\ProfileReligion', 'id', 'religion_id');
     }
 
     public function profile_registrant()

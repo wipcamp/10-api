@@ -16,6 +16,6 @@ class ProfileReligion extends Model
 
     public function profiles()
     {
-        $this->hasMany('App\Models\Profile', 'religion_id');
+        return $this->hasMany('App\Models\Profile', 'religion_id');
     }
 }
