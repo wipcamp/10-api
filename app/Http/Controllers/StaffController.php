@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ProfileRepository;
+use App\Repositories\UserRoleTeamRepository;
 use App\Repositories\StaffRepository;
 use Validator;
 
@@ -21,7 +22,8 @@ class StaffController extends Controller
         $schema = [
             'userId' => 'required',
             'stdId' => 'required',
-            'flavorId' => 'required'
+            'flavorId' => 'required',
+            'team' => 'required'
         ];
 
         $validator = Validator::make($user, $schema);
@@ -31,6 +33,9 @@ class StaffController extends Controller
                 'error' => 'Invalid Data.'
             ]);
         }
+
+        $roleTeam = new UserRoleTeamRepository;
+        $roleTeam->create($user['userId'], $user['team']);
 
         return response()->json([
             'status' => 200,
