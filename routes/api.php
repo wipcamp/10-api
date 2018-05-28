@@ -227,8 +227,10 @@ Route::prefix('/v1')->group(function () {
         });
 
         Route::prefix('/assigns')->group(function () {
+            Route::post('/', 'AssignController@createAssign');
             Route::get('/{id}', 'AssignController@getAssign');
             Route::get('/problem_id/{id}', 'AssignController@getByProblemId');
+            Route::put('/problem_id/{id} ', 'AssignController@updateAssign');
             Route::get('/role_team_id/{id}', 'AssignController@getByRoleTeamId');
             Route::get('/assigned_id/{id}', 'AssignController@getByAssignedId');            
         });
