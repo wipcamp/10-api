@@ -9,6 +9,18 @@ class AssignRepository implements AssignRepositoryInterface {
         return $data;
     }
 
+    public function create($data) {
+        $assign = new Assign($data);
+        $assign->save();
+        return $data;
+      }
+
+
+    public function deleteByProblemId($problemId) {
+        $data = Assign::where('problem_id', $problemId)->delete();
+        return $data;
+    }
+
     public function getByProblemId($problemId) {
         $data = Assign::where('problem_id', $problemId)->get();
         return $data;
