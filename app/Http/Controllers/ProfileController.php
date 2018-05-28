@@ -86,6 +86,47 @@ class ProfileController extends Controller
         ]);
     }
 
+    function update(Request $request, $userId) {
+        $schema = [            
+            'addr_dist' => 'required',
+            'addr_prov' => 'required',
+            'allergic_foods'  => 'required',
+            'birth_at' => 'required',
+            'blood_group' => 'required',
+            'citizen_id' => 'required',
+            'congenital_diseases' => 'required',
+            'congenital_drugs' => 'required',
+            'edu_gpax' => 'required',
+            'edu_lv' => 'required',
+            'edu_major' => 'required',
+            'edu_name' => 'required',
+            'first_name' => 'required',
+            'first_name_en' => 'required',
+            'gender_id' => 'required',
+            'last_name' => 'required',
+            'last_name_en' => 'required',
+            'nickname' => 'required',
+            'parent_relation' => 'required',
+            'religion_id' => 'required',
+            'telno_parent' => 'required',
+            'telno_personal' => 'required',
+            'user_id' => 'required',
+        ];
+        // get data
+        $data = $request->all();
+        // validate
+        $validator = Validator::make($data, $schema);
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid Data.'
+            ]);
+        }
+        return response()->json([
+            'status' => 200,
+            'data' => $this->profiles->update($data)
+        ]);
+    }
+
     function get() {
         return $this->profiles->get();
     }
