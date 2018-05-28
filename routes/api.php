@@ -62,8 +62,8 @@ Route::prefix('/v1')->group(function () {
         
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::put('/{userId}', 'ProfileController@update');
-            // ->middleware('checkCloseRegister');
+            Route::put('/{userId}', 'ProfileController@update')
+            ->middleware('checkUserByUserId');
             Route::get('/', 'ProfileController@get')
             ->middleware('checkWipperSpeacialByRole');
             Route::get('/{userId}', 'ProfileController@getProfile')
