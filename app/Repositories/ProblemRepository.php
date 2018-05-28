@@ -27,7 +27,7 @@ class ProblemRepository implements ProblemRepositoryInterface {
         
         $newProblem->save();
 
-        return 'true';
+        return $newProblem->id;
     }
 
     public function updateProblem($id, $is_solve) {
