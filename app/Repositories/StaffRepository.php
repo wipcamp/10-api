@@ -7,11 +7,12 @@ use App\Models\Profile;
 
 class StaffRepository implements StaffRepositoryInterface {
 
-  public function create($id, $stdId) {
+  public function create($id, $stdId, $flavorId) {
     $staff = new ProfileStaff;
     return $staff->create([
       'user_id' => $id,
-      'student_id' => $stdId
+      'student_id' => $stdId,
+      'section_id' => $flavorId
     ]);
   }
 

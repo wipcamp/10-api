@@ -37,39 +37,33 @@ Route::prefix('/v1')->group(function () {
     });
 
     Route::post('/profiles', 'ProfileController@create');
-    // ->middleware('checkCloseRegister')
+    // ->middleware('checkCloseRegister');
     // API Get and Create User
     Route::prefix('/users')->group(function () {
         Route::post('/', 'UserController@create');
         Route::post('/{providerAcc}', 'UserController@getByProviderAcc');
     });
 
+    Route::prefix('/scores')->group(function () {
+        Route::get('/', 'ScoreController@getAll');
+        Route::get('/{flavorId}/flavors', 'ScoreController@getScoreByFlavorId');
+    });
+
     // -----------------------------
     Route::group(['middleware' => 'jwt.auth'], function () {
         // API User
-        Route::prefix('/users')->group(function () {
+        Route::group(['middleware' => ['checkUserByUserId']], function () {
             // API User with user_id
-            Route::group(['middleware' => ['checkUserByUserId']], function () {
-                Route::prefix('/{userId}')->group(function () {
-                    Route::get('/', 'UserController@getByUserId');
-                    Route::get('/answers/{questionId}', 'AnswerController@getById');
-                });
+            Route::prefix('/users/{userId}')->group(function () {
+                Route::get('/', 'UserController@getByUserId');
+                Route::get('/answers/{questionId}', 'AnswerController@getById');
             });
         });
-        // API Create Staff
-        Route::prefix('/staffs')->group(function () {
-            Route::post('/', 'StaffController@create');
-            Route::get('/nonapprove', 'StaffController@getNonApprove')
-            ->middleware('checkAdminByRole');
-            Route::get('/{userId}', 'StaffController@getStaff')
-            ->middleware('checkUserByUserId');
-        });
+        
         // API Register
         Route::prefix('/profiles')->group(function () {
-            Route::post('/', 'ProfileController@create')
-            ->middleware('checkCloseRegister');
-            Route::put('/', 'ProfileController@update')
-            ->middleware('checkCloseRegister');
+            Route::put('/', 'ProfileController@update');
+            // ->middleware('checkCloseRegister');
             Route::get('/', 'ProfileController@get')
             ->middleware('checkWipperSpeacialByRole');
             Route::get('/{userId}', 'ProfileController@getProfile')
@@ -105,7 +99,7 @@ Route::prefix('/v1')->group(function () {
             Route::put('/{userId}/flavors', 'CamperController@updateFlavor')
             ->middleware('checkWipperSpeacialByRole');
             Route::put('/{userId}/checkin', 'CamperController@updateCheckin')
-            ->middleware('checkWipperSpeacialByRole');
+            ->middleware(['checkCheckinByUserId', 'checkWipperSpeacialByRole']);
             Route::get('/{userId}/docs', 'CamperController@getAcceptDocs')
             ->middleware(['checkCamperByUserId', 'checkUserByUserId']);
         });
@@ -152,8 +146,21 @@ Route::prefix('/v1')->group(function () {
         // API Genders
         Route::get('/genders', 'GenderController@get');
         // API Flavors
-        Route::get('/flavors', 'FlavorController@getAllFlavors')
-        ->middleware('checkWipperByRole');        
+        Route::get('/flavors', 'FlavorController@getAllFlavors');        
+
+        // API Staff
+        Route::prefix('/staffs')->group(function () {
+            
+            Route::post('/', 'StaffController@create');
+            Route::get('/nonapprove', 'StaffController@getNonApprove')
+            ->middleware('checkAdminByRole');
+            Route::get('/{userId}', 'StaffController@getStaff')
+            ->middleware('checkUserByUserId');
+            
+            Route::get('/', 'StaffController@get');
+            Route::post('/{id}/roles', 'RoleController@createWipper')
+            ->middleware('checkAdminByRole');
+        });
         
         Route::group(['middleware' => ['checkWipperByRole']], function () {
             //API Dashboard
@@ -197,13 +204,7 @@ Route::prefix('/v1')->group(function () {
                 });
             });
 
-            // API Staff
-            Route::group(['middleware' => ['checkAdminByRole']], function () {
-                Route::prefix('/staffs')->group(function () {
-                    Route::get('/', 'StaffController@get');
-                    Route::post('/{id}/roles', 'RoleController@createWipper');
-                });
-            });
+            
         });
         
         // API Report Problem
@@ -251,6 +252,9 @@ Route::prefix('/v1')->group(function () {
             Route::get('/{id}', 'TimetableController@getTimetable');
             Route::get('/role_team_id/{id}', 'TimetableController@getByRoleTeamId');
             Route::get('/start_on/{time}', 'TimetableController@getByDate');
+            Route::post('/', 'TimetableController@create');
+            Route::put('/{id}', 'TimetableController@update');
+            Route::delete('/{id}', 'TimetableController@delete');
         });
 
         // API Announce
@@ -271,11 +275,17 @@ Route::prefix('/v1')->group(function () {
         });
 
         // API Exams
-        Route::group(['middleware' => ['checkDateForExam']], function () {
-            Route::prefix('/exams')->group(function () {
-                Route::get('/', 'ExamController@getAll');
-                Route::post('/', 'ExamController@insertAnswer');
-            });
+        // Route::group(['middleware' => ['checkDateForExam']], function () {
+        Route::prefix('/exams')->group(function () {
+            Route::get('/', 'ExamController@getAll');
+            Route::post('/', 'ExamController@insertAnswer');
+        });
+        // });
+
+        // API Score for Create & Update
+        Route::prefix('/scores')->group(function () {
+            Route::put('/{scoreId}/flavors', 'ScoreController@update');
+            Route::post('/', 'ScoreController@create');
         });
     });
 });

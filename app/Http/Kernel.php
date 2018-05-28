@@ -79,5 +79,6 @@ class Kernel extends HttpKernel
         'checkCloseRegister' => '\App\Http\Middleware\CloseRegister',    
         'checkCamperByUserId' => '\App\Http\Middleware\CheckCamperByUserId',    
         'checkCamperByPersonId' => '\App\Http\Middleware\CheckCamperByPersonId',    
+        'checkCheckinByUserId' => '\App\Http\Middleware\CheckCheckinByUserId',    
     ];
 }
