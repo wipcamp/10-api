@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
         }
         
         if ($this->shouldReport($e) && !$this->isHttpException($e) && !config('app.debug')) {
-            $exception = new HttpException(500, 'Whoops!');
+            $e = new Exception(500, 'Whoops!');
         }
     
         return parent::render($request, $e);
