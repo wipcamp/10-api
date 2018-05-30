@@ -66,8 +66,13 @@ class ProfileRepository implements ProfileRepositoryInterface {
   }
 
   function getProfile($id) {
-    $profile = Profile::find($id);
-    return $profile;
+    $this->profiles = new Profile;
+    return $this->profiles->with([
+      'profile_registrant'
+      ])
+      ->where('user_id', $id)
+      ->get()
+      ->first();
   }
 
   public function getRegistrants() {
