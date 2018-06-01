@@ -50,16 +50,22 @@ pipeline {
         }
       }
       steps {
-        sh 'sudo kubectl rolling-update wip-api -n development --image registry.wip.camp/wip-api:$GIT_BRANCH --image-pull-policy=Always'
+        script {
+          if (GIT_BRANCH == 'master') {
+            sh 'sudo kubectl rolling-update wip-api -n production --image registry.wip.camp/wip-api:master-$BUILD_NUMBER --image-pull-policy Always'
+          } else {
+            sh 'sudo kubectl rolling-update wip-api -n development --image registry.wip.camp/wip-api:$GIT_BRANCH --image-pull-policy=Always'
+          }
+        }
       }
     }
   }
   post {
     success {
-      sh 'echo success'
+      slackSend(color: "#228b22", message: "10-API on ${env.GIT_BRANCH} at build number ${env.BUILD_NUMBER} was built successfully & deploy. More infomation ${env.JENKINS_URL}")
     }
     failure {
-      sh 'echo failure'
+      slackSend(color: "#ff0033", message: "10-API on ${env.GIT_BRANCH} was fail ${env.JENKINS_URL}")
     }
   }
 }
